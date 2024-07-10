@@ -66,7 +66,8 @@ install_packages() {
         'ffmpegthumbs'              
         'mesa-utils'                
         'xdg-user-dirs'             
-        'stow'                      
+        'stow'
+        'python-dbus'                      
 
         # THEMING -------------------------------------------------------------
         'qt5-wayland'               

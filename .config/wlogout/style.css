@@ -13,45 +13,44 @@ window {
 }
 
 button {
-
-     color: #FFFFFF;
-     background-color: @color1;
-     background-position: center;
-     background-repeat: no-repeat;
-     background-size: 20%;
-     border: none;
-     border-radius: 10px;
-     outline-style: none;
-     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    color: #FFFFFF;
+    background-color: @color1;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 20%;
+    border: none;
+    border-radius: 10px;
+    outline-style: none;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #lock {
-	background-color: @color1;
-	margin: 10px 0px 0px 300px;
-	border-radius: 5px 0px 0px 0px;
-	background-image: image(url("icons/lock.png"));
+    background-color: @color1;
+    margin: 10px 0px 0px 300px;
+    border-radius: 5px 0px 0px 0px;
+    background-image: image(url("icons/lock.png"));
 }
 
 #reboot {
-	background-color: @color2;
-	margin: 0px 0px 10px 300px;
-	border-radius: 0px 0px 0px 5px;
-	background-image: image(url("icons/reboot.png"));
+    background-color: @color2;
+    margin: 0px 0px 10px 300px;
+    border-radius: 0px 0px 0px 5px;
+    background-image: image(url("icons/reboot.png"));
 }
 
 
 #logout {
-	background-color: @color3;
-	margin: 10px 300px 0px 0px;
-	border-radius: 0px 5px 0px 0px;
-	background-image: image(url("icons/logout.png"));
+    background-color: @color3;
+    margin: 10px 300px 0px 0px;
+    border-radius: 0px 5px 0px 0px;
+    background-image: image(url("icons/logout.png"));
 }
 
 #shutdown {
-	background-color: @color4;
-	margin: 0px 300px 10px 0px;
-	border-radius: 0px 0px 5px 0px;
-	background-image: image(url("icons/shutdown.png"));
+    background-color: @color4;
+    margin: 0px 300px 10px 0px;
+    border-radius: 0px 0px 5px 0px;
+    background-image: image(url("icons/shutdown.png"));
 }
 
 button:hover {
@@ -62,20 +61,20 @@ button:hover {
 
 button:hover#lock {
     border-radius: 10px 0px 0px 0px; 
-    margin: 5px 0px 0px 280px;
+    margin: 5px 0px 0px 294px;
 }
 
 button:hover#reboot {
     border-radius: 0px 0px 0px 10px;
-    margin : 0px 0px 5px 280px;
+    margin : 0px 0px 5px 294px;
 }
 
 button:hover#logout {
     border-radius: 0px 10px 0px 0px;
-    margin: 5px 280px 0px 0px;
+    margin: 5px 294px 0px 0px;
 }
 
 button:hover#shutdown {
     border-radius: 0px 0px 10px 0px;
-    margin: 0px 280px 5px 0px;
+    margin: 0px 294px 5px 0px;
 }

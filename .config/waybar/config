@@ -119,8 +119,8 @@
   "network": {
     "format-wifi": "{icon} {essid}",
     "format-ethernet": "⬇{bandwidthDownBytes} ⬆{bandwidthUpBytes}",
-    "format-linked": "{ifname} (No IP) 󰤨 ",
-    "format-disconnected": "󰖪 Disconnected",
+    "format-linked": "{ifname} (No IP)  󰤨",
+    "format-disconnected": "󰖪  Disconnected",
     "format-icons": [
       "󰤯 ",
       "󰤟 ",

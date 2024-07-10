@@ -10,8 +10,7 @@ configuration {
 @theme "./wallust/colors-rofi.rasi"
 
 * {
-    font:                        "JetBrainsMono Nerd Font Medium 10";
-
+    font:                        "SF Pro Text Medium 9";
     background-color:            transparent;
     background-alt:              @selected-active-background;
     selected:                    @selected-urgent-background;
@@ -31,8 +30,7 @@ window {
     transparency:                "real";
     location:                    north west;
     anchor:                      center;
-    fullscreen:                  false;
-    width:                       25%;
+    width:                       23%;
     x-offset:                    8px;
     y-offset:                    8px;
 
@@ -48,12 +46,6 @@ window {
 
 mainbox {
     enabled:                     true;
-    spacing:                     0px;
-    margin:                      0px;
-    padding:                     0px;
-    border:                      0px solid;
-    border-radius:               0px 0px 0px 0px;
-    border-color:                @selected;
     background-color:            transparent;
     children:                    [ "inputbar", "listview" ];
 }
@@ -129,7 +121,7 @@ element {
     enabled:                     true;
     spacing:                     10px;
     margin:                      0px;
-    padding:                     8px;
+    padding:                     8 12;
     border:                      0px solid;
     border-radius:               0px;
     border-color:                @selected;
@@ -142,28 +134,27 @@ element {
 element normal active,
 element alternate active,
 element selected urgent {
-    background-color:            var(active);
-    text-color:                  var(background);
+    background-color:            @active;
+    text-color:                  @background;
 }
 
 element normal active,
 element alternate active,
 element selected urgent {
-    background-color:            var(active);
-    text-color:                  var(background);
+    background-color:            @active;
+    text-color:                  @background;
 }
 
 element selected normal,
 elemant selected active {
-    background-color:            var(selected);
-    text-color:                  var(background);
+    background-color:            white / 5%;
+    text-color:                  @foreground;
 }
 
 element-icon {
     background-color:            transparent;
     text-color:                  inherit;
     size:                        5%;
-    cursor:                      inherit;
 }
 
 element-text {
@@ -172,11 +163,6 @@ element-text {
     highlight:                   inherit;
     cursor:                      inherit;
     vertical-align:              0.5;
-    horizontal-align:            0.0;
-}
-
-element selected {
-    text-color: @background;
 }
 
 error-message {
