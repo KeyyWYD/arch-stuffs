@@ -23,6 +23,7 @@
 
 > [!IMPORTANT]
 > Backup or remove all existing configs. Otherwise `stow` will fail to create the symlinks.
+
 To install, execute the following commands:
 ```bash
 git clone https://github.com/KeyyWYD/arch-stuffs.git ~/.dotfiles
