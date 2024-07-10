@@ -17,7 +17,7 @@
  - **Wallpaper Daemon:** Swww
 
 > [!Note]
-> For a more comprehensive list of dependencies, see [`setup.sh`](https://github.com/KeyyWYD/arch-stuffs/blob/main/setup.sh) (see "Install" section)
+> For a list of dependencies, see [`setup.sh`](https://github.com/KeyyWYD/arch-stuffs/blob/main/setup.sh)
 
 ## Auto Install
 > [!WARNING]
