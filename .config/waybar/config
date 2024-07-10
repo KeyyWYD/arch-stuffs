@@ -1,0 +1,266 @@
+{
+  "layer": "top",
+  "height": 20,
+  "margin-top": 5,
+  "margin-left": 5,
+  "margin-right": 5,
+  "exclusive": true,
+  "passthrough": false,
+  "position": "top",
+  "fixed-center": true,
+  "ipc": true,
+  "reload_style_on_change": true,
+
+  "modules-left": [
+    "custom/arch",
+    "hyprland/workspaces",
+    "custom/lizzy"
+  ],
+
+  "modules-center":[
+    "clock"
+  ],
+
+  "modules-right": [
+    "group/telementry",
+    "group/wireless",
+    "group/hardware",
+    "custom/power"
+  ],
+
+  "group/telementry": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 300,
+      "children-class": "not-memory",
+      "transition-left-to-right": false
+    },
+    "modules": [
+      "custom/system",
+      "cpu",
+      "memory",
+      "temperature"
+    ]
+  },
+
+  "group/hardware": {
+    "orientation": "horizontal",
+    "modules": [
+      "custom/space",
+      "wireplumber",
+      "custom/space",
+      "battery",
+      "custom/space"
+    ]
+  },
+
+  "group/wireless": {
+    "orientation": "horizontal",
+    "modules": [
+      "custom/space",
+      "network"
+    ]
+  },
+
+  "group/links": {
+    "orientation": "horizontal",
+    "modules": [
+        "custom/sh",
+        "custom/fm",
+        "custom/browser"
+      ]
+  },
+
+
+  "hyprland/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": true,
+    "warp-on-scroll": false,
+    "format": "{icon}",
+    "format-icons": {
+      "default": "",
+      "active": "󰮯",
+      "urgent": "󰊠"
+    },
+    "persistent-workspaces": {
+      "*": 4
+    }
+  },
+
+  "cpu": {
+    "format": "   {usage}% / ",
+    "tooltip": false
+  },
+
+  "memory": {
+    "format": "   {}% / ",
+    "tooltip": false
+  },
+
+  "temperature": {
+    "critical-threshold": 50,
+    "format": "  {temperatureC}°C ",
+    "tooltip": false
+  },
+
+  "clock": {
+    "format": "󰃭 {:%A %h.%d  /    %I:%M %p}",
+    //"format": "  {:%I:%M %p}",
+    //"format-alt": "󰃭  {:%d/%m/%y}",
+    "tooltip": false
+  },
+
+  "tray": {
+    "icon-size": 21,
+    "spacing": 5,
+    "tooltip": false
+  },
+
+  "network": {
+    "format-wifi": "{icon} {essid}",
+    "format-ethernet": "⬇{bandwidthDownBytes} ⬆{bandwidthUpBytes}",
+    "format-linked": "{ifname} (No IP) 󰤨 ",
+    "format-disconnected": "󰖪 Disconnected",
+    "format-icons": [
+      "󰤯 ",
+      "󰤟 ",
+      "󰤢 ",
+      "󰤥 ",
+      "󰤨 "
+    ],
+    "interval": 5,
+    "nospacing": 1,
+    "max-length": 8,
+    "on-click": "nmcli dev wifi rescan; hyprctl notify 5 1500 'rgb(d3c6aa)' 'Wifi rescan!'",
+    "tooltip": false
+  },
+
+  "backlight": {
+    "format": "{icon}  {percent}%",
+    "format-icons": ["", "", "", "", "", "", "", "", ""],
+    "smooth-scrolling-threshold": 5.0,
+    "tooltip": false
+  },
+
+  "wireplumber": {
+    "on-click": "pkill pavucontrol || pavucontrol -t 3",
+    "on-click-right": "amixer sset Master toggle 1>/dev/null",
+    "format": "{icon}   {volume:2}%",
+    "format-muted": " ",
+    "format-icons": {
+      // "default": ["", "", " "]
+      "default": [""]
+    },
+    "tooltip": false
+  },
+
+  "battery": {
+    "states": {
+      "good": 95,
+      "warning": 30,
+      "critical": 20
+    },
+    "format": "{icon}   {capacity}%",
+    "rotate": 0,
+    "format-charging": "  {capacity}%",
+    "format-plugged": "  {capacity}%",
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "tooltip": false
+  },
+
+  "custom/browser": {
+    "format": "󰈹 ",
+    "on-click": "firefox",
+    "tooltip-format": "Browser"
+  },
+
+  "custom/fm": {
+    "format": " ",
+    "on-click": "dolphin || thunar ",
+    "tooltip-format": "Filemanager"
+  },
+
+  "custom/sh": {
+    "format": "  ",
+    "on-click": "alacritty || kitty",
+    "tooltip-format": "Terminal"
+  },
+
+  "custom/space": {
+    "format": " ",
+    "tooltip": false
+  },
+
+  "custom/separatorA": {
+    "format": "",
+    "tooltip": false
+  },
+
+  "custom/separatorB": {
+    "format": "|",
+    "tooltip": false
+  },
+
+  "custom/system": {
+    "format": "<span size='small'>  </span>",
+    "on-click": "alacritty -e btop || kitty btop",
+    "tooltip": false
+  },
+
+  "custom/arch": {
+    "format": "<span size='small'></span>",
+    "on-click": "pkill rofi || rofi -show drun -replace",
+    "tooltip": false
+  },
+
+  "custom/cava": {
+    //"exec-if": "pgrep -x spotify >/dev/null",
+    "exec": "bash ~/.config/waybar/scripts/cava.sh",
+    "esacpe": true,
+    "format": "{}"
+  },
+
+  "custom/lizzy": {
+    "format": "<span color='#25be6a'>{icon}</span>  <i>{}</i>",
+    "format-icons": {
+      "Playing": "",
+      "Paused": ""
+    },
+    "on-click":"playerctl --player=spotify play-pause",
+    //"on-scroll-up":"playerctl --player=spotify next",
+    //"on-scroll-down":"playerctl --player=spotify previous",
+    "exec": "lizzy --format '{{title}}' --autotoggle --mediaplayer spotify",
+    "max-length": 20,
+    "return-type": "json"
+  },
+
+  "custom/weather": {
+    "format": "{}",
+    "tooltip": true,
+    "interval": 60,
+    "exec": "python $HOME/.config/waybar/scripts/weather.py",
+    "exec-if": "ping wttr.in -c1",
+    "return-type": "json"
+  },
+
+  "custom/notification": {
+    "format":"",
+    "on-click": "sleep 0.1 && swaync-client -rs && swaync-client -t",
+    "max-length": 10,
+    "escape": true,
+    "tooltip": false
+  },
+
+  "custom/power": {
+    "format": "",
+    "escape": true,
+    "on-click": "wlogout -b 2",
+    "tooltip": false
+  }
+}
