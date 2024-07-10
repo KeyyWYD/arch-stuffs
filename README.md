@@ -4,7 +4,7 @@
 
 </div>
 
-## Dependencies
+## Packages
  - **Display Manager:** Sddm
  - **WM:** Hyprland
  - **Fonts:** CaskaydiaCove Nerd Font Mono, JetBrainsMono Nerd Font, San Francisco Fonts and more
