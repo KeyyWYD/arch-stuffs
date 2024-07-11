@@ -56,19 +56,19 @@
 
 
 [urgency_low]
-    background = "{{background}}F7"
-    foreground = "{{foreground}}"
-    highlight = "{{color12}}"
+    background = "#080808F7"
+    foreground = "#E1E0D5"
+    highlight = "#646059"
     timeout = 4
 
 [urgency_normal]
-    background = "{{background}}F7"
-    foreground = "{{foreground}}"
-    highlight = "{{color12}}"
+    background = "#080808F7"
+    foreground = "#E1E0D5"
+    highlight = "#646059"
     timeout = 5
 
 [urgency_critical]
-    background = "{{background}}F7"
-    foreground = "{{foreground}}"
-    highlight = "{{color12}}"
+    background = "#080808F7"
+    foreground = "#E1E0D5"
+    highlight = "#646059"
     timeout = 0

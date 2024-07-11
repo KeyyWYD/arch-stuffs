@@ -1,8 +1,8 @@
 #!/bin/bash
-# /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
+
 # Scripts for volume controls for audio and mic
 
-iDIR="$HOME/.config/swaync/icons"
+iDIR="$HOME/.config/dunst/assets/"
 sDIR="$HOME/.config/hypr/scripts"
 
 # Get Volume
@@ -19,20 +19,20 @@ get_volume() {
 get_icon() {
     current=$(get_volume)
     if [[ "$current" == "Muted" ]]; then
-        echo "$iDIR/volume-mute.png"
+        echo "$iDIR/volume-mute.svg"
     elif [[ "${current%\%}" -le 30 ]]; then
-        echo "$iDIR/volume-low.png"
+        echo "$iDIR/volume-low.svg"
     elif [[ "${current%\%}" -le 60 ]]; then
-        echo "$iDIR/volume-mid.png"
+        echo "$iDIR/volume-medium.svg"
     else
-        echo "$iDIR/volume-high.png"
+        echo "$iDIR/volume-high.svg"
     fi
 }
 
 # Notify
 notify_user() {
     if [[ "$(get_volume)" == "Muted" ]]; then
-        notify-send -e -h string:x-canonical-private-synchronous:volume_notif -u low -i "$(get_icon)" "Volume: Muted"
+        notify-send -e -h string:x-canonical-private-synchronous:volume_notif -u low -i "$(get_icon)" "Muted"
     else
         notify-send -e -h int:value:"$(get_volume | sed 's/%//')" -h string:x-canonical-private-synchronous:volume_notif -u low -i "$(get_icon)" "Volume: $(get_volume)"
         # "$sDIR/sounds" --volume
@@ -60,9 +60,9 @@ dec_volume() {
 # Toggle Mute
 toggle_mute() {
 	if [ "$(pamixer --get-mute)" == "false" ]; then
-		pamixer -m # && notify-send -e -u low -i "$iDIR/volume-mute.png" "Volume: $(get_volume)"
+		pamixer -m && notify-send -e -u low -i "$iDIR/volume-mute.svg" "Volume: $(get_volume)"
 	elif [ "$(pamixer --get-mute)" == "true" ]; then
-		pamixer -u # && notify-send -e -u low -i "$(get_icon)" "Volume: $(get_volume)"
+		pamixer -u && notify-send -e -u low -i "$(get_icon)" "Volume: $(get_volume)"
 	fi
 }
 

@@ -215,7 +215,7 @@
 
   "custom/arch": {
     "format": "<span size='small'></span>",
-    "on-click": "pkill rofi || rofi -show drun -replace",
+    "on-click": "~/.config/rofi/scripts/menu",
     "tooltip": false
   },
 

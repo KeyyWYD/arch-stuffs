@@ -54,8 +54,8 @@ wlogout.target = '~/.config/wlogout/wallust/colors-wlogout.css'
 btop.template = 'templates/colors-btop.theme'
 btop.target = '~/.config/btop/themes/colors-btop.theme'
 
-#dunst.template = 'templates/colors-dunst'
-#dunst.target = '~/.config/dunst/dunstrc'
+dunst.template = 'templates/colors-dunst'
+dunst.target = '~/.config/dunst/dunstrc'
 
 #swaync.template = 'templates/colors-swaync.css'
 #swaync.target = '~/.config/swaync/wallust/colors-wallust.css'

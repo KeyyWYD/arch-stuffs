@@ -104,7 +104,7 @@ if pidof rofi > /dev/null; then
 fi
 
 if pidof dunst > /dev/null; then
-  pkill swaync
+  pkill dunst
   exit 0
 fi
 

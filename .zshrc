@@ -18,7 +18,7 @@ source $ZSH/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 ### ---- Fetch  ----------------------------------------------------------------
 # neofetch
 # pfetch
-fastfetch
+# fastfetch
 # catnap
 
 ### ---- Startup ---------------------------------------------------------------

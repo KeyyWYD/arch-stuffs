@@ -13,7 +13,7 @@ fullscreen() {
     # swappy -f "$exfile" -o "$exfile"
 
     if wl-copy < "$exfile"; then
-      notify-send -u low "Screenshot Saved" "File saved as <i>'$file'</i>" -i "$exfile"
+      notify-send -u low "Screenshot Saved" "File saved to '<i>$ssDIR</i>'" -i "$exfile"
     fi
 
     # "$sDIR/Sounds.sh" --screenshot
@@ -24,7 +24,7 @@ region() {
     # swappy -f "$exfile" -o "$exfile"
      
     if wl-copy < "$exfile"; then
-      notify-send -u low "Screenshot Saved" "File saved as <i>'$file'</i>" -i "$exfile"
+      notify-send -u low "Screenshot Saved" "File saved to '<i>$ssDIR</i>'" -i "$exfile"
     fi
 
     # "$sDIR/Sounds.sh" --screenshot

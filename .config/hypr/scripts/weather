@@ -5,7 +5,7 @@ import os
 import time
 
 CACHE_FILE = ".cache/weather_cache.txt"
-CACHE_EXPIRATION = 1200  # Cache expires after 20mins (in seconds)
+CACHE_EXPIRATION = 3600  # Cache expires after 1hr (in seconds)
 
 def get_weather(location):
     url = f"https://wttr.in/{location}?format=%l+%c|%C"
