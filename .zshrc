@@ -44,6 +44,8 @@ alias .4='cd ../../../..'
 alias .5='cd ../../../../..'
 
 alias find='fd'
+
+alias dx='cd $HOME/Desktop'
 alias docs='cd $HOME/Documents'
 alias dl='cd $HOME/Downloads'
 
