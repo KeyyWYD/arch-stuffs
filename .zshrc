@@ -44,8 +44,8 @@ alias .4='cd ../../../..'
 alias .5='cd ../../../../..'
 
 alias find='fd'
-alias docs='cd $HOME\Documents'
-alias dl='cd $HOME\Downloads'
+alias docs='cd $HOME/Documents'
+alias dl='cd $HOME/Downloads'
 
 alias ls='eza -1 --icons=auto'
 alias ll='eza -lha --sort=name --git --git-repos --icons=auto'
