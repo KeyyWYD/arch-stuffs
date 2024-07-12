@@ -57,7 +57,7 @@
 [urgency_low]
     background = "{{background}}F7"
     foreground = "{{foreground}}"
-    1highlight = "{{color12}}"
+    highlight = "{{color12}}"
     timeout = 4
 
 [urgency_normal]

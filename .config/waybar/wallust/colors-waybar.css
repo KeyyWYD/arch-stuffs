@@ -1,22 +1,22 @@
-@define-color foreground #F6EBC9;
-/* @define-color background #09090A; */
-@define-color background rgba(9,9,10,0.85);
-@define-color taskbar rgba(9,9,10,0.2);
-@define-color cursor #F6EBC9;
+@define-color foreground #EBE9E6;
+/* @define-color background #0D0C0C; */
+@define-color background rgba(13,12,12,0.85);
+@define-color taskbar rgba(13,12,12,0.2);
+@define-color cursor #EBE9E6;
 
-@define-color color0 #09090A;
-@define-color color1 #6C473D;
-@define-color color2 #47596E;
-@define-color color3 #BC465D;
-@define-color color4 #8675B5;
-@define-color color5 #5898A7;
-@define-color color6 #AC944B;
-@define-color color7 #EADAA9;
-@define-color color8 #A49876;
-@define-color color9 #905F51;
-@define-color color10 #5F7792;
-@define-color color11 #FB5D7C;
-@define-color color12 #B29CF1;
-@define-color color13 #75CBDF;
-@define-color color14 #E6C564;
-@define-color color15 #EADAA9;
+@define-color color0 #0D0C0C;
+@define-color color1 #322E2C;
+@define-color color2 #373431;
+@define-color color3 #8E2A2C;
+@define-color color4 #585754;
+@define-color color5 #5B5956;
+@define-color color6 #959089;
+@define-color color7 #DAD7D3;
+@define-color color8 #999793;
+@define-color color9 #433E3B;
+@define-color color10 #4A4542;
+@define-color color11 #BD383B;
+@define-color color12 #76736F;
+@define-color color13 #797773;
+@define-color color14 #C6C0B7;
+@define-color color15 #DAD7D3;
