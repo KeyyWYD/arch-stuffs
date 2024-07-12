@@ -15,36 +15,7 @@
  - **Idle Daemon:** Hypridle
  - **Terminal:** Alacritty
  - **Wallpaper Daemon:** Swww
-
-> [!Note]
-> For a list of dependencies, see [`setup.sh`](https://github.com/KeyyWYD/arch-stuffs/blob/main/setup.sh)
-
-## Auto Install
-> [!WARNING]
-> This method is intended for a clean install of Arch Linux.
-
-To install, execute the following commands:
-
-> [!Note]
-> Backup or remove all existing configs. Otherwise `stow` will fail to create the symlinks.
-
-```bash
-git clone https://github.com/KeyyWYD/arch-stuffs.git ~/.dotfiles
-cd ~/.dotfiles && git submodule init && git submodule update --recursive
-
-chmod +x setup.sh
-./setup.sh
-```
-
-## Manual Install
-
-```bash
-git clone https://github.com/KeyyWYD/arch-stuffs.git ~/.dotfiles
-cd ~/.dotfiles && git submodule init && git submodule update --recursive
-```
-
-## `Optional`
- - Waybar Spotify Module: [Lizzy](https://github.com/stefur/lizzy)
+ - **Waybar Spotify Module:** [Lizzy](https://github.com/stefur/lizzy)
 
 ## Keybinds
 
