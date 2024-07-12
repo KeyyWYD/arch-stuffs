@@ -7,10 +7,10 @@
 ## Packages
  - **Display Manager:** Sddm
  - **WM:** Hyprland
- - **Fonts:** CaskaydiaCove Nerd Font Mono, JetBrainsMono Nerd Font, San Francisco Fonts and more
+ - **Fonts:** San Francisco Fonts
  - **Launcher:** Rofi
  - **Bar:** Waybar
- - **Notification Center:** Swaync
+ - **Notifications:** Dunst
  - **LockScreen:** Hyprlock
  - **Idle Daemon:** Hypridle
  - **Terminal:** Alacritty
