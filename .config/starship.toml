@@ -1,187 +1,177 @@
+# RAHHHHHH
+
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Custom format
+format = """
+$os\
+$username\
+($all)\
+$character
+"""
+
+# Inserts a blank line between shell prompts
+add_newline = false
+
+# A continuation prompt that displays two filled in arrows
+continuation_prompt = "[→→](bold blue)"
+
+[line_break]
+disabled = true
+
 [character]
-success_symbol = "[>](bold green)"
-error_symbol = "[x](bold red)"
-vimcmd_symbol = "[<](bold green)"
+success_symbol = "[→](bold green)"
+error_symbol   = "[→](bold red)"
 
-[git_commit]
-tag_symbol = " tag "
-
-[git_status]
-ahead = ">"
-behind = "<"
-diverged = "<>"
-renamed = "r"
-deleted = "x"
-
-[aws]
-symbol = "aws "
-
-[bun]
-symbol = "bun "
-
-[c]
-symbol = "C "
-
-[cobol]
-symbol = "cobol "
-
-[conda]
-symbol = "conda "
-
-[crystal]
-symbol = "cr "
-
-[cmake]
-symbol = "cmake "
-
-[daml]
-symbol = "daml "
-
-[dart]
-symbol = "dart "
-
-[deno]
-symbol = "deno "
-
-[dotnet]
-symbol = ".NET "
-
-[directory]
-read_only = " ro"
-
-[docker_context]
-symbol = "docker "
-
-[elixir]
-symbol = "exs "
-
-[elm]
-symbol = "elm "
-
-[git_branch]
-symbol = "git "
-
-[golang]
-symbol = "go "
-
-[guix_shell]
-symbol = "guix "
-
-[hg_branch]
-symbol = "hg "
-
-[java]
-symbol = "java "
-
-[julia]
-symbol = "jl "
-
-[kotlin]
-symbol = "kt "
-
-[lua]
-symbol = "lua "
-
-[nodejs]
-symbol = "nodejs "
-
-[memory_usage]
-symbol = "memory "
-
-[meson]
-symbol = "meson "
-
-[nim]
-symbol = "nim "
-
-[nix_shell]
-symbol = "nix "
-
-[ocaml]
-symbol = "ml "
-
-[opa]
-symbol = "opa "
-
-[os.symbols]
-Alpine = "alp "
-Amazon = "amz "
-Android = "andr "
-Arch = "rch "
-CentOS = "cent "
-Debian = "deb "
-DragonFly = "dfbsd "
-Emscripten = "emsc "
-EndeavourOS = "ndev "
-Fedora = "fed "
-FreeBSD = "fbsd "
-Garuda = "garu "
-Gentoo = "gent "
-HardenedBSD = "hbsd "
-Illumos = "lum "
-Linux = "lnx "
-Macos = "mac "
-Manjaro = "mjo "
-Mariner = "mrn "
-MidnightBSD = "mid "
-Mint = "mint "
-NetBSD = "nbsd "
-NixOS = "nix "
-OpenBSD = "obsd "
-openSUSE = "osuse "
-OracleLinux = "orac "
-Pop = "pop "
-Raspbian = "rasp "
-Redhat = "rhl "
-RedHatEnterprise = "rhel "
-Redox = "redox "
-Solus = "sol "
-SUSE = "suse "
-Ubuntu = "ubnt "
-Unknown = "unk "
-Windows = "win "
-
-[package]
-symbol = "pkg "
-
-[perl]
-symbol = "pl "
-
-[php]
-symbol = "php "
-
-[pulumi]
-symbol = "pulumi "
-
-[purescript]
-symbol = "purs "
-
-[python]
-symbol = "py "
-
-[raku]
-symbol = "raku "
-
-[ruby]
-symbol = "rb "
-
-[rust]
-symbol = "rs "
-
-[scala]
-symbol = "scala "
-
-[spack]
-symbol = "spack "
+[status]
+symbol = "🆗"
+success_symbol = ""
+format = '$symbol$signal_name$maybe_int'
+map_symbol = true
+disabled = false
 
 [sudo]
-symbol = "sudo "
+style = "bold green"
+symbol = "🔑"
+disabled = false
 
-[swift]
-symbol = "swift "
+[os]
+format = '[$symbol ]($style)'
+style = "bold blue"
+disabled = false
 
-[terraform]
-symbol = "terraform "
+[os.symbols]
+Alpine = ""
+Amazon = ""
+Android = ""
+Arch = ""
+CentOS = ""
+Debian = ""
+DragonFly = "🐉" # ""
+Emscripten = "🔗"
+EndeavourOS = "" # ""
+Fedora = ""
+FreeBSD = ""
+Garuda = ""
+Gentoo = ""
+HardenedBSD = "聯"
+Illumos = "🐦"
+Linux = ""
+Macos = ""
+Manjaro = ""
+Mariner = ""
+MidnightBSD = "🌘"
+Mint = ""
+NetBSD = ""
+NixOS = ""
+OpenBSD = "" # ""
+OpenCloudOS = "☁️"
+openEuler = ""
+openSUSE = ""
+OracleLinux = "⊂⊃"
+Pop = "" # ""
+Raspbian = ""
+Redhat = ""
+RedHatEnterprise = ""
+Redox = "🧪"
+Solus = "" # " "
+SUSE = ""
+Ubuntu = ""
+Unknown = ""
+Windows = ""
 
-[zig]
-symbol = "zig "
+[username]
+format = '[$user ]($style)'
+style_user = 'bold white'
+style_root = 'red'
+show_always = true
+disabled = false
+
+[aws]
+symbol = "  "
+
+[buf]
+symbol = " "
+
+[c]
+symbol = " "
+
+[conda]
+symbol = " "
+
+[dart]
+symbol = " "
+
+[directory]
+read_only = " "
+truncation_length = 1
+truncation_symbol = ''
+format = "[$read_only]($read_only_style)"
+disabled = true
+
+[docker_context]
+symbol = " "
+
+[elixir]
+symbol = " "
+
+[elm]
+symbol = " "
+
+[git_branch]
+symbol = " "
+
+[golang]
+symbol = " "
+
+[haskell]
+symbol = " "
+
+[hg_branch]
+symbol = " "
+
+[java]
+symbol = " "
+
+[julia]
+symbol = " "
+
+[lua]
+symbol = " "
+
+[memory_usage]
+symbol = " "
+
+[meson]
+symbol = "喝 "
+
+[nim]
+symbol = " "
+
+[nix_shell]
+symbol = " "
+
+[nodejs]
+symbol = " "
+
+[package]
+symbol = " "
+
+[python]
+symbol = " "
+
+[rlang]
+symbol = "ﳒ "
+
+[ruby]
+symbol = " "
+
+[rust]
+symbol = " "
+
+[scala]
+symbol = " "
+
+[spack]
+symbol = "🅢 "
+

@@ -32,7 +32,7 @@ window {
     transparency:                "real";
     location:                    north west;
     anchor:                      center;
-    width:                       23%;
+    width:                       18%;
     x-offset:                    8px;
     y-offset:                    8px;
 

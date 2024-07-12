@@ -1,26 +1,29 @@
 #!/bin/bash
 
 # Original Author: JaKooLit
-# This script for selecting wallpapers (SUPER SHIFT W)
-#
-# Changes
+# Wallpaper Selection (SUPER SHIFT W)
 # - Generate a blurred wallpaper
-# - Removed .random from rofi menu
+# - Removed .random option
 
 # File and folder names
 wallDIR="$HOME/Pictures/Wallpapers"
 SCRIPTSDIR="$HOME/.config/hypr/scripts"
+cache_dir="$HOME/.cache/swww/"
 wltmp="$HOME/.cache/swww/tmp.png"
 blurred_wp="$HOME/.cache/swww/wp_blurred.png"
-focused_monitor=$(hyprctl monitors | awk '/^Monitor/{name=$2} /focused: yes/{print name}')
 
 # Variables
+current_monitor=$(hyprctl monitors | awk '/^Monitor/{name=$2} /focused: yes/{print name}')
 blur="50x30"
 FPS=60
 TYPE="any"
 DURATION=2
 BEZIER=".43,1.19,1,.4"
 SWWW_PARAMS="--transition-fps $FPS --transition-type $TYPE --transition-duration $DURATION"
+monitor_outputs=($(ls "$cache_dir"))
+ln_success=false
+echo $current_monitor
+cache_file="$cache_dir$current_monitor"
 
 # Check if swaybg is running
 if pidof swaybg > /dev/null; then
@@ -38,8 +41,10 @@ rofi_command="rofi -i -show -dmenu -config ~/.config/rofi/wallpaper.rasi"
 # Sorting Wallpapers
 menu() {
   sorted_options=($(printf '%s\n' "${PICS[@]}" | sort))
+
   # Place ". random" at the beginning
-  #printf "%s\n" "$RANDOM_PIC_NAME"
+  # printf "%s\n" "$RANDOM_PIC_NAME"
+
   for pic_path in "${sorted_options[@]}"; do
     pic_name=$(basename "$pic_path")
     # Displaying .gif to indicate animated images
@@ -54,7 +59,7 @@ menu() {
 # initiate swww if not running
 swww query || swww-daemon --format xrgb
 
-# Choice of wallpapers
+# Wallpapers
 main() {
   choice=$(menu | ${rofi_command})
   # No choice case
@@ -63,11 +68,11 @@ main() {
   fi
 
   # Random choice case
-  #if [ "$choice" = "$RANDOM_PIC_NAME" ]; then
-    #RANDOM_PIC="${PICS[$((RANDOM % ${#PICS[@]}))]}"
-    #swww img -o $focused_monitor "${RANDOM_PIC}" $SWWW_PARAMS
-   # exit 0
-  #fi
+  # if [ "$choice" = "$RANDOM_PIC_NAME" ]; then
+  #   RANDOM_PIC="${PICS[$((RANDOM % ${#PICS[@]}))]}"
+  #   swww img -o $current_monitor "${RANDOM_PIC}" $SWWW_PARAMS
+  #   exit 0
+  # fi
 
   # Find the index of the selected file
   pic_index=-1
@@ -80,7 +85,7 @@ main() {
   done
 
   if [[ $pic_index -ne -1 ]]; then
-    swww img -o $focused_monitor "${PICS[$pic_index]}" $SWWW_PARAMS
+    swww img -o $current_monitor "${PICS[$pic_index]}" $SWWW_PARAMS
   else
     echo "Image not found."
     exit 1
@@ -97,7 +102,7 @@ main() {
 
 }
 
-# Check programs
+# Kill rograms
 if pidof rofi > /dev/null; then
   pkill rofi
   exit 0
@@ -110,6 +115,39 @@ fi
 
 main
 
-sleep 0.2
-${SCRIPTSDIR}/WallustSww.sh
-${SCRIPTSDIR}/Refresh.sh
+echo $cache_file
+# Check if the cache file exists for the current monitor output
+if [ -f "$cache_file" ]; then
+    # Get the wallpaper path from the cache file
+    wallpaper_path=$(cat "$cache_file")
+    echo $wallpaper_path
+    # symlink the wallpaper to the location Rofi can access
+    if ln -sf "$wallpaper_path" "$HOME/.config/rofi/.current_wallpaper"; then
+         ln_success=true  # Set the flag to true upon successful execution
+    fi
+    # copy the wallpaper for wallpaper effects
+	cp -r "$wallpaper_path" "$HOME/.config/hypr/wallpaper_effects/.wallpaper_current"
+fi
+
+# Check the flag before executing further commands
+if [ "$ln_success" = true ]; then
+    # execute wallust
+	echo 'about to execute wallust'
+    # execute wallust skipping tty and terminal changes
+    wallust run "$wallpaper_path" -s &
+fi
+
+sleep 0.1
+
+_ps=(waybar rofi dunst)
+for _prs in "${_ps[@]}"; do
+    if pidof "${_prs}" >/dev/null; then
+        pkill "${_prs}"
+    fi
+done
+
+# Relaunch Programs
+waybar &
+dunst > /dev/null 2>&1 &
+
+exit 0

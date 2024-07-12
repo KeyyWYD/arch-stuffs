@@ -1,8 +1,8 @@
 [global]
     monitor = 0
     follow = none
-    width = 300
-    height = 145
+    width = 270
+    height = 140
     origin = top-right
     alignment = "left"
     vertical_alignment = "center"
@@ -18,7 +18,7 @@
     progress_bar_height = 8
     progress_bar_frame_width = 1
     progress_bar_min_width = 150
-    progress_bar_max_width = 250
+    progress_bar_max_width = 170
     separator_height = 2
     frame_width = 0
     frame_color = "#fff" 
@@ -27,8 +27,8 @@
     transparency = 10 
     gap_size = 8 
     line_height = 0 
-    notification_limit = 1 
-    idle_threshold = 120 
+    notification_limit = 0 
+    # idle_threshold = 120 
     history_length = 20 
     show_age_threshold = 60 
     markup = "full" 
@@ -54,21 +54,20 @@
 [experimental]
     per_monitor_dpi = false
 
-
 [urgency_low]
-    background = "#080808F7"
-    foreground = "#E1E0D5"
-    highlight = "#646059"
+    background = "#09090AF7"
+    foreground = "#F6EBC9"
+    1highlight = "#B29CF1"
     timeout = 4
 
 [urgency_normal]
-    background = "#080808F7"
-    foreground = "#E1E0D5"
-    highlight = "#646059"
+    background = "#09090AF7"
+    foreground = "#F6EBC9"
+    highlight = "#B29CF1"
     timeout = 5
 
 [urgency_critical]
-    background = "#080808F7"
-    foreground = "#E1E0D5"
-    highlight = "#646059"
+    background = "#09090AF7"
+    foreground = "#F6EBC9"
+    highlight = "#B29CF1"
     timeout = 0

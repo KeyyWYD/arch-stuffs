@@ -1,45 +1,40 @@
 #!/bin/bash
 
-# Scripts for volume controls for audio and mic
+# Volume controls for audio and mic
 
 iDIR="$HOME/.config/dunst/assets/"
-sDIR="$HOME/.config/hypr/scripts"
+sDIR="$HOME/.config/hypr/bin"
 
-# Get Volume
 get_volume() {
     volume=$(pamixer --get-volume)
-    if [[ "$volume" -eq "0" ]]; then
-        echo "Muted"
-    else
+    #if [[ "$volume" -eq "0" ]]; then
+    #   echo "Muted"
+    #else
         echo "$volume%"
-    fi
+    #fi
 }
 
-# Get icons
 get_icon() {
     current=$(get_volume)
-    if [[ "$current" == "Muted" ]]; then
-        echo "$iDIR/volume-mute.svg"
-    elif [[ "${current%\%}" -le 30 ]]; then
+    if [[ "${current%\%}" -le 10 ]]; then
+        echo "$iDIR/volume-off.svg"
+    elif [[ "${current%\%}" -le 35 ]]; then
         echo "$iDIR/volume-low.svg"
-    elif [[ "${current%\%}" -le 60 ]]; then
+    elif [[ "${current%\%}" -le 65 ]]; then
         echo "$iDIR/volume-medium.svg"
     else
         echo "$iDIR/volume-high.svg"
     fi
 }
 
-# Notify
 notify_user() {
     if [[ "$(get_volume)" == "Muted" ]]; then
-        notify-send -e -h string:x-canonical-private-synchronous:volume_notif -u low -i "$(get_icon)" "Muted"
+        notify-send -e -r 91190 -t 800 -h int:value:"$(get_volume | sed 's/%//')" -h string:x-canonical-private-synchronous:volume_notif -u low -i "$(get_icon)" "Volume: $(get_volume)"
     else
-        notify-send -e -h int:value:"$(get_volume | sed 's/%//')" -h string:x-canonical-private-synchronous:volume_notif -u low -i "$(get_icon)" "Volume: $(get_volume)"
-        # "$sDIR/sounds" --volume
+        notify-send -e -r 91190 -t 800 -h int:value:"$(get_volume | sed 's/%//')" -h string:x-canonical-private-synchronous:volume_notif -u low -i "$(get_icon)" "Volume: $(get_volume)"
     fi
 }
 
-# Increase Volume
 inc_volume() {
     if [ "$(pamixer --get-mute)" == "true" ]; then
         toggle_mute
@@ -57,16 +52,14 @@ dec_volume() {
     fi
 }
 
-# Toggle Mute
 toggle_mute() {
 	if [ "$(pamixer --get-mute)" == "false" ]; then
-		pamixer -m && notify-send -e -u low -i "$iDIR/volume-mute.svg" "Volume: $(get_volume)"
+		pamixer -m && notify-send -e -r 91190 -t 800 -u low -i "$iDIR/volume-mute.svg" "Muted"
 	elif [ "$(pamixer --get-mute)" == "true" ]; then
-		pamixer -u && notify-send -e -u low -i "$(get_icon)" "Volume: $(get_volume)"
+		pamixer -u && notify-send -e -r 91190 -t 800 -u low -i "$(get_icon)" "Volume: $(get_volume)"
 	fi
 }
 
-# Toggle Mic
 toggle_mic() {
 	if [ "$(pamixer --default-source --get-mute)" == "false" ]; then
 		pamixer --default-source -m && notify-send -e -u low -i "$iDIR/microphone-mute.png" "Microphone Switched OFF"
@@ -74,7 +67,7 @@ toggle_mic() {
 		pamixer -u --default-source u && notify-send -e -u low -i "$iDIR/microphone.png" "Microphone Switched ON"
 	fi
 }
-# Get Mic Icon
+
 get_mic_icon() {
     current=$(pamixer --default-source --get-volume)
     if [[ "$current" -eq "0" ]]; then
@@ -84,7 +77,6 @@ get_mic_icon() {
     fi
 }
 
-# Get Microphone Volume
 get_mic_volume() {
     volume=$(pamixer --default-source --get-volume)
     if [[ "$volume" -eq "0" ]]; then
@@ -94,14 +86,12 @@ get_mic_volume() {
     fi
 }
 
-# Notify for Microphone
 notify_mic_user() {
     volume=$(get_mic_volume)
     icon=$(get_mic_icon)
     notify-send -e -h int:value:"$volume" -h "string:x-canonical-private-synchronous:volume_notif" -u low -i "$icon" "Mic-Level: $volume"
 }
 
-# Increase MIC Volume
 inc_mic_volume() {
     if [ "$(pamixer --default-source --get-mute)" == "true" ]; then
         toggle_mic
@@ -110,7 +100,6 @@ inc_mic_volume() {
     fi
 }
 
-# Decrease MIC Volume
 dec_mic_volume() {
     if [ "$(pamixer --default-source --get-mute)" == "true" ]; then
         toggle-mic
@@ -119,7 +108,6 @@ dec_mic_volume() {
     fi
 }
 
-# Execute accordingly
 if [[ "$1" == "--get" ]]; then
 	get_volume
 elif [[ "$1" == "--inc" ]]; then

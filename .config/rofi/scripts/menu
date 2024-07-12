@@ -9,7 +9,7 @@ fi
 if command -v kitty &> /dev/null; then
     TERMe="kitty"
 elif command -v alacritty &> /dev/null; then
-    TERMe="alacritty -e"
+    TERMe="alacritty"
 fi
 
 function entry() {
@@ -44,15 +44,15 @@ fi
 choice3="$(entry " Sleep" "")"
 choice4="$(entry " Restart...")"
 choice5="$(entry " Shut Down...")"
-choice6="$(entry " Lock Screen" "   + L" 75)"
+choice6="$(entry " Lock Screen" "   L" 60)"
 choice7="$(entry " Log Out $USER...")"
 
 USER=$(whoami)
 chosen=$(printf "$choice1\n$choice2\n$choice3\n$choice4\n$choice5\n$choice6\n$choice7\n" | rofi -dmenu -theme ~/.config/rofi/menu.rasi -i -no-show-icons -l 7 -width 30 )
 
 case "$chosen" in
-  "$choice1") $TERMe bash -i -c 'fastfetch && sleep infinity' --title fastfetch ;;
-  "$choice2") $TERMe bash -i -c "$AUR -Syu" ;;
+  "$choice1") $TERMe --title fastfetch -e bash -i -c 'fastfetch && sleep infinity' ;;
+  "$choice2") $TERMe -e bash -i -c "$AUR -Syu" ;;
   "$choice3") systemctl suspend-then-hibernate ;;
   "$choice4") reboot ;;
   "$choice5") poweroff ;;
