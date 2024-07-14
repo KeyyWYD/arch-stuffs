@@ -121,14 +121,7 @@ _packages() {
         'noto-fonts'                
         'ttf-nerd-fonts-symbols'    
         'ttf-nerd-fonts-symbols-common'    
-        'ttf-cascadia-code-nerd'    
-        'ttf-jetbrains-mono-nerd'   
-        'ttf-mononoki-nerd'         
-        'ttf-dejavu'                
-        'ttf-fira-code'             
-        'ttf-firacode-nerd'         
-        'ttf-font-awesome'          
-        'ttf-iosevka-nerd'          
+        'ttf-cascadia-code-nerd'           
 
         # APPLICATIONS --------------------------------------------------------
         'alacritty'                 
