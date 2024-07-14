@@ -3,11 +3,9 @@
   <h3></h3>
 </div>
 
-<div align="center">
-  <h2>Packages</h2>
-  <h3></h3>
-</div>
-
+<details>
+  <summary>Software</summary>
+  
  - **Display Manager:** Sddm
  - **WM:** Hyprland
  - **Fonts:** San Francisco Fonts
@@ -21,11 +19,13 @@
  - **Wallpapers:** [Source](https://wallpaper.castorisdead.xyz/)
  - **Waybar Spotify Module:** [Lizzy](https://github.com/stefur/lizzy)
 
-> [!Note]
-> - For a list of dependencies, see [`setup.sh`](https://github.com/KeyyWYD/arch-stuffs/blob/main/setup.sh)  
+<blockquote>
+  <b>Note:</b> For a list of dependencies, see <a href="https://github.com/KeyyWYD/arch-stuffs/blob/main/setup.sh"><code>setup.sh</code></a>
+</blockquote>
+</details>
 
 <details>
-<summary><h3>Usage</h3></summary>
+  <summary>Instructions</summary>
 
 ```sh
 # Dotfiles
@@ -37,14 +37,13 @@ cp -r .zsh $HOME
 cp -r .zshrc $HOME
 ```
 
-</details>
-
-<div align="center">
-  <h2>Keybinds</h2>
-  <h3></h3>
-</div>
-
-<div align="center">
+  <details> 
+    <summary>Keybinds</summary>
+    <div align="center">
+      <h2>Keybinds</h2>
+      <h3></h3>
+    </div>
+    <div align="center">
 
 | Keys | Action |
 | :--- | :--- |
@@ -63,8 +62,9 @@ cp -r .zshrc $HOME
 | <kbd>Super</kbd> + <kbd>[0-9]</kbd> | Switch Workspaces |
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>[0-9]</kbd> | Move Focused Window to Other Workspace |
 
-</div>
-
+  </details>
+</details>
+  
 <div align="center">
   <h2>Screenshots</h2>
   <h3></h3>
