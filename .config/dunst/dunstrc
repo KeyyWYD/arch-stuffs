@@ -55,19 +55,19 @@
     per_monitor_dpi = false
 
 [urgency_low]
-    background = "#020506F7"
-    foreground = "#D7D3D5"
-    highlight = "#4B4E53"
+    background = "#131214F7"
+    foreground = "#EFEFF0"
+    highlight = "#908E96"
     timeout = 4
 
 [urgency_normal]
-    background = "#020506F7"
-    foreground = "#D7D3D5"
-    highlight = "#4B4E53"
+    background = "#131214F7"
+    foreground = "#EFEFF0"
+    highlight = "#908E96"
     timeout = 5
 
 [urgency_critical]
-    background = "#020506F7"
-    foreground = "#D7D3D5"
-    highlight = "#4B4E53"
+    background = "#131214F7"
+    foreground = "#EFEFF0"
+    highlight = "#908E96"
     timeout = 0

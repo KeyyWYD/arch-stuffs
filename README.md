@@ -17,6 +17,24 @@
  - **Wallpapers:** [Source](https://wallpaper.castorisdead.xyz/)
  - **Waybar Spotify Module:** [Lizzy](https://github.com/stefur/lizzy)
 
+> [!Note]
+> - For a list of dependencies, see [`setup.sh`](https://github.com/KeyyWYD/arch-stuffs/blob/main/setup.sh)  
+
+<details>
+<summary><h3>Usage</h3></summary>
+
+```sh
+# Dotfiles
+git clone https://github.com/KeyyWYD/arch-stuffs $HOME/dotfiles
+cd $HOME/dotfiles
+git submodule init && git submodule update --recursive
+cp -r .config/* $HOME/.config
+cp -r .zsh $HOME
+cp -r .zshrc $HOME
+```
+
+</details>
+
 <div align="center">
   <h2>Keybinds</h2>
   <h3></h3>
