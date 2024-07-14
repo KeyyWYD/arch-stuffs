@@ -198,13 +198,7 @@
     "format-charging": "􀢋{capacity}% ",
     "format-plugged": "󱘖  {capacity}%",
     "format-alt-click": "click",
-    "format-icons": [
-      "<span color='red'>􀛪 </span>",
-      "<span color='yellow'>􀛩 </span>",
-      "􀺶 ",
-      "􀺸 ",
-      "􀛨 "
-    ],
+    "format-icons": ["􀛪 ", "􀛩 ", "􀺶 ", "􀺸 ", "􀛨 "],
     "tooltip": false
   },
 
