@@ -83,5 +83,7 @@
 </div>
 
 _UnixPorn: [r/unixporn](https://www.reddit.com/r/unixporn/)_
+
 _JaKooLit dots: [JaKooLit](https://github.com/JaKooLit/Hyprland-Dots)_
+
 _FireDrop6000 dots: [FireDrop6000](https://github.com/FireDrop6000/hyprland-mydots)_
