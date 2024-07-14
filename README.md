@@ -3,7 +3,11 @@
   <h3></h3>
 </div>
 
-## Packages
+<div align="center">
+  <h2>Packages</h2>
+  <h3></h3>
+</div>
+
  - **Display Manager:** Sddm
  - **WM:** Hyprland
  - **Fonts:** San Francisco Fonts
