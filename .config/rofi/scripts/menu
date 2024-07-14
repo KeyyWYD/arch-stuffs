@@ -1,15 +1,28 @@
 #!/bin/sh
+# fake big mac
 
+# Get current user
+USER=$(whoami)
+
+# AUR HELPER
 if command -v yay &> /dev/null; then
     AUR="yay"
 elif command -v paru &> /dev/null; then
     AUR="paru"
 fi
 
+# TERMINAL
 if command -v kitty &> /dev/null; then
-    TERMe="kitty"
+    TERMINAL="kitty"
 elif command -v alacritty &> /dev/null; then
-    TERMe="alacritty"
+    TERMINAL="alacritty"
+fi
+
+# FETCH PROGRAM
+if command -v neofetch &> /dev/null; then
+    FETCH="neofetch"
+  elif command -v fastfetch &> /dev/null; then
+    FETCH="fastfetch"
 fi
 
 function entry() {
@@ -22,40 +35,50 @@ function entry() {
   printf "%s%${pad}s" "$1" "$2"
 }
 
-updates=0
+choice1=" About This PC"
 
-if [[ -f /tmp/updatecount ]]; then 
-  updates="$(cat /tmp/updatecount)"
+if [[ -f "$HOME/.cache/updcount" ]]; then
+  updates="$(cat $HOME/.cache/updcount)"
 fi
 
-choice1=" About this PC"
 if [[ "$updates" == "0" ]]; then
-  choice2="$(entry " System/App Updates...")"
+  choice2="$(entry " System Updates..." "􀁢 " 53)"
 else
   numlen="$(wc -c <<< "$updates")"
   case "$numlen" in
-    2) width=62 ;;
-    3) width=60 ;;
-    4) width=60 ;;
-  esac
-  choice2="$(entry " System/App Updates..." "$updates Updates" $width)"
+    2) width=42 ;;
+    3) width=41 ;;
+    4) width=41 ;;
+  esac 
+ 
+  # hmm  
+  if [[ "$updates" == "1" ]]; then
+    grammer=update
+  else
+    grammer=updates
+  fi
+
+  choice2="$(entry " System Updates..." "$updates $grammer" $width)"
 fi
 
 choice3="$(entry " Sleep" "")"
 choice4="$(entry " Restart...")"
 choice5="$(entry " Shut Down...")"
-choice6="$(entry " Lock Screen" "   L" 60)"
-choice7="$(entry " Log Out $USER...")"
+choice6="$(entry " Lock Screen" "⌃ ⌘ Q" 57)"
+choice7="$(entry " Log Out $USER..." "􀆝 ⌘ Q" 55)"
 
-USER=$(whoami)
-chosen=$(printf "$choice1\n$choice2\n$choice3\n$choice4\n$choice5\n$choice6\n$choice7\n" | rofi -dmenu -theme ~/.config/rofi/menu.rasi -i -no-show-icons -l 7 -width 30 )
+menu=$(printf "$choice1\n$choice2\n$choice3\n$choice4\n$choice5\n$choice6\n$choice7\n" | rofi -dmenu -config ~/.config/rofi/menu.rasi -i -no-show-icons -l 7 -width 30 -replace)
 
-case "$chosen" in
-  "$choice1") $TERMe --title fastfetch -e bash -i -c 'fastfetch && sleep infinity' ;;
-  "$choice2") $TERMe -e bash -i -c "$AUR -Syu" ;;
-  "$choice3") systemctl suspend-then-hibernate ;;
+case "$menu" in
+  "$choice1") $TERMINAL --title $FETCH -e bash -i -c "$FETCH && sleep infinity" ;;
+  "$choice2") $TERMINAL -e bash -i -c "$AUR -Syu && echo 0 > $HOME/.cache/updcount" ;;
+  "$choice3") brightnessctl -s set 2% &&
+              sleep 0.1 &&
+              hyprctl dispatch dpms off &&
+              brightnessctl -r &&
+              systemctl suspend-then-hibernate ;;
   "$choice4") reboot ;;
   "$choice5") poweroff ;;
   "$choice6") hyprlock -l ;;
-  "$choice7") killhypr ;;
+  "$choice7") hyprctl dispatch exit ;;
 esac

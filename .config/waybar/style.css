@@ -8,30 +8,29 @@
   font-weight: bold;
   font-size: 14px;
   color: @foreground;
+  opacity: 0.98;
 }
 
 window#waybar {
   background: transparent;
-  border-radius: 5px;
 }
 
 button:hover {
   background: inherit;
-  box-shadow: inset -3px -3px #ffffff;
+  box-shadow: inset -3px -3px @foreground;
 }
 
 #workspaces {
   border-radius: 5px;
-  box-shadow: 0px 0px black;
   background: @background;
 }
 
 #window {
   background: @background;
-  border-radius: 0px 5px 5px 0px;
-  padding-left: 0.2em;
+  border-radius: 5px;
+  padding-left: 0.5em;
   padding-right: 0.5em;
-  margin-right: 3px;
+  margin-left: 3px;
 }
 
 #clock,
@@ -46,10 +45,13 @@ button:hover {
 }
 
 #custom-arch {
-  font-size: 20px;
+  font-size: 18px;
   background: @background;
-  border-radius: 5px 0px 0px 5px;
-  padding: 0px 8px 0px 8px;
+  border-radius:  5px;
+  /*padding: 0px 13px 0px 8px;*/
+  padding-right: 0.8em;
+  padding-left: 0.4em;
+  margin-right: 3px;
 }
 
 #taskbar {
@@ -84,22 +86,23 @@ button:hover {
 
 #wireless {
   background: @background;
-  border-radius: 5px 0px 0px 5px;
+  border-radius: 0px 5px 5px 0px;
+  padding-right: 5px;
+  /*margin-right: 3px;*/
 }
 
 #hardware {
   background: @background;
-  border-radius: 0px 5px 5px 0px;
-  margin-right: 3px;
+  padding-left: 2px;
+  padding-right: 8px;
 }
 
 #telementry {
   background: @background;
-  border-radius: 5px;
+  border-radius: 5px 0px 0px 5px;
   padding-left: 5px;
   padding-right: 5px;
   margin-left: 3px;
-  margin-right: 3px;
 }
 
 #custom-system,
@@ -107,13 +110,14 @@ button:hover {
 #custom-separatorA,
 #custom-separatorB {
   font-family: Mononoki Nerd Font Mono;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 #custom-separatorA,
 #custom-separatorB {
   background: @background;
 }
+
 #custom-cava {
   background: @background;
   border-radius: 5px 0px 0px 5px;

@@ -1,22 +1,40 @@
+/*-- big mac glyphs --*
+// misc
+􀜊  ⌘  􀉉  􀐫 
+
+// audio
+􀊠 􀊡 􀊢 􀊣 􀊤 􀊥 􀊦  􀊧  􀊨  􀊩
+
+// battery
+􀢋  􀛪  􀛩  􀺶  􀺸  􀛨
+
+// network
+􀙇  􀙈  􀙥  􀑓
+
+// temperature
+􀇬 􀇫
+
+// input
+􀇳
+-------------------*/
+
 {
   "layer": "top",
   "height": 20,
-  "margin-top": 5,
-  "margin-left": 5,
-  "margin-right": 5,
   "exclusive": true,
   "passthrough": false,
   "position": "top",
   "fixed-center": true,
   "ipc": true,
+  "margin-top": 5,
+  "margin-left": 5,
+  "margin-right": 5,
   "reload_style_on_change": true,
 
   "modules-left": [
     "custom/arch",
-    "custom/separatorB",
-    "hyprland/window",
-    "hyprland/workspaces",
-    "custom/lizzy"
+    "hyprland/workspaces"
+    //"hyprland/window"
   ],
 
   "modules-center":[
@@ -24,10 +42,11 @@
   ],
 
   "modules-right": [
+    "custom/lizzy",
     "group/telementry",
-    "group/wireless",
     "group/hardware",
-    "custom/power"
+    "group/wireless"
+    //"custom/power"
   ],
 
   "group/telementry": {
@@ -48,19 +67,19 @@
   "group/hardware": {
     "orientation": "horizontal",
     "modules": [
-      "custom/space",
-      "wireplumber",
-      "custom/space",
+      //"custom/space",
       "battery",
-      "custom/space"
+      "wireplumber"
+      //"custom/space"
     ]
   },
 
   "group/wireless": {
     "orientation": "horizontal",
     "modules": [
-      "custom/space",
+      //"custom/space",
       "network"
+      //"custom/space"
     ]
   },
 
@@ -73,16 +92,15 @@
       ]
   },
 
-
   "hyprland/workspaces": {
     "disable-scroll": true,
     "all-outputs": true,
     "warp-on-scroll": false,
     "format": "{icon}",
     "format-icons": {
-      "default": "",
-      "active": "󰮯",
-      "urgent": "󰊠"
+      "empty": "<span font='8'></span>",
+      "active": "<span font='12'>󰮯</span>",
+      "default": "󰊠"
     },
     "persistent-workspaces": {
       "*": 4
@@ -95,7 +113,9 @@
       "": "Home",
       "kitty": "Terminal",
       "alacritty": "Terminal",
+      "(.*) Dolphin": "Files",
       "Mozilla Firefox": "Firefox",
+      "Firefox (.*)": "Firefox",
       "chat.openai.com_/": "ChatGPT 3.5",
       "web.whatsapp.com_/": "Whatsapp Web",
       "neofetch": "About PC",
@@ -104,13 +124,13 @@
       "Beeper (.*)": "Beeper",
       "(.*) Thorium": "Thorium",
       "Spotify Free": "Spotify",
-      "Spotify Premium": "Spotify",
+      "Spotify Premium": "Spotify"
     },
     "tooltip": false
   },
 
   "cpu": {
-    "format": "   {usage}% / ",
+    "format": "􀫥 {usage}% / ",
     "tooltip": false
   },
 
@@ -121,14 +141,12 @@
 
   "temperature": {
     "critical-threshold": 50,
-    "format": "  {temperatureC}°C ",
+    "format": " 􀇬 {temperatureC}°C ",
     "tooltip": false
   },
 
   "clock": {
-    "format": "󰃭 {:%A %h.%d  /    %I:%M %p}",
-    //"format": "  {:%I:%M %p}",
-    //"format-alt": "󰃭  {:%d/%m/%y}",
+    "format": "􀉉 {:%A %h.%d  /  􀐫 %I:%M %p}",
     "tooltip": false
   },
 
@@ -139,17 +157,12 @@
   },
 
   "network": {
-    "format-wifi": "{icon} {essid}",
-    "format-ethernet": "⬇{bandwidthDownBytes} ⬆{bandwidthUpBytes}",
-    "format-linked": "{ifname} (No IP)  󰤨",
-    "format-disconnected": "󰖪  Disconnected",
-    "format-icons": [
-      "󰤯 ",
-      "󰤟 ",
-      "󰤢 ",
-      "󰤥 ",
-      "󰤨 "
-    ],
+    "format-wifi": "<span size='large'>{icon}</span>",
+    "format-disabled": "􀑓 ",
+    "format-ethernet": " {bandwidthDownBytes}  {bandwidthUpBytes}",
+    "format-linked": "{ifname} (No IP) 􀙇",
+    "format-disconnected": "􀙈 ",
+    "format-icons": ["󰤯 ", "󰤟 ", "󰤢 ", "󰤥 ", "󰤨 "],
     "interval": 5,
     "nospacing": 1,
     "max-length": 8,
@@ -166,32 +179,31 @@
 
   "wireplumber": {
     "on-click": "pkill pavucontrol || pavucontrol -t 3",
-    "on-click-right": "amixer sset Master toggle 1>/dev/null",
-    "format": "{icon}   {volume:2}%",
-    "format-muted": " ",
-    "format-icons": {
-      // "default": ["", "", " "]
-      "default": [""]
-    },
+    "format": "{icon}",
+    "format-muted": "􀊣",
+    "format-icons": ["􀊡", "􀊥", "􀊧", "􀊩"],
     "tooltip": false
   },
 
   "battery": {
+    // "bat": "BAT1",
+    // "adapter": "ACAD",
+    "full-at": 100,
     "states": {
-      "good": 95,
+      "good": 90,
       "warning": 30,
       "critical": 20
     },
-    "format": "{icon}   {capacity}%",
-    "rotate": 0,
-    "format-charging": "  {capacity}%",
-    "format-plugged": "  {capacity}%",
+    "format": "{icon} ",
+    "format-charging": "􀢋{capacity}% ",
+    "format-plugged": "󱘖  {capacity}%",
+    "format-alt-click": "click",
     "format-icons": [
-      "",
-      "",
-      "",
-      "",
-      ""
+      "<span color='red'>􀛪 </span>",
+      "<span color='yellow'>􀛩 </span>",
+      "􀺶 ",
+      "􀺸 ",
+      "􀛨 "
     ],
     "tooltip": false
   },
@@ -236,27 +248,25 @@
   },
 
   "custom/arch": {
-    "format": "<span size='small'></span>",
+    "format": "<span size='large'></span>",
     "on-click": "~/.config/rofi/scripts/menu",
     "tooltip": false
   },
 
   "custom/cava": {
     //"exec-if": "pgrep -x spotify >/dev/null",
-    "exec": "bash ~/.config/waybar/scripts/cava.sh",
+    "exec": "$HOME/.config/waybar/scripts/cava.sh 2>/dev/null",
     "esacpe": true,
     "format": "{}"
   },
 
   "custom/lizzy": {
-    "format": "<span color='#25be6a'>{icon}</span>  <i>{}</i>",
+    "format": "<span color='#25be6a'>{icon}</span>  {}",
     "format-icons": {
       "Playing": "",
       "Paused": ""
     },
     "on-click":"playerctl --player=spotify play-pause",
-    //"on-scroll-up":"playerctl --player=spotify next",
-    //"on-scroll-down":"playerctl --player=spotify previous",
     "exec": "lizzy --format '{{title}}' --autotoggle --mediaplayer spotify",
     "max-length": 20,
     "return-type": "json"
@@ -265,7 +275,7 @@
   "custom/weather": {
     "format": "{}",
     "tooltip": true,
-    "interval": 60,
+    "interval": 2,
     "exec": "python $HOME/.config/waybar/scripts/weather.py",
     "exec-if": "ping wttr.in -c1",
     "return-type": "json"

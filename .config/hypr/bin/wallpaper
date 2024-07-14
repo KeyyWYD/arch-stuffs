@@ -3,14 +3,12 @@
 # Original Author: JaKooLit
 # Wallpaper Selection (SUPER SHIFT W)
 # - Generate a blurred wallpaper
-# - Removed .random option
 
 # File and folder names
 wallDIR="$HOME/Pictures/Wallpapers"
-SCRIPTSDIR="$HOME/.config/hypr/scripts"
 cache_dir="$HOME/.cache/swww/"
-wltmp="$HOME/.cache/swww/tmp.png"
-blurred_wp="$HOME/.cache/swww/wp_blurred.png"
+wltmp="$cache_dir/.wltmp"
+blurred_wp="$cache_dir/.wp_blurred.png"
 
 # Variables
 current_monitor=$(hyprctl monitors | awk '/^Monitor/{name=$2} /focused: yes/{print name}')
@@ -22,8 +20,14 @@ BEZIER=".43,1.19,1,.4"
 SWWW_PARAMS="--transition-fps $FPS --transition-type $TYPE --transition-duration $DURATION"
 monitor_outputs=($(ls "$cache_dir"))
 ln_success=false
-echo $current_monitor
 cache_file="$cache_dir$current_monitor"
+
+List of processes
+proc=(
+  waybar
+  rofi
+  dunst
+)
 
 # Check if swaybg is running
 if pidof swaybg > /dev/null; then
@@ -32,21 +36,17 @@ fi
 
 # Retrieve image files
 PICS=($(find "${wallDIR}" -type f \( -iname \*.jpg -o -iname \*.jpeg -o -iname \*.png -o -iname \*.gif \)))
-RANDOM_PIC="${PICS[$((RANDOM % ${#PICS[@]}))]}"
-RANDOM_PIC_NAME=".random"
 
 # Rofi command
-rofi_command="rofi -i -show -dmenu -config ~/.config/rofi/wallpaper.rasi"
+rofi_cmd="rofi -i -show -dmenu -config ~/.config/rofi/wallpaper.rasi -replace"
 
 # Sorting Wallpapers
 menu() {
   sorted_options=($(printf '%s\n' "${PICS[@]}" | sort))
 
-  # Place ". random" at the beginning
-  # printf "%s\n" "$RANDOM_PIC_NAME"
-
   for pic_path in "${sorted_options[@]}"; do
     pic_name=$(basename "$pic_path")
+
     # Displaying .gif to indicate animated images
     if [[ -z $(echo "$pic_name" | grep -i "\.gif$") ]]; then
       printf "%s\x00icon\x1f%s\n" "$(echo "$pic_name" | cut -d. -f1)" "$pic_path"
@@ -61,18 +61,11 @@ swww query || swww-daemon --format xrgb
 
 # Wallpapers
 main() {
-  choice=$(menu | ${rofi_command})
+  choice=$(menu | ${rofi_cmd})
   # No choice case
   if [[ -z $choice ]]; then
     exit 0
   fi
-
-  # Random choice case
-  # if [ "$choice" = "$RANDOM_PIC_NAME" ]; then
-  #   RANDOM_PIC="${PICS[$((RANDOM % ${#PICS[@]}))]}"
-  #   swww img -o $current_monitor "${RANDOM_PIC}" $SWWW_PARAMS
-  #   exit 0
-  # fi
 
   # Find the index of the selected file
   pic_index=-1
@@ -86,68 +79,47 @@ main() {
 
   if [[ $pic_index -ne -1 ]]; then
     swww img -o $current_monitor "${PICS[$pic_index]}" $SWWW_PARAMS
-  else
-    echo "Image not found."
-    exit 1
   fi
 
+  # copy and create blurred wallpaper
   cp "${PICS[$pic_index]}" $wltmp
   magick $wltmp -resize 75%\! $wltmp
-  echo ":: Resized to 75%"
+
   if [ ! "$blur" == "0x0" ] ; then
     magick $wltmp -blur $blur $blurred_wp
     rm -rf $wltmp
-    echo ":: Blurred"
   fi
 
 }
 
-# Kill rograms
-if pidof rofi > /dev/null; then
-  pkill rofi
-  exit 0
-fi
-
-if pidof dunst > /dev/null; then
-  pkill dunst
-  exit 0
-fi
-
+# main script starts here
 main
 
-echo $cache_file
-# Check if the cache file exists for the current monitor output
+# Check if the cache file exists for the current monitor
 if [ -f "$cache_file" ]; then
-    # Get the wallpaper path from the cache file
-    wallpaper_path=$(cat "$cache_file")
-    echo $wallpaper_path
-    # symlink the wallpaper to the location Rofi can access
-    if ln -sf "$wallpaper_path" "$HOME/.config/rofi/.current_wallpaper"; then
-         ln_success=true  # Set the flag to true upon successful execution
-    fi
-    # copy the wallpaper for wallpaper effects
-	cp -r "$wallpaper_path" "$HOME/.config/hypr/wallpaper_effects/.wallpaper_current"
+  # Get the wallpaper path from the cache file
+  wallpaper_path=$(cat "$cache_file")
+
+  # symlink the wallpaper to the location rofi can access
+  if ln -sf "$wallpaper_path" "$HOME/.config/rofi/.current_wallpaper"; then
+    ln_success=true  # Set the flag to true upon successful execution
+  fi
 fi
 
 # Check the flag before executing further commands
 if [ "$ln_success" = true ]; then
-    # execute wallust
-	echo 'about to execute wallust'
-    # execute wallust skipping tty and terminal changes
-    wallust run "$wallpaper_path" -s &
-fi
+  # execute wallust skipping tty and terminal changes
+  wallust run "$wallpaper_path" -s &
 
-sleep 0.1
-
-_ps=(waybar rofi dunst)
-for _prs in "${_ps[@]}"; do
-    if pidof "${_prs}" >/dev/null; then
-        pkill "${_prs}"
+  # terminate programs
+  for prog in "${proc[@]}"; do
+    if pidof "${prog}" >/dev/null; then
+      pkill "${prog}"
     fi
-done
+  done
 
-# Relaunch Programs
-waybar &
-dunst > /dev/null 2>&1 &
+  # launch waybar
+  sleep 0.1 && waybar &
+fi
 
 exit 0

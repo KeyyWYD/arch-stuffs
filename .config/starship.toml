@@ -6,38 +6,29 @@
 format = """
 $os\
 $username\
+$directory\
+$git_branch\
+$git_status\
 ($all)\
+\n\
+$cmd_duration\
 $character
 """
 
-# Inserts a blank line between shell prompts
-add_newline = false
-
-# A continuation prompt that displays two filled in arrows
-continuation_prompt = "[→→](bold blue)"
-
 [line_break]
 disabled = true
+
+[cmd_duration]
+min_time = 500
+format = '[$duration ](red)'
 
 [character]
 success_symbol = "[→](bold green)"
 error_symbol   = "[→](bold red)"
 
-[status]
-symbol = "🆗"
-success_symbol = ""
-format = '$symbol$signal_name$maybe_int'
-map_symbol = true
-disabled = false
-
-[sudo]
-style = "bold green"
-symbol = "🔑"
-disabled = false
-
 [os]
 format = '[$symbol ]($style)'
-style = "bold blue"
+style = "blue"
 disabled = false
 
 [os.symbols]
@@ -87,6 +78,17 @@ style_root = 'red'
 show_always = true
 disabled = false
 
+[directory]
+style = 'cyan'
+format = '[$path ]($style)'
+truncation_length = 4
+
+[directory.substitutions]
+"Documents" = " "
+"Downloads" = " "
+"Music" = " "
+"Pictures" = " "
+
 [aws]
 symbol = "  "
 
@@ -102,13 +104,6 @@ symbol = " "
 [dart]
 symbol = " "
 
-[directory]
-read_only = " "
-truncation_length = 1
-truncation_symbol = ''
-format = "[$read_only]($read_only_style)"
-disabled = true
-
 [docker_context]
 symbol = " "
 
@@ -120,6 +115,10 @@ symbol = " "
 
 [git_branch]
 symbol = " "
+
+[git_status]
+style = "bold yellow"
+format = '[$all_status$ahead_behind ]($style)'
 
 [golang]
 symbol = " "

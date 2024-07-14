@@ -15,6 +15,7 @@
  - **Idle Daemon:** Hypridle
  - **Terminal:** Alacritty
  - **Wallpaper Daemon:** Swww
+ - **Wallpapers:** [Source](https://wallpaper.castorisdead.xyz/)
  - **Waybar Spotify Module:** [Lizzy](https://github.com/stefur/lizzy)
 
 ## Keybinds
@@ -25,6 +26,8 @@
 | :--- | :--- |
 | <kbd>Super</kbd> + <kbd>Return</kbd> | Open Terminal |
 | <kbd>Super</kbd> + <kbd>Q</kbd> | Kill Process |
+| <kbd>Super</kbd> + <kbd>Ctrl</kbd>+ <kbd>Q</kbd> | Lock Screen |
+| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>Q</kbd> | Log Out |
 | <kbd>Super</kbd> + <kbd>D</kbd> | Open File Manager |
 | <kbd>Super</kbd> + <kbd>Tab</kbd> | Toggle Floating Mode for Windows |
 | <kbd>Super</kbd> + <kbd>Space</kbd> | Open App Menu |

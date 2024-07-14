@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+# NOTE: This script requires `pacman-contrib` 
+
+# Check for updates every 5 hours (seconds)
+INTERVAL=18000
+
+# Last update check
+LAST_UPD_CHECK="$HOME/.cache/updtime"
+
+# Update count
+UPDATE_COUNT="$HOME/.cache/updcount"
+
+current_time() {
+  date +%s
+}
+
+while true; do
+
+  now=$(current_time)
+
+  if [[ -f "$LAST_UPD_CHECK" ]]; then
+    last_check=$(cat "$LAST_UPD_CHECK")
+  else
+    last_check=0
+  fi
+
+  elapsed=$((now - last_check))
+
+  if ((elapsed >= INTERVAL)); then
+    if count=$(checkupdates | wc -l 2>/dev/null); then
+      printf "%d\n" "$count" > "$UPDATE_COUNT"
+
+      echo "$now" > "$LAST_UPD_CHECK"
+    fi
+  fi
+
+  sleep 60
+done
+

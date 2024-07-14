@@ -1,2 +1,8 @@
 [General]
 TerminalApplication=alacritty
+
+[KDE]
+ShowDeleteCommand=true
+
+[PreviewSettings]
+MaximumRemoteSize=0

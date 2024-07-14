@@ -25,8 +25,45 @@ cat << "EOF"
 
 EOF
 
-# Function to install packages
-install_packages() {
+is_installed() {
+    local pkg=$1
+
+    if sudo pacman -Qi "${pkg}" &> /dev/null; then
+        return 0
+    else
+        return 1
+    fi
+}
+
+# Update mirrorlist
+upd_mirrors() {
+  echo
+  echo -e Updating mirrorlist...
+
+    # Install pacman-contrib package
+  if is_installed "pacman-contrib"; then
+    sleep 0.1
+  else
+    echo -e `pacman-contrib` not found. INSTALLING...
+    sudo pacman -S --noconfirm pacman-contrib
+  fi
+
+  # Backup the current mirrorlist
+  echo -e Creating mirrorlist backup...
+  sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
+
+  # Fetch, rank mirrors, and update mirrorlist
+  echo -e Updating mirrorlist...
+  sudo curl -s "https://archlinux.org/mirrorlist/?country=US&protocol=https&ip_version=6&use_mirror_status=on" \
+   | sed -e "s/^#Server/Server/" -e "/^#/d" \
+   | rankmirrors -n 6 - | sudo tee /etc/pacman.d/mirrorlist
+  
+  echo -e Mirror list updated successfully.
+  sleep 0.5
+}
+
+# packages and deps
+_packages() {
     local packages=(
         # SYSTEM --------------------------------------------------------------
         'pipewire'                  
@@ -50,9 +87,8 @@ install_packages() {
         'hyprland'                  
         'hyprlock'
         'hypridle'
-        'rofi-wayland'              
-        'swappy'                    
-        'swaync'                    
+        'rofi-wayland'                                  
+        'dunst'                    
         'swww'                      
         'waybar'                    
         'wl-clipboard'              
@@ -63,8 +99,7 @@ install_packages() {
         'polkit-kde-agent'          
         'xdg-desktop-portal-hyprland'   
         'qt5-imageformats'          
-        'ffmpegthumbs'              
-        'mesa-utils'                
+        'ffmpegthumbs'                              
         'xdg-user-dirs'             
         'stow'
         'python-dbus'                      
@@ -103,7 +138,7 @@ install_packages() {
         'github-cli'
 
         # --------------------------------------------------------------------
-        'auto-cpufreq'
+        'power-profiles-daemon'
         'cava'
         'sddm-git'
         'slurp'
@@ -119,7 +154,7 @@ install_packages() {
     done
 }
 
-install_aur() {
+_aur() {
     choice=$1
     case $choice in
         1)
@@ -138,7 +173,7 @@ install_aur() {
 }
 
 # Function to install  apple-sf fonts
-install_apple_fonts() {
+_apple_fonts() {
     local font_tmp="$HOME/tmp/apple-sf"
     local font_dir="$HOME/.dotfiles/.local/share/fonts/OTF"
     local fonts=("SF Pro" "SF Serif" "SF Mono")
@@ -163,6 +198,9 @@ install_apple_fonts() {
 }
 
 # MAIN ---------------------------------------------------------------
+
+# Update mirrorlist
+upd_mirrors
 
 # Check for system updates
 sudo pacman -Syu
@@ -211,14 +249,14 @@ else
     done
 
     # Call function to install AUR helper
-    install_aur "$user_choice"
+    _aur "$user_choice"
 fi
 
 # Install packages
-install_packages
+_packages
 
 # Install apple fonts
-install_apple_fonts
+_apple_fonts
 
 # Copy wallpaper
 cp -r "$HOME"/.dotfiles/Pictures "$HOME"
@@ -237,9 +275,8 @@ cat << "EOF"
 
 EOF
 
-sudo auto-cpufreq --install
 systemctl --user --now enable pipewire pipewire-pulse pipewire-pulse.socket wireplumber
-systemctl enable thermald auto-cpufreq sddm
+systemctl enable thermald sddm
 
 # Cleanup
 rm -rf "$HOME/tmp"
