@@ -4,11 +4,11 @@
 \.gitignore
 \.gitmodules
 \.github
-.local/share/fonts/.uuid
-.local/share/fonts/TTF/.uuid
-.config/btop/btop.log
-setup.sh
+.uuid
+*.log
+assets
 extra
 Pictures
+setup.sh
 ^/README.*
 ^/scrot.*

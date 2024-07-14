@@ -1,7 +1,6 @@
 <div align="center">
-
-# .dotfiles
-
+  <h1>.dotfiles</h1>
+  <h3></h3>
 </div>
 
 ## Packages
@@ -18,7 +17,10 @@
  - **Wallpapers:** [Source](https://wallpaper.castorisdead.xyz/)
  - **Waybar Spotify Module:** [Lizzy](https://github.com/stefur/lizzy)
 
-## Keybinds
+<div align="center">
+  <h2>Keybinds</h2>
+  <h3></h3>
+</div>
 
 <div align="center">
 
@@ -40,3 +42,46 @@
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>[0-9]</kbd> | Move Focused Window to Other Workspace |
 
 </div>
+
+<div align="center">
+  <h2>Screenshots</h2>
+  <h3></h3>
+</div>
+
+<div align="center">
+  <table>
+    <tr><a href="https://github.com/hyprwm/hyprlock">Hyprlock</a></tr><tr><td>
+    <img src="https://raw.githubusercontent.com/KeyyWYD/arch-stuffs/main/assets/img/lock.png"/></td></tr>
+  </table>
+</div>
+
+<div align="center">
+  <table>
+    <tr><a href="https://wiki.hyprland.org">Hyprland</a></tr><tr><td>
+    <img src="https://raw.githubusercontent.com/KeyyWYD/arch-stuffs/main/assets/img/home.png"/></td></tr>
+  </table>
+</div>
+
+<div align="center">
+  <table>
+    <tr><a href="https://github.com/lbonn/rofi">Rofi</a></tr><tr><td>
+    <img src="https://raw.githubusercontent.com/KeyyWYD/arch-stuffs/main/assets/img/rofi-1.png"/></td><td>
+    <img src="https://raw.githubusercontent.com/KeyyWYD/arch-stuffs/main/assets/img/rofi-2.png"/></td></tr>
+  </table>
+</div>
+
+<div align="center">
+  <table>
+    <tr><a href="https://github.com/ArtsyMacaw/wlogout">Wlogout</a></tr><tr><td>
+    <img src="https://raw.githubusercontent.com/KeyyWYD/arch-stuffs/main/assets/img/actually_useless.png"/></td></tr>
+  </table>
+</div>
+
+<div align="center">
+  <h2>Credits</h2>
+  <h3></h3>
+</div>
+
+_UnixPorn: [r/unixporn](https://www.reddit.com/r/unixporn/)_
+_JaKooLit dots: [JaKooLit](https://github.com/JaKooLit/Hyprland-Dots)_
+_FireDrop6000 dots: [FireDrop6000](https://github.com/FireDrop6000/hyprland-mydots)_
