@@ -22,7 +22,7 @@ monitor_outputs=($(ls "$cache_dir"))
 ln_success=false
 cache_file="$cache_dir$current_monitor"
 
-List of processes
+# List of processes
 proc=(
   waybar
   rofi
