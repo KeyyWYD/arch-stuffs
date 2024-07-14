@@ -2,7 +2,6 @@
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-TERM='rxvt-256color'
 ZSH=$HOME/.zsh
 EDITOR=nano
 
