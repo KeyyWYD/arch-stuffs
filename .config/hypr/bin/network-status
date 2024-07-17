@@ -1,6 +1,5 @@
 #!/bin/sh
 
-hypr=$HOME/.config/hypr/bin
 status="$(nmcli general status | grep -oh "\w*connect\w*")"
 
 if [[ "$status" == "disconnected" ]]; then
@@ -8,7 +7,7 @@ if [[ "$status" == "disconnected" ]]; then
 elif [[ "$status" == "connecting" ]]; then
   printf "󱍸 "
 elif [[ "$status" == "connected" ]]; then
-  strength="$(python $hypr/wifi)"
+  strength="$(python $HOME/.config/hypr/bin/wifi)"
   if [[ "$?" == "0" ]]; then
     if [[ "$strength" -eq "0" ]]; then
       printf "󰤯 "

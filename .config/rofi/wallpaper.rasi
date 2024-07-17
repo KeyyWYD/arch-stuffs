@@ -10,19 +10,10 @@ configuration {
     me-accept-entry:             "MousePrimary";
 }
 
-@theme "./wallust/colors-rofi.rasi"
+@theme "colors.rasi"
 
 * {
     font:                        "SF Pro Text Medium 10";
-
-    background-color:            transparent;
-    background-alt:              @selected-active-background;
-    selected:                    @selected-urgent-background;
-    active:                      @selected-normal-background;
-    urgent:                      @selected;
-    text-selected:               @background;
-    text-color:                  @foreground;
-    border-color:                @selected;
 
     border: 0;
     margin: 0;
@@ -38,7 +29,6 @@ window {
     transparency:                "real";
     cursor:                      "default";
     border-radius:               8px;
-    border-color:                @selected;
     background-color:            @background;
 }
 
@@ -50,8 +40,8 @@ mainbox {
 }
 
 imagebox {
-    orientation:                   vertical;
-    children:                      ["listbox"];
+    orientation:                 vertical;
+    children:                    ["listbox"];
 }
 
 listview {
@@ -72,11 +62,8 @@ listview {
 element {
     enabled:                     true;
     spacing:                     10px;
-    margin:                      0px;
     padding:                     20px 10px;
-    border:                      0px solid;
     border-radius:               8px;
-    border-color:                @selected;
     background-color:            transparent;
     text-color:                  @foreground;
     orientation:                 vertical;

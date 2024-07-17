@@ -1,0 +1,77 @@
+[global]
+    monitor = 0
+    follow = none
+    width = 270
+    height = 140
+    origin = top-right
+    alignment = "left"
+    vertical_alignment = "center"
+    ellipsize = "middle"
+    offset = "8x8"
+    padding = 15
+    horizontal_padding = 15
+    text_icon_padding = 15
+    icon_position = "left"
+    min_icon_size = 48
+    max_icon_size = 64
+    progress_bar = true
+    progress_bar_height = 8
+    progress_bar_frame_width = 1
+    progress_bar_min_width = 150
+    progress_bar_max_width = 170
+    separator_height = 2
+    frame_width = 0
+    frame_color = "#fff" 
+    separator_color = "frame" 
+    corner_radius = 8 
+    transparency = 10 
+    gap_size = 8 
+    line_height = 0 
+    notification_limit = 0 
+    # idle_threshold = 120 
+    history_length = 20 
+    show_age_threshold = 60 
+    markup = "full" 
+    font = "SF Display" 
+    format = "<b>%s</b>\n%b: 
+    word_wrap = "yes" 
+    sort = "yes" 
+    shrink = "no" 
+    indicate_hidden = "yes" 
+    sticky_history = "yes" 
+    ignore_newline = "no" 
+    show_indicators = "no" 
+    stack_duplicates = true 
+    always_run_script = true 
+    hide_duplicate_count = true 
+    ignore_dbusclose = false 
+    force_xwayland = false 
+    force_xinerama = false 
+    mouse_left_click = "do_action" 
+    mouse_middle_click = "close_all" 
+    mouse_right_click = "close_current"
+    highlight = "{{colors.primary.default.hex}}"
+    separator_color= "{{colors.outline.default.hex}}"
+
+[experimental]
+    per_monitor_dpi = false
+
+[urgency_low]
+    timeout = 5
+    background = "{{colors.surface.default.hex}}F5"
+    foreground = "{{colors.on_surface.default.hex}}"
+    highlight = "{{colors.primary_container.default.hex}}"
+
+[urgency_normal]
+    timeout = 4
+    background = "{{colors.surface.default.hex}}F5"
+    foreground = "{{colors.on_surface.default.hex}}"
+    highlight = "{{colors.primary_container.default.hex}}"
+
+[urgency_critical]
+    timeout = 0
+    background = "{{colors.surface.default.hex}}F5"
+    foreground = "{{colors.on_surface.default.hex}}"
+    highlight = "{{colors.error.default.hex}}"
+
+

@@ -49,8 +49,10 @@ upd_mirrors() {
   fi
 
   # Backup the current mirrorlist
-  echo -e Creating mirrorlist backup...
-  sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
+  if [ ! -f "/etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak" ]; then
+    echo -e Creating mirrorlist backup...
+    sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
+  fi
 
   # Fetch, rank mirrors, and update mirrorlist
   echo -e Updating mirrorlist...
@@ -135,7 +137,7 @@ _packages() {
         'cava'
         'sddm-git'
         'slurp'
-        'wallust-git'
+        'matugen'
         'wayshot'
         'wlogout'
     )

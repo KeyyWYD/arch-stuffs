@@ -1,0 +1,18 @@
+[config]
+reload_apps = false
+set_wallpaper = false
+prefix = '@'
+
+[config.reload_apps_list]
+waybar = false
+kitty = false
+gtk_theme = false
+dunst = false
+
+[templates]
+hypr = { input_path = '~/.config/matugen/templates/hyprland-colors.conf', output_path = '~/.config/hypr/configs/colors.conf' }
+dunst = { input_path = '~/.config/matugen/templates/dunstrc-colors', output_path = '~/.config/dunst/dunstrc' }
+waybar = { input_path = '~/.config/matugen/templates/waybar-colors.css', output_path = '~/.config/waybar/colors.css' }
+rofi = { input_path = '~/.config/matugen/templates/rofi-colors.rasi' , output_path = '~/.config/rofi/colors.rasi' }
+alacritty = { input_path = '~/.config/matugen/templates/alacritty-colors.toml', output_path = '~/.config/alacritty/themes/colors.toml' }
+cava = { input_path = '~/.config/matugen/templates/cava-colors', output_path = '~/.config/cava/config' }

@@ -1,5 +1,5 @@
 
-@import './wallust/colors-wlogout.css';
+@import 'colors.css';
 
 * {
     background-image: none;
@@ -14,7 +14,7 @@ window {
 
 button {
     color: #FFFFFF;
-    background-color: @color1;
+    background-color: #fff;
     background-position: center;
     background-repeat: no-repeat;
     background-size: 20%;
@@ -25,14 +25,14 @@ button {
 }
 
 #lock {
-    background-color: @color1;
+    background-color: @primary;
     margin: 10px 0px 0px 300px;
     border-radius: 5px 0px 0px 0px;
     background-image: image(url("icons/lock.png"));
 }
 
 #reboot {
-    background-color: @color2;
+    background-color: #fff;
     margin: 0px 0px 10px 300px;
     border-radius: 0px 0px 0px 5px;
     background-image: image(url("icons/reboot.png"));
@@ -40,14 +40,14 @@ button {
 
 
 #logout {
-    background-color: @color3;
+    background-color: @source_color;
     margin: 10px 300px 0px 0px;
     border-radius: 0px 5px 0px 0px;
     background-image: image(url("icons/logout.png"));
 }
 
 #shutdown {
-    background-color: @color4;
+    background-color: #fff;
     margin: 0px 300px 10px 0px;
     border-radius: 0px 0px 5px 0px;
     background-image: image(url("icons/shutdown.png"));
@@ -55,7 +55,7 @@ button {
 
 button:hover {
     background-size: 25%;
-    color: @color11;
+    color: #fff;
     background-color: rgba(12, 12, 12, 0.5);
 }
 

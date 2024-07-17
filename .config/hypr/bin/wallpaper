@@ -3,6 +3,7 @@
 # Original Author: JaKooLit
 # Wallpaper Selection (SUPER SHIFT W)
 # - Generate a blurred wallpaper
+# - matugen
 
 # File and folder names
 wallDIR="$HOME/Pictures/Wallpapers"
@@ -21,18 +22,6 @@ SWWW_PARAMS="--transition-fps $FPS --transition-type $TYPE --transition-duration
 monitor_outputs=($(ls "$cache_dir"))
 ln_success=false
 cache_file="$cache_dir$current_monitor"
-
-# List of processes
-proc=(
-  waybar
-  rofi
-  dunst
-)
-
-# Check if swaybg is running
-if pidof swaybg > /dev/null; then
-  pkill swaybg
-fi
 
 # Retrieve image files
 PICS=($(find "${wallDIR}" -type f \( -iname \*.jpg -o -iname \*.jpeg -o -iname \*.png -o -iname \*.gif \)))
@@ -56,18 +45,15 @@ menu() {
   done
 }
 
-# initiate swww if not running
 swww query || swww-daemon --format xrgb
 
-# Wallpapers
 main() {
   choice=$(menu | ${rofi_cmd})
-  # No choice case
+
   if [[ -z $choice ]]; then
     exit 0
   fi
 
-  # Find the index of the selected file
   pic_index=-1
   for i in "${!PICS[@]}"; do
     filename=$(basename "${PICS[$i]}")
@@ -77,9 +63,9 @@ main() {
     fi
   done
 
-  if [[ $pic_index -ne -1 ]]; then
-    swww img -o $current_monitor "${PICS[$pic_index]}" $SWWW_PARAMS
-  fi
+if [[ $pic_index -ne -1 ]]; then
+
+  swww img -o $current_monitor "${PICS[$pic_index]}" $SWWW_PARAMS
 
   # copy and create blurred wallpaper
   cp "${PICS[$pic_index]}" $wltmp
@@ -90,36 +76,42 @@ main() {
     rm -rf $wltmp
   fi
 
+fi
 }
 
-# main script starts here
 main
 
 # Check if the cache file exists for the current monitor
-if [ -f "$cache_file" ]; then
-  # Get the wallpaper path from the cache file
+# if [ -f "$cache_file" ]; then
+#   # Get the wallpaper path from the cache file
+#   wallpaper_path=$(cat "$cache_file")
+
+#   # symlink the wallpaper to the location rofi can access
+#   if ln -sf "$wallpaper_path" "$HOME/.config/rofi/.current_wallpaper"; then
+#     ln_success=true  # Set the flag to true upon successful execution
+#   fi
+# fi
+
+if [ -r "$cache_file" ]; then
   wallpaper_path=$(cat "$cache_file")
 
-  # symlink the wallpaper to the location rofi can access
-  if ln -sf "$wallpaper_path" "$HOME/.config/rofi/.current_wallpaper"; then
-    ln_success=true  # Set the flag to true upon successful execution
+  linkk=$(readlink "$HOME/.config/rofi/.current_wallpaper")
+  if [ "$linkk" != "$wallpaper_path" ]; then
+    ln -sf "$wallpaper_path" "$HOME/.config/rofi/.current_wallpaper" && ln_success=true
+  else
+    ln_success=true
   fi
 fi
 
-# Check the flag before executing further commands
+# Check the flag before executing matugen
 if [ "$ln_success" = true ]; then
-  # execute wallust skipping tty and terminal changes
-  wallust run "$wallpaper_path" -s &
-
-  # terminate programs
-  for prog in "${proc[@]}"; do
-    if pidof "${prog}" >/dev/null; then
-      pkill "${prog}"
-    fi
-  done
-
-  # launch waybar
-  sleep 0.1 && waybar &
+  matugen image "$wallpaper_path"
 fi
+
+sleep 0.2
+pkill waybar 2>/dev/null
+pkill dunst 2>/dev/null
+
+waybar &
 
 exit 0

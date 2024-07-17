@@ -1,0 +1,27 @@
+[colors.primary]
+background = '{{colors.background.default.hex}}'
+foreground = '{{colors.on_background.default.hex}}'
+
+[colors.cursor]
+text = '{{colors.on_surface_variant.default.hex}}'
+cursor = '{{colors.on_surface.default.hex}}'
+
+[colors.normal]
+black   = '#4c4c4c'
+red     = '#ac8a8c'
+green   = '#8aac8b'
+yellow  = '#aca98a'
+blue    = '{{colors.primary.default.hex}}'
+magenta = '#ac8aac'
+cyan    = '#8aacab'
+white   = '#f0f0f0'
+
+[colors.bright]
+black   = '#262626'
+red     = '#c49ea0'
+green   = '#9ec49f'
+yellow  = '#c4c19e'
+blue    = '#a39ec4'
+magenta = '#c49ec4'
+cyan    = '#9ec3c4'
+white   = '#e7e7e7'

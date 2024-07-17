@@ -25,6 +25,10 @@ if command -v neofetch &> /dev/null; then
     FETCH="fastfetch"
 fi
 
+# if pidof rofi > /dev/null; then
+#   pkill rofi && sleep 0.3
+# fi
+
 function entry() {
   n_left=$(wc -c <<< "$1")
   if [[ -z $2 ]]; then
@@ -61,7 +65,7 @@ else
   choice2="$(entry " System Updates..." "$updates $grammer" $width)"
 fi
 
-choice3="$(entry " Sleep" "")"
+choice3="$(entry " Sleep")"
 choice4="$(entry " Restart...")"
 choice5="$(entry " Shut Down...")"
 choice6="$(entry " Lock Screen" "⌃ ⌘ Q" 57)"
@@ -79,6 +83,6 @@ case "$menu" in
               systemctl suspend-then-hibernate ;;
   "$choice4") reboot ;;
   "$choice5") poweroff ;;
-  "$choice6") hyprlock -l ;;
+  "$choice6") hyprlock ;;
   "$choice7") hyprctl dispatch exit ;;
 esac

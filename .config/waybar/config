@@ -163,7 +163,7 @@
     "format-linked": "{ifname} (No IP) 􀙇",
     "format-disconnected": "􀙈 ",
     "format-icons": ["󰤯 ", "󰤟 ", "󰤢 ", "󰤥 ", "󰤨 "],
-    "interval": 5,
+    "interval": 2,
     "nospacing": 1,
     "max-length": 8,
     "on-click": "nmcli dev wifi rescan; hyprctl notify 5 1500 'rgb(d3c6aa)' 'Wifi rescan!'",
@@ -178,7 +178,7 @@
   },
 
   "wireplumber": {
-    "on-click": "pkill pavucontrol || pavucontrol -t 3",
+    "on-click": "pavucontrol -t 3",
     "format": "{icon}",
     "format-muted": "􀊣",
     "format-icons": ["􀊡", "􀊥", "􀊧", "􀊩"],
@@ -186,8 +186,6 @@
   },
 
   "battery": {
-    // "bat": "BAT1",
-    // "adapter": "ACAD",
     "full-at": 100,
     "states": {
       "good": 90,
@@ -243,7 +241,7 @@
 
   "custom/arch": {
     "format": "<span size='large'></span>",
-    "on-click": "~/.config/rofi/scripts/menu",
+    "on-click": "pkill rofi || ~/.config/rofi/scripts/menu",
     "tooltip": false
   },
 

@@ -1,6 +1,6 @@
 
 /*-- Dynamic Theme --*/
-@import "wallust/colors-waybar.css";
+@import "colors.css";
 
 * {
   border: none;
@@ -8,7 +8,6 @@
   font-weight: bold;
   font-size: 14px;
   color: @foreground;
-  opacity: 0.98;
 }
 
 window#waybar {
@@ -52,26 +51,6 @@ button:hover {
   padding-right: 0.8em;
   padding-left: 0.4em;
   margin-right: 3px;
-}
-
-#taskbar {
-  background: @taskbar;
-  border-radius: 5px;
-  margin-left: 3px;
-  padding: 0px;
-}
-
-#taskbar button {
-  margin: 0px 1px;
-  border-radius: 5px;
-  padding: 0px 5px;
-}
-
-#taskbar button:hover {
-  background: @taskbar;
-  opacity: 1;
-  border: none;
-  box-shadow: none;
 }
 
 #tray,

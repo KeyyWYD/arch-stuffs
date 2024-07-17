@@ -16,7 +16,7 @@
  - **Idle Daemon:** Hypridle
  - **Terminal:** Alacritty
  - **Wallpaper Daemon:** Swww
- - **Wallpapers:** [Source](https://wallpaper.castorisdead.xyz/)
+ - **Wallpapers:** [Source](https://discord.gg/TnJ4h5K)
  - **Waybar Spotify Module:** [Lizzy](https://github.com/stefur/lizzy)
 
 <blockquote>
@@ -88,14 +88,8 @@ cp -r .zshrc $HOME
   <table>
     <tr><a href="https://github.com/lbonn/rofi">Rofi</a></tr><tr><td>
     <img src="https://raw.githubusercontent.com/KeyyWYD/arch-stuffs/main/assets/img/rofi-1.png"/></td><td>
-    <img src="https://raw.githubusercontent.com/KeyyWYD/arch-stuffs/main/assets/img/rofi-2.png"/></td></tr>
-  </table>
-</div>
-
-<div align="center">
-  <table>
-    <tr><a href="https://github.com/ArtsyMacaw/wlogout">Wlogout</a></tr><tr><td>
-    <img src="https://raw.githubusercontent.com/KeyyWYD/arch-stuffs/main/assets/img/actually_useless.png"/></td></tr>
+    <img src="https://raw.githubusercontent.com/KeyyWYD/arch-stuffs/main/assets/img/rofi-2.png"/></td><td>
+    <img src="https://raw.githubusercontent.com/KeyyWYD/arch-stuffs/main/assets/img/rofi-3.png"/></td></tr>
   </table>
 </div>
 

@@ -9,18 +9,10 @@ configuration {
     me-accept-entry:            "MousePrimary";
 }
 
-@theme "./wallust/colors-rofi.rasi"
+@theme "colors.rasi"
 
 * {
     font:                        "SF Pro Text Medium 9";
-    background-color:            transparent;
-    background-alt:              @selected-active-background;
-    selected:                    @selected-urgent-background;
-    active:                      @selected-normal-background;
-    urgent:                      @selected;
-    text-selected:               @background;
-    text-color:                  @foreground;
-    border-color:                @selected;
 
     border: 0;
     margin: 0;
@@ -29,19 +21,14 @@ configuration {
 }
 
 window {
+    enabled:                     true;
     transparency:                "real";
     location:                    north west;
     anchor:                      center;
     width:                       18%;
     x-offset:                    8px;
     y-offset:                    8px;
-
-    enabled:                     true;
-    margin:                      0px;
-    padding:                     0px;
-    border:                      0px;
     border-radius:               8px;
-    border-color:                @selected;
     background-color:            @background;
     cursor:                      "default";
 }
@@ -50,42 +37,6 @@ mainbox {
     enabled:                     true;
     background-color:            transparent;
     children:                    [ "listview" ];
-}
-
-inputbar {
-    enabled:                     true;
-    spacing:                     10px;
-    margin:                      0px;
-    padding:                     15px;
-    border:                      0px solid;
-    border-radius:               0px;
-    border-color:                @selected;
-    background-color:            @background-color;
-    text-color:                  @selected;
-    children:                    [ "prompt", "entry" ];
-}
-
-prompt {
-    enabled:                     false;
-    background-color:            inherit;
-    text-color:                  inherit;
-}
-
-textbox-prompt-colon {
-    enabled:                     true;
-    expand:                      false;
-    str:                         "::";
-    background-color:            inherit;
-    text-color:                  inherit;
-}
-
-entry {
-    enabled:                     true;
-    background-color:            inherit;
-    text-color:                  inherit;
-    cursor:                      text;
-    placeholder:                 "Search";
-    placeholder-color:           inherit;
 }
 
 listview {
@@ -101,37 +52,19 @@ listview {
     fixed-columns:               true;
 
     spacing:                     5px;
-    margin:                      0px;
-    padding:                     0px;
-    border:                      0px solid;
-    border-radius:               0px;
-    border-color:                @selected;
     background-color:            transparent;
     text-color:                  @foreground;
     cursor:                      "default";
 }
 
-scrollbar {
-    handle-width:                5px ;
-    handle-color:                @selected;
-    border-radius:               0px;
-    background-color:            @background-alt;
-}
-
-
 element {
     enabled:                     true;
     spacing:                     10px;
-    margin:                      0px;
-    padding:                     8 12;
-    border:                      0px solid;
-    border-radius:               0px;
-    border-color:                @selected;
+    padding:                     8px 12px;
     background-color:            transparent;
     text-color:                  @foreground;
     cursor:                      pointer;
 }
-
 
 element normal active,
 element alternate active,
@@ -165,15 +98,6 @@ element-text {
     highlight:                   inherit;
     cursor:                      inherit;
     vertical-align:              0.5;
-}
-
-error-message {
-    padding:                     15px;
-    border:                      2px solid;
-    border-radius:               12px;
-    border-color:                @selected;
-    background-color:            @background;
-    text-color:                  @foreground;
 }
 
 textbox {
