@@ -5,7 +5,7 @@
 \.gitmodules
 \.github
 .uuid
-*.log
+.log
 assets
 extra
 Pictures
