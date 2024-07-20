@@ -1,0 +1,12 @@
+#!/bin/bash
+
+monitor=$(hyprctl monitors | awk '/^Monitor/{name=$2} /focused: yes/{print name}')
+cache_file="$HOME/.cache/swww/$monitor"
+
+# TODO:
+# Light Mode
+
+matugen image "$(cat "$cache_file")"
+
+pgrep -x "waybar" > /dev/null && pkill -SIGUSR2 waybar
+pkill dunst > /dev/null

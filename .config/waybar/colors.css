@@ -1,3 +1,2 @@
-
-@define-color background rgba(14, 20, 21, 0.7);
-@define-color foreground #dde4e3;
+@define-color background alpha(#191114, 0.7);
+@define-color foreground #eedfe3;

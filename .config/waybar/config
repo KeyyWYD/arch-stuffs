@@ -234,7 +234,7 @@
   },
 
   "custom/system": {
-    "format": "<span size='small'>  </span>",
+    "format": "<span size='small'>􀐞</span>",
     "on-click": "alacritty -e btop || kitty btop",
     "tooltip": false
   },

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 #
-# Arch Linux Post Install Script (For Clean Install)
+# Arch Linux Post Install Script (Clean Install)
 # 
 
 cat << "EOF"

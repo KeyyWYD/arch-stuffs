@@ -5,8 +5,8 @@
 
 <details>
   <summary>Software</summary>
-  
- - **Display Manager:** Sddm
+
+ - **Display Manager:** [ly](https://github.com/fairyglade/ly)
  - **WM:** Hyprland
  - **Fonts:** San Francisco Fonts
  - **Launcher:** Rofi
@@ -37,7 +37,7 @@ cp -r .zsh $HOME
 cp -r .zshrc $HOME
 ```
 
-  <details> 
+  <details>
     <summary>Keybinds</summary>
     <div align="center">
       <h2>Keybinds</h2>
@@ -64,7 +64,7 @@ cp -r .zshrc $HOME
 
   </details>
 </details>
-  
+
 <div align="center">
   <h2>Screenshots</h2>
   <h3></h3>

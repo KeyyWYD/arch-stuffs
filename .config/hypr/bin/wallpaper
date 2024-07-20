@@ -1,42 +1,25 @@
 #!/bin/bash
 
-# Original Author: JaKooLit
-# Wallpaper Selection (SUPER SHIFT W)
-# - Generate a blurred wallpaper
-# - matugen
-
 # File and folder names
 wallDIR="$HOME/Pictures/Wallpapers"
 cache_dir="$HOME/.cache/swww/"
-wltmp="$cache_dir/.wltmp"
-blurred_wp="$cache_dir/.wp_blurred.png"
+wltmp="$cache_dir/wltmp"
+blurred_wp="$cache_dir/blurred.png"
 
-# Variables
-current_monitor=$(hyprctl monitors | awk '/^Monitor/{name=$2} /focused: yes/{print name}')
+# Vars
 blur="50x30"
-FPS=60
-TYPE="any"
-DURATION=2
-BEZIER=".43,1.19,1,.4"
-SWWW_PARAMS="--transition-fps $FPS --transition-type $TYPE --transition-duration $DURATION"
-monitor_outputs=($(ls "$cache_dir"))
-ln_success=false
-cache_file="$cache_dir$current_monitor"
-
-# Retrieve image files
-PICS=($(find "${wallDIR}" -type f \( -iname \*.jpg -o -iname \*.jpeg -o -iname \*.png -o -iname \*.gif \)))
-
-# Rofi command
-rofi_cmd="rofi -i -show -dmenu -config ~/.config/rofi/wallpaper.rasi -replace"
+current_monitor=$(hyprctl monitors | awk '/^Monitor/{name=$2} /focused: yes/{print name}')
+images=($(find "${wallDIR}" -type f \( -iname \*.jpg -o -iname \*.jpeg -o -iname \*.png -o -iname \*.gif \)))
+rofi_cmd="rofi -i -show -dmenu -config $HOME/.config/rofi/wallpaper.rasi"
 
 # Sorting Wallpapers
 menu() {
-  sorted_options=($(printf '%s\n' "${PICS[@]}" | sort))
+  sorted_options=($(printf '%s\n' "${images[@]}" | sort))
 
   for pic_path in "${sorted_options[@]}"; do
     pic_name=$(basename "$pic_path")
 
-    # Displaying .gif to indicate animated images
+    # Display .gif to indicate animated images
     if [[ -z $(echo "$pic_name" | grep -i "\.gif$") ]]; then
       printf "%s\x00icon\x1f%s\n" "$(echo "$pic_name" | cut -d. -f1)" "$pic_path"
     else
@@ -44,8 +27,6 @@ menu() {
     fi
   done
 }
-
-swww query || swww-daemon --format xrgb
 
 main() {
   choice=$(menu | ${rofi_cmd})
@@ -55,59 +36,30 @@ main() {
   fi
 
   pic_index=-1
-  for i in "${!PICS[@]}"; do
-    filename=$(basename "${PICS[$i]}")
+  for i in "${!images[@]}"; do
+    filename=$(basename "${images[$i]}")
     if [[ "$filename" == "$choice"* ]]; then
       pic_index=$i
       break
     fi
   done
 
-if [[ $pic_index -ne -1 ]]; then
+  if [[ $pic_index -ne -1 ]]; then
+    swww img -o $current_monitor "${images[$pic_index]}" \
+	--transition-fps 60 \
+	--transition-type "any" \
+	--transition-duration 2
 
-  swww img -o $current_monitor "${PICS[$pic_index]}" $SWWW_PARAMS
-
-  # copy and create blurred wallpaper
-  cp "${PICS[$pic_index]}" $wltmp
-  magick $wltmp -resize 75%\! $wltmp
-
-  if [ ! "$blur" == "0x0" ] ; then
-    magick $wltmp -blur $blur $blurred_wp
-    rm -rf $wltmp
+    # copy and create blurred wallpaper
+    cp "${images[$pic_index]}" $wltmp
+    magick $wltmp -resize 75%\! $wltmp
+    if [ ! "$blur" == "0x0" ] ; then
+      magick $wltmp -blur $blur $blurred_wp
+      rm -rf $wltmp
+    fi
   fi
-
-fi
 }
 
+swww query || swww-daemon --format xrgb
 main
-
-# Check if the cache file exists for the current monitor
-# if [ -f "$cache_file" ]; then
-#   # Get the wallpaper path from the cache file
-#   wallpaper_path=$(cat "$cache_file")
-
-#   # symlink the wallpaper to the location rofi can access
-#   if ln -sf "$wallpaper_path" "$HOME/.config/rofi/.current_wallpaper"; then
-#     ln_success=true  # Set the flag to true upon successful execution
-#   fi
-# fi
-
-if [ -r "$cache_file" ]; then
-  wallpaper_path=$(cat "$cache_file")
-
-  linkk=$(readlink "$HOME/.config/rofi/.current_wallpaper")
-  if [ "$linkk" != "$wallpaper_path" ]; then
-    ln -sf "$wallpaper_path" "$HOME/.config/rofi/.current_wallpaper" && ln_success=true
-  else
-    ln_success=true
-  fi
-fi
-
-# Check the flag before executing matugen
-if [ "$ln_success" = true ]; then
-  matugen image "$wallpaper_path"
-fi
-
-pkill dunst 2>/dev/null
-
-exit 0
+apply_theme

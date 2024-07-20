@@ -25,10 +25,6 @@ if command -v neofetch &> /dev/null; then
     FETCH="fastfetch"
 fi
 
-# if pidof rofi > /dev/null; then
-#   pkill rofi && sleep 0.3
-# fi
-
 function entry() {
   n_left=$(wc -c <<< "$1")
   if [[ -z $2 ]]; then
@@ -50,12 +46,12 @@ if [[ "$updates" == "0" ]]; then
 else
   numlen="$(wc -c <<< "$updates")"
   case "$numlen" in
-    2) width=42 ;;
+    2) width=43 ;;
     3) width=41 ;;
     4) width=41 ;;
-  esac 
- 
-  # hmm  
+  esac
+
+  # hmm
   if [[ "$updates" == "1" ]]; then
     grammer=update
   else
