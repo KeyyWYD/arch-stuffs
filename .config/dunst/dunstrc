@@ -50,28 +50,28 @@
     mouse_left_click = "do_action" 
     mouse_middle_click = "close_all" 
     mouse_right_click = "close_current"
-    highlight = "#fdb0d3"
-    separator_color= "#9d8d92"
+    highlight = "#c1c1ff"
+    separator_color= "#918f9a"
 
 [experimental]
     per_monitor_dpi = false
 
 [urgency_low]
     timeout = 5
-    background = "#191114F5"
-    foreground = "#eedfe3"
-    highlight = "#6d3351"
+    background = "#131318F5"
+    foreground = "#e4e1e9"
+    highlight = "#404178"
 
 [urgency_normal]
     timeout = 4
-    background = "#191114F5"
-    foreground = "#eedfe3"
-    highlight = "#6d3351"
+    background = "#131318F5"
+    foreground = "#e4e1e9"
+    highlight = "#404178"
 
 [urgency_critical]
     timeout = 0
-    background = "#191114F5"
-    foreground = "#eedfe3"
+    background = "#131318F5"
+    foreground = "#e4e1e9"
     highlight = "#ffb4ab"
 
 

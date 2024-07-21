@@ -20,21 +20,15 @@
 
 {
   "layer": "top",
-  "height": 20,
-  "exclusive": true,
-  "passthrough": false,
   "position": "top",
+  "margin": "5 5 0 5",
   "fixed-center": true,
-  "ipc": true,
-  "margin-top": 5,
-  "margin-left": 5,
-  "margin-right": 5,
   "reload_style_on_change": true,
 
   "modules-left": [
     "custom/arch",
-    "hyprland/workspaces"
-    //"hyprland/window"
+    "hyprland/workspaces",
+    "group/telementry"
   ],
 
   "modules-center":[
@@ -43,10 +37,9 @@
 
   "modules-right": [
     "custom/lizzy",
-    "group/telementry",
-    "group/hardware",
-    "group/wireless"
-    //"custom/power"
+    "hyprland/language",
+    "group/wireless",
+    "group/hardware"
   ],
 
   "group/telementry": {
@@ -54,12 +47,15 @@
     "drawer": {
       "transition-duration": 300,
       "children-class": "not-memory",
-      "transition-left-to-right": false
+      "transition-left-to-right": true
     },
     "modules": [
       "custom/system",
+      "custom/space",
       "cpu",
+      "custom/separator#dot",
       "memory",
+      "custom/separator#dot",
       "temperature"
     ]
   },
@@ -67,29 +63,16 @@
   "group/hardware": {
     "orientation": "horizontal",
     "modules": [
-      //"custom/space",
-      "battery",
-      "wireplumber"
-      //"custom/space"
+      "wireplumber",
+      "battery"
     ]
   },
 
   "group/wireless": {
     "orientation": "horizontal",
     "modules": [
-      //"custom/space",
       "network"
-      //"custom/space"
     ]
-  },
-
-  "group/links": {
-    "orientation": "horizontal",
-    "modules": [
-        "custom/sh",
-        "custom/fm",
-        "custom/browser"
-      ]
   },
 
   "hyprland/workspaces": {
@@ -129,19 +112,28 @@
     "tooltip": false
   },
 
+  "hyprland/language": {
+	  "format": "{}",
+	  "format-en": "en",
+    "format-ru": "ru",
+	  "format-tr": "tr",
+	  "keyboard-name": "at-translated-set-2-keyboard",
+	  "on-click": "hyprctl -r switchxkblayout $SET_KB next"
+  },
+
   "cpu": {
-    "format": "􀫥 {usage}% / ",
+    "format": "􀫥 {usage}%",
     "tooltip": false
   },
 
   "memory": {
-    "format": "   {}% / ",
+    "format": "   {}%",
     "tooltip": false
   },
 
   "temperature": {
     "critical-threshold": 50,
-    "format": " 􀇬 {temperatureC}°C ",
+    "format": "􀇬 {temperatureC}°C",
     "tooltip": false
   },
 
@@ -181,7 +173,7 @@
     "on-click": "pavucontrol -t 3",
     "format": "{icon}",
     "format-muted": "􀊣",
-    "format-icons": ["􀊡", "􀊥", "􀊧", "􀊩"],
+    "format-icons": ["􀊡 ", "􀊥 ", "􀊧 ", "􀊩 "],
     "tooltip": false
   },
 
@@ -190,32 +182,14 @@
     "states": {
       "good": 90,
       "warning": 30,
-      "critical": 20
+      "critical": 15
     },
-    "format": "{icon} ",
+    "format": "{icon}",
     "format-charging": "􀢋{capacity}% ",
-    "format-plugged": "󱘖  {capacity}%",
+    "format-plugged": "󱘖 {capacity}% ",
     "format-alt-click": "click",
     "format-icons": ["􀛪 ", "􀛩 ", "􀺶 ", "􀺸 ", "􀛨 "],
     "tooltip": false
-  },
-
-  "custom/browser": {
-    "format": "󰈹 ",
-    "on-click": "firefox",
-    "tooltip-format": "Browser"
-  },
-
-  "custom/fm": {
-    "format": " ",
-    "on-click": "dolphin || thunar ",
-    "tooltip-format": "Filemanager"
-  },
-
-  "custom/sh": {
-    "format": "  ",
-    "on-click": "alacritty || kitty",
-    "tooltip-format": "Terminal"
   },
 
   "custom/space": {
@@ -223,18 +197,23 @@
     "tooltip": false
   },
 
-  "custom/separatorA": {
+  "custom/separator#right": {
     "format": "",
     "tooltip": false
   },
 
-  "custom/separatorB": {
+  "custom/separator#line": {
     "format": "|",
     "tooltip": false
   },
 
+  "custom/separator#dot": {
+    "format": "  ",
+    "tooltip": false
+  },
+
   "custom/system": {
-    "format": "<span size='small'>􀐞</span>",
+    "format": "􀐞",
     "on-click": "alacritty -e btop || kitty btop",
     "tooltip": false
   },
@@ -275,7 +254,7 @@
 
   "custom/notification": {
     "format":"",
-    "on-click": "sleep 0.1 && swaync-client -rs && swaync-client -t",
+    //"on-click": "sleep 0.1 && swaync-client -rs && swaync-client -t",
     "max-length": 10,
     "escape": true,
     "tooltip": false

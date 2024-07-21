@@ -216,13 +216,11 @@ EOF
 
 # Check and install AUR helper if not installed
 if command -v yay &> /dev/null; then
-    AUR_HELPER="yay"
     echo "yay is already installed -- skipping"
 elif command -v paru &> /dev/null; then
-    AUR_HELPER="paru"
     echo "paru is already installed -- skipping"
 else
-    echo "No AUR helpers found."
+    echo "No AUR helper found."
     echo ":: There are 2 available AUR helpers:"
     echo "   1) yay  2) paru"
     echo
@@ -245,6 +243,13 @@ else
 
     # Call function to install AUR helper
     _aur "$user_choice"
+fi
+
+# AAAUUURRR
+if command -v yay &> /dev/null; then
+    AUR_HELPER="yay"
+elif command -v paru &> /dev/null; then
+    AUR_HELPER="paru"
 fi
 
 # Install packages
@@ -272,6 +277,8 @@ EOF
 
 systemctl --user --now enable pipewire pipewire-pulse pipewire-pulse.socket wireplumber
 systemctl enable thermald sddm
+
+xdg-user-dirs-update
 
 # Cleanup
 rm -rf "$HOME/tmp"

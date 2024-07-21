@@ -1,15 +1,12 @@
 #!/bin/sh
 
-# status="$(acpi -b | grep -ioh "\w*charging\w*")"
-# level="$(acpi -b | grep -o -P "[0-9]+(?=%)")"
-
 status="$(cat /sys/class/power_supply/BAT0/status)"
 level="$(cat /sys/class/power_supply/BAT0/capacity)"
 
 if [[ ("$status" == "Discharging") || ("$status" == "Full") ]]; then
-  if [[ "$level" -eq "0" ]]; then
+  if [[ "$level" -le "15" ]]; then
     printf "􀛪 "
-  elif [[ ("$level" -ge "0") && ("$level" -le "25") ]]; then
+  elif [[ ("$level" -ge "15") && ("$level" -le "25") ]]; then
     printf "􀛩 "
   elif [[ ("$level" -ge "25") && ("$level" -le "50") ]]; then
     printf "􀺶 "

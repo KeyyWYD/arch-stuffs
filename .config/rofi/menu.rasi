@@ -1,7 +1,7 @@
 // RAHHHHHHHHHH
 
 configuration {
-    modi:                       "window,run,drun";
+    modi:                       "drun";
     show-icons:                 false;
     drun-display-format:        "{name}";
     hover-select:               true;
@@ -30,7 +30,6 @@ window {
     y-offset:                    8px;
     border-radius:               8px;
     background-color:            @background;
-    cursor:                      "default";
 }
 
 mainbox {
@@ -46,11 +45,7 @@ listview {
     cycle:                       true;
     dynamic:                     true;
     scrollbar:                   false;
-    layout:                      vertical;
-    reverse:                     false;
     fixed-height:                true;
-    fixed-columns:               true;
-
     spacing:                     5px;
     background-color:            transparent;
     text-color:                  @foreground;
@@ -66,22 +61,12 @@ element {
     cursor:                      pointer;
 }
 
-element normal active,
-element alternate active,
-element selected urgent {
-    background-color:            @active;
-    text-color:                  @background;
+element normal.normal {
+    background-color:            transparent;
+    text-color:                  @foreground;
 }
 
-element normal active,
-element alternate active,
-element selected urgent {
-    background-color:            @active;
-    text-color:                  @background;
-}
-
-element selected normal,
-elemant selected active {
+element selected.normal {
     background-color:            white / 5%;
     text-color:                  @foreground;
 }
@@ -98,12 +83,4 @@ element-text {
     highlight:                   inherit;
     cursor:                      inherit;
     vertical-align:              0.5;
-}
-
-textbox {
-    background-color:            @background;
-    text-color:                  @foreground;
-    vertical-align:              0.5;
-    horizontal-align:            0.0;
-    highlight:                   none;
 }

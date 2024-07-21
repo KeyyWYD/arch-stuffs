@@ -8,7 +8,7 @@ blurred_wp="$cache_dir/blurred.png"
 
 # Vars
 blur="50x30"
-current_monitor=$(hyprctl monitors | awk '/^Monitor/{name=$2} /focused: yes/{print name}')
+monitor=$(hyprctl monitors | awk '/^Monitor/{name=$2} /focused: yes/{print name}')
 images=($(find "${wallDIR}" -type f \( -iname \*.jpg -o -iname \*.jpeg -o -iname \*.png -o -iname \*.gif \)))
 rofi_cmd="rofi -i -show -dmenu -config $HOME/.config/rofi/wallpaper.rasi"
 
@@ -16,14 +16,14 @@ rofi_cmd="rofi -i -show -dmenu -config $HOME/.config/rofi/wallpaper.rasi"
 menu() {
   sorted_options=($(printf '%s\n' "${images[@]}" | sort))
 
-  for pic_path in "${sorted_options[@]}"; do
-    pic_name=$(basename "$pic_path")
+  for img in "${sorted_options[@]}"; do
+    img_name=$(basename "$img")
 
     # Display .gif to indicate animated images
-    if [[ -z $(echo "$pic_name" | grep -i "\.gif$") ]]; then
-      printf "%s\x00icon\x1f%s\n" "$(echo "$pic_name" | cut -d. -f1)" "$pic_path"
+    if [[ -z $(echo "$img_name" | grep -i "\.gif$") ]]; then
+      printf "%s\x00icon\x1f%s\n" "$(echo "$img_name" | cut -d. -f1)" "$img"
     else
-      printf "%s\n" "$pic_name"
+      printf "%s\n" "$img_name"
     fi
   done
 }
@@ -45,9 +45,9 @@ main() {
   done
 
   if [[ $pic_index -ne -1 ]]; then
-    swww img -o $current_monitor "${images[$pic_index]}" \
+    swww img -o $monitor "${images[$pic_index]}" \
 	--transition-fps 60 \
-	--transition-type "any" \
+	--transition-type "grow" \
 	--transition-duration 2
 
     # copy and create blurred wallpaper
