@@ -1,9 +1,12 @@
-# .zshrc
+
+# ░░░▀▀█░█▀▀░█░█░█▀▄░█▀▀
+# ░░░▄▀░░▀▀█░█▀█░█▀▄░█░░
+# ░▀░▀▀▀░▀▀▀░▀░▀░▀░▀░▀▀▀
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 ZSH=$HOME/.zsh
-EDITOR=zeditor
+EDITOR=nano
 
 if command -v yay &> /dev/null; then
     AUR_HELPER="yay"
