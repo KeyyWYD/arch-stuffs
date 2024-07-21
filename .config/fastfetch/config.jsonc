@@ -11,11 +11,11 @@
       "separator": "  "
   },
   "modules": [
-    {
+    /*{
         "type": "title",
         "key": "\u001b[1;93m",
         "format": "{1}@{2}"
-    },
+    },*/
     {
         "type": "custom",
         "format": "\u001b[1;93mEat  , Sleep  , Arch btw  ."
