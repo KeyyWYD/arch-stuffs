@@ -6,8 +6,6 @@ level="$(cat /sys/class/power_supply/BAT*/capacity)"
 if [[ ("$status" == "Discharging") || ("$status" == "Full") ]]; then
   if [[ "$level" -le "15" ]]; then
     printf "􀛪 "
-    brightnessctl -s set 30% 
-    powerprofilesctl set power-saver
   elif [[ ("$level" -ge "15") && ("$level" -le "25") ]]; then
     printf "􀛩 "
   elif [[ ("$level" -ge "25") && ("$level" -le "50") ]]; then
