@@ -1,5 +1,6 @@
 <div align="center">
   <h1>.dotfiles</h1>
+![Last Commit](https://img.shields.io/github/last-commit/keyywyd/arch-stuffs)
 </div>
 
 <details>
