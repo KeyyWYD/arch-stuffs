@@ -46,11 +46,11 @@ cp -r .zshrc $HOME
 | <kbd>Super</kbd> + <kbd>Q</kbd> | Kill Process |
 | <kbd>Super</kbd> + <kbd>Ctrl</kbd>+ <kbd>Q</kbd> | Lock Screen |
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>Q</kbd> | Log Out |
-| <kbd>Super</kbd> + <kbd>D</kbd> | Open File Manager |
+| <kbd>Super</kbd> + <kbd>F</kbd> | Open File Manager |
 | <kbd>Super</kbd> + <kbd>Tab</kbd> | Toggle Floating Mode for Windows |
 | <kbd>Super</kbd> + <kbd>Space</kbd> | Open App Menu |
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>W</kbd> | Update Wallpaper |
-| <kbd>Super</kbd> + <kbd>F</kbd> | Toggle Fullscreen Mode for Windows |
+| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>F</kbd> | Toggle Fullscreen mode for Windows |
 | <kbd>Super</kbd> + <kbd>←</kbd><kbd>→</kbd><kbd>↑</kbd><kbd>↓</kbd> | Move Window Focus |
 | <kbd>Super</kbd> + <kbd>Ctrl</kbd> + <kbd>←</kbd><kbd>→</kbd><kbd>↑</kbd><kbd>↓</kbd> | Move Window |
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>←</kbd><kbd>→</kbd><kbd>↑</kbd><kbd>↓</kbd> | Resize Window |
