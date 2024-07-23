@@ -2,17 +2,17 @@
 @import "colors.css";
 
 * {
-    font-family: SF Pro Display;
-    font-weight: bold;
-    font-size: 14px;
-    color: @foreground;
-    border: none;
-    box-shadow: none;
-    text-shadow: none;
+  font-family: SF Pro Display;
+  font-weight: bold;
+  font-size: 14px;
+  color: @foreground;
+  border: none;
+  box-shadow: none;
+  text-shadow: none;
 }
 
 window#waybar {
-    background: transparent;
+  background: transparent;
 }
 
 #custom-menu,
@@ -29,63 +29,68 @@ window#waybar {
 }
 
 #workspaces button:hover {
-    border-radius: 8px;
-    background: inherit;
+  border-radius: 8px;
+  background: inherit;
 }
 
 #workspaces {
-    border-radius: 8px;
+  border-radius: 8px;
 }
 
 #window {
-    border-radius: 8px;
-    padding-left: 0.5em;
-    padding-right: 0.5em;
-    margin-right: 3px;
+  border-radius: 8px;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  margin-right: 3px;
 }
 
 #language {
-    border-radius: 8px 0px 0px 8px;
-    padding-left: 0.5em;
-    padding-right: 0.5em;
-    margin-left: 3px;
+  border-radius: 8px 0px 0px 8px;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  margin-left: 3px;
+}
+
+#hardware {
+  border-radius: 0px 8px 8px 0px;
+  padding-right: 0.2em;
+}
+
+#telementry {
+  border-radius: 8px;
+  padding: 0px 5px;
+  margin-left: 3px;
 }
 
 #clock,
 #custom-player {
-    border-radius: 8px;
-    padding: 0px 10px;
+  border-radius: 8px;
+  padding: 0px 10px;
 }
 
 #custom-menu {
-    font-size: 18px;
-    border-radius: 8px;
-    padding-right: 0.8em;
-    padding-left: 0.4em;
-    margin-right: 3px;
+  font-size: 18px;
+  border-radius: 8px;
+  padding-right: 0.8em;
+  padding-left: 0.4em;
+  margin-right: 3px;
+}
+
+#custom-battery {
+  font-weight: normal;
+  font-size: 16px;
 }
 
 #custom-player {
-    margin-left: 3px;
-}
-
-#hardware {
-    border-radius: 0px 8px 8px 0px;
-    padding-right: 0.2em;
-}
-
-#telementry {
-    border-radius: 8px;
-    padding: 0px 5px;
-    margin-left: 3px;
+  margin-left: 3px;
 }
 
 #custom-cava {
-    border-radius: 8px;
-    padding: 0px 5px;
-    margin-left: 3px;
+  border-radius: 8px;
+  padding: 0px 5px;
+  margin-left: 3px;
 }
 
 #custom-separator#space {
-    color: @background;
+  color: @background;
 }

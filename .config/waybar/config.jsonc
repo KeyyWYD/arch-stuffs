@@ -1,3 +1,4 @@
+
 {
   "layer": "top",
   "position": "top",
@@ -151,7 +152,7 @@
   "wireplumber": {
     "on-click": "pavucontrol -t 3",
     "format": "{icon}",
-    "format-muted": "􀊣",
+    "format-muted": "􀊣 ",
     "format-icons": ["􀊡 ", "􀊥 ", "􀊧 ", "􀊩 "],
     "tooltip": false
   },
@@ -185,7 +186,7 @@
   "custom/battery": {
     "format": "{}",
     "interval": 1,
-    "exec": "battery --bar",
+    "exec": "battery",
     "tooltip": false
   },
 

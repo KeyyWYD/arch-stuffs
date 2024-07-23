@@ -11,6 +11,7 @@
     padding = 15
     horizontal_padding = 15
     text_icon_padding = 15
+    font = SF Pro Text
     icon_position = "left"
     min_icon_size = 48
     max_icon_size = 64
@@ -25,14 +26,14 @@
     separator_color = "frame" 
     corner_radius = 8 
     transparency = 10 
-    gap_size = 8 
-    line_height = 0 
+    gap_size = 5 
+    line_height = 3
     notification_limit = 0 
     # idle_threshold = 120 
     history_length = 20 
     show_age_threshold = 60 
     markup = "full" 
-    font = "SF Display" 
+    font = "SF Pro Display 12" 
     format = "<b>%s</b>\n%b: 
     word_wrap = "yes" 
     sort = "yes" 
@@ -50,28 +51,28 @@
     mouse_left_click = "do_action" 
     mouse_middle_click = "close_all" 
     mouse_right_click = "close_current"
-    highlight = "#ffb59d"
-    separator_color= "#a08d87"
+    highlight = "#fdb876"
+    separator_color= "#9e8e81"
 
 [experimental]
     per_monitor_dpi = false
 
 [urgency_low]
     timeout = 5
-    background = "#1a110fF5"
-    foreground = "#f1dfda"
-    highlight = "#723521"
+    background = "#19120cB3"
+    foreground = "#efe0d5"
+    highlight = "#6a3c01"
 
 [urgency_normal]
     timeout = 4
-    background = "#1a110fF5"
-    foreground = "#f1dfda"
-    highlight = "#723521"
+    background = "#19120cB3"
+    foreground = "#efe0d5"
+    highlight = "#6a3c01"
 
 [urgency_critical]
     timeout = 0
-    background = "#1a110fF5"
-    foreground = "#f1dfda"
+    background = "#19120cB3"
+    foreground = "#efe0d5"
     highlight = "#ffb4ab"
 
 

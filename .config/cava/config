@@ -118,6 +118,11 @@ source = auto
 ; sdl_x = -1
 ; sdl_y= -1
 
+# enable alacritty synchronized updates. 1 = on, 0 = off
+# removes flickering in alacritty terminal emulator.
+# defaults to off since the behaviour in other terminal emulators is unknown
+; alacritty_sync = 0
+
 [color]
 
 # Colors can be one of seven predefined: black, blue, cyan, green, magenta, red, white, yellow.
@@ -143,9 +148,9 @@ source = auto
 gradient = 1
 
 gradient_count = 3
-gradient_color_1 = '#ffb59d'
-gradient_color_2 = '#e7bdb1'
-gradient_color_3 = '#f1dfda'
+gradient_color_1 = '#fdb876'
+gradient_color_2 = '#e2c0a4'
+gradient_color_3 = '#efe0d5'
 
 [color]
 
