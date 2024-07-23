@@ -1,0 +1,39 @@
+#!/bin/bash
+
+if command -v yay &> /dev/null; then
+  AUR="yay"
+elif command -v paru &> /dev/null; then
+  AUR="paru"
+fi
+
+echo "=== SYSTEM UPDATE UTILITY ==="
+echo "Do you wish to install updates now?"
+echo
+
+while true; do
+  read -rp "Choice [Y/n]: " user_choice
+
+  if [ -z "$user_choice" ]; then
+    user_choice="y"
+  fi
+
+  case "$user_choice" in
+    y|Y)
+      echo ":: Starting updates..."
+      echo
+
+      $AUR -Syu --noconfirm
+      echo ":: Update(s) completed successfully."
+      echo 0 > "$HOME/.cache/updcount"
+      notify-send "System Update" "Update(s) completed successfully."
+      exit 1
+    ;;
+    n|N)
+      echo ":: Update(s) cancelled. Exiting."
+      exit 0
+    ;;
+    *)
+       echo "Invalid choice. Please enter 'y' or 'n'."
+    ;;
+  esac
+done

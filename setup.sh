@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 
-#
-# Arch Linux Post Install Script (Clean Install)
-# 
-
 cat << "EOF"
                                                  ,
                 .         ,-.       _,---._ __  / \
@@ -101,7 +97,8 @@ _packages() {
         'polkit-kde-agent'          
         'xdg-desktop-portal-hyprland'   
         'qt5-imageformats'          
-        'ffmpegthumbs'                              
+        'ffmpegthumbs'
+        'jq'                              
         'xdg-user-dirs'             
         'stow'
         'python-dbus'                      
@@ -200,20 +197,6 @@ upd_mirrors
 # Check for system updates
 sudo pacman -Syu
 
-cat << "EOF"
-
-
-██╗███╗   ██╗███████╗████████╗ █████╗ ██╗     ██╗     ██╗███╗   ██╗ ██████╗ 
-██║████╗  ██║██╔════╝╚══██╔══╝██╔══██╗██║     ██║     ██║████╗  ██║██╔════╝ 
-██║██╔██╗ ██║███████╗   ██║   ███████║██║     ██║     ██║██╔██╗ ██║██║  ███╗
-██║██║╚██╗██║╚════██║   ██║   ██╔══██║██║     ██║     ██║██║╚██╗██║██║   ██║
-██║██║ ╚████║███████║   ██║   ██║  ██║███████╗███████╗██║██║ ╚████║╚██████╔╝
-╚═╝╚═╝  ╚═══╝╚══════╝   ╚═╝   ╚═╝  ╚═╝╚══════╝╚══════╝╚═╝╚═╝  ╚═══╝ ╚═════╝ 
-                                             NECESSARY COMPONENTS
-
-
-EOF
-
 # Check and install AUR helper if not installed
 if command -v yay &> /dev/null; then
     echo "yay is already installed -- skipping"
@@ -261,20 +244,6 @@ _apple_fonts
 # Copy wallpaper
 cp -r "$HOME"/.dotfiles/Pictures "$HOME"
 
-cat << "EOF"
-
-
- ██████╗ ██████╗ ███╗   ██╗███████╗██╗ ██████╗ ██╗   ██╗██████╗ ██╗███╗   ██╗ ██████╗ 
-██╔════╝██╔═══██╗████╗  ██║██╔════╝██║██╔════╝ ██║   ██║██╔══██╗██║████╗  ██║██╔════╝ 
-██║     ██║   ██║██╔██╗ ██║█████╗  ██║██║  ███╗██║   ██║██████╔╝██║██╔██╗ ██║██║  ███╗
-██║     ██║   ██║██║╚██╗██║██╔══╝  ██║██║   ██║██║   ██║██╔══██╗██║██║╚██╗██║██║   ██║
-╚██████╗╚██████╔╝██║ ╚████║██║     ██║╚██████╔╝╚██████╔╝██║  ██║██║██║ ╚████║╚██████╔╝
- ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝     ╚═╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝ ╚═════╝ 
-                                                      SERVICES
-                                                                                                                                                      
-
-EOF
-
 systemctl --user --now enable pipewire pipewire-pulse pipewire-pulse.socket wireplumber
 systemctl enable thermald sddm
 
@@ -284,17 +253,3 @@ xdg-user-dirs-update
 rm -rf "$HOME/tmp"
 
 cd "$HOME/.dotfiles" && stow .
-
-cat << "EOF"
-
-
-██████╗  ██████╗ ███╗   ██╗███████╗
-██╔══██╗██╔═══██╗████╗  ██║██╔════╝
-██║  ██║██║   ██║██╔██╗ ██║█████╗  
-██║  ██║██║   ██║██║╚██╗██║██╔══╝  
-██████╔╝╚██████╔╝██║ ╚████║███████╗
-╚═════╝  ╚═════╝ ╚═╝  ╚═══╝╚══════╝
------ Reboot to apply changes -----
-
-
-EOF

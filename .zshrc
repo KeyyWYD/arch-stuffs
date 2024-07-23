@@ -9,9 +9,9 @@ ZSH=$HOME/.zsh
 EDITOR=nano
 
 if command -v yay &> /dev/null; then
-    AUR_HELPER="yay"
+  AUR_HELPER="yay"
 elif command -v paru &> /dev/null; then
-    AUR_HELPER="paru"
+  AUR_HELPER="paru"
 fi
 
 # User configuration
@@ -24,16 +24,18 @@ SAVEHIST=10000
 HISTFILE=$HOME/.zsh_history
 HISTDUPE=erase
 HISTCONTROL=ignoreboth
-HISTIGNORE="&:[bf]g:clear:cls:history:exit:q:pwd:* --help:* -h"
+HISTIGNORE="&:[bf]g:clear:cls:history:exit:q:pwd:ll:* --help:* -h"
 
 # zsh options
 setopt appendhistory
 setopt share_history
 setopt hist_expire_dups_first
-setopt hist_ignore_space
-setopt hist_ignore_all_dups
-setopt hist_save_no_dups
-setopt hist_find_no_dups
+setopt hist_ignore_dups
+setopt hist_verify
+
+# Binds
+bindkey '^[[A' history-search-backward
+bindkey '^[[B' history-search-forward
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -56,11 +58,11 @@ eval "$(starship init zsh)"
 alias e='$EDITOR'
 alias fm='dolphin'
 
-alias rlp=". $HOME/.zshrc"
-alias ezp="$EDITOR $HOME/.zshrc"
-alias ebp="$EDITOR $HOME/.bashrc"
-alias ezh="$EDITOR $HOME/.zsh_history"
-alias ebh="$EDITOR $HOME/.bash_history"
+alias reload='source $HOME/.zshrc'
+alias ezp='$EDITOR $HOME/.zshrc'
+alias ebp='$EDITOR $HOME/.bashrc'
+alias ezh='$EDITOR $HOME/.zsh_history'
+alias ebh='$EDITOR $HOME/.bash_history'
 
 # User dirs
 alias dot='cd $HOME/.dotfiles'
@@ -68,6 +70,11 @@ alias cfg='cd $HOME/.config'
 alias dx='cd $HOME/Desktop'
 alias docs='cd $HOME/Documents'
 alias dl='cd $HOME/Downloads'
+alias dev='cd $HOME/Projects'
+
+alias find='fd'
+alias cls='clear'
+alias open='xdg-open'
 
 alias cd='z'
 alias ..='cd ..'
@@ -76,13 +83,9 @@ alias .3='cd ../../..'
 alias .4='cd ../../../..'
 alias .5='cd ../../../../..'
 
-alias find='fd'
-
 alias ls='eza -1 --icons=auto'
 alias ll='eza -lha --sort=name --git --git-repos --icons=auto'
 alias mkdir='mkdir -p'
-
-alias cls='clear'
 
 # Pacman
 alias i='$AUR_HELPER -S'
@@ -93,31 +96,50 @@ alias s='$AUR_HELPER -Ss'
 alias q='$AUR_HELPER -Qs'
 
 # Get the error messages from journalctl
-alias jctl="journalctl -p 3 -xb"
+alias jctl='journalctl -p 3 -xb'
+
+# Show disk usage of current directory
+alias duh='du -sh * | sort -rh'
+
+# Monitor disk space usage in real-time
+alias qdisk='watch -n 1 df -h'
+
+# Generate a random password
+alias genpasswd='openssl rand -base64 12'
+
+# List all environment variables
+alias envlist='printenv | sort'
+
+# Edit hosts file
+alias hosts='sudo $EDITOR /etc/hosts'
+
+# Get ip
+alias myip='curl ipinfo.io/ip'
+
+# Check network connectivity
+alias qnet='ping -c 4 google.com'
 
 # Git
-alias gcl='git clone'
+alias g='git'
+alias gc='git clone'
 alias gs='git status'
-alias gpl='git pull'
-alias gp='git push'
-alias gpo='git push origin'
 alias ga='git add'
-alias gd='git diff'
 alias gcm='git commit'
-alias gb='git branch'
 alias gco='git checkout'
+alias gb='git branch'
+alias gd='git diff'
 alias gl='git log'
-alias glo='git log --pretty="oneline"'
-alias glol='git log --graph --oneline --decorate'
-alias gr='git remote'
-alias grs='git remote show'
+alias gp='git pull'
+alias gps='git push'
+alias gpo='git push origin'
 
 lazyg() {
   ga .
   gcm -m "$1"
-  gp
+  gps
 }
 
+# Initialize plugins 
 
 # Staged zsh startup
 source $ZSH/zsh-defer/zsh-defer.plugin.zsh
@@ -133,7 +155,7 @@ source $ZSH/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $ZSH/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Enhances the terminal environment with 256 colors
-source $ZSH/zsh-256color/zsh-256color.plugin.zsh
+# source $ZSH/zsh-256color/zsh-256color.plugin.zsh
 
 # fzf
 source /usr/share/fzf/completion.zsh

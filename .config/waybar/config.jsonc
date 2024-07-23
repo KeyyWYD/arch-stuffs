@@ -1,23 +1,3 @@
-/*-- big mac glyphs --*
-// misc
-􀜊  ⌘  􀉉  􀐫 
-
-// audio
-􀊠 􀊡 􀊢 􀊣 􀊤 􀊥 􀊦  􀊧  􀊨  􀊩
-
-// battery
-􀢋  􀛪  􀛩  􀺶  􀺸  􀛨
-
-// network
-􀙇  􀙈  􀙥  􀑓
-
-// temperature
-􀇬 􀇫
-
-// input
-􀇳
--------------------*/
-
 {
   "layer": "top",
   "position": "top",
@@ -26,7 +6,7 @@
   "reload_style_on_change": true,
 
   "modules-left": [
-    "custom/arch",
+    "custom/menu",
     "hyprland/workspaces",
     "group/telementry"
   ],
@@ -36,7 +16,7 @@
   ],
 
   "modules-right": [
-    "custom/lizzy",
+    "custom/player",
     "hyprland/language",
     "group/wireless",
     "group/hardware"
@@ -51,7 +31,7 @@
     },
     "modules": [
       "custom/system",
-      "custom/space",
+      "custom/separator#space",
       "cpu",
       "custom/separator#dot",
       "memory",
@@ -64,7 +44,7 @@
     "orientation": "horizontal",
     "modules": [
       "wireplumber",
-      "battery"
+      "custom/battery"
     ]
   },
 
@@ -113,16 +93,15 @@
   },
 
   "hyprland/language": {
-	  "format": "{}",
-	  "format-en": "en",
+    "format": "{}",
+    "format-en": "en",
+    "format-es": "es",
     "format-ru": "ru",
-	  "format-tr": "tr",
-	  "keyboard-name": "at-translated-set-2-keyboard",
-	  "on-click": "hyprctl -r switchxkblayout $SET_KB next"
+    "on-click": "keyboard"
   },
 
   "cpu": {
-    "format": "􀫥 {usage}%",
+    "format": "􀧓 {usage}%",
     "tooltip": false
   },
 
@@ -155,7 +134,7 @@
     "format-linked": "{ifname} (No IP) 􀙇",
     "format-disconnected": "􀙈 ",
     "format-icons": ["󰤯 ", "󰤟 ", "󰤢 ", "󰤥 ", "󰤨 "],
-    "interval": 2,
+    "interval": 1,
     "nospacing": 1,
     "max-length": 8,
     "on-click": "nmcli dev wifi rescan; hyprctl notify 5 1500 'rgb(d3c6aa)' 'Wifi rescan!'",
@@ -177,22 +156,7 @@
     "tooltip": false
   },
 
-  "battery": {
-    "full-at": 100,
-    "states": {
-      "good": 90,
-      "warning": 30,
-      "critical": 15
-    },
-    "format": "{icon}",
-    "format-charging": "􀢋{capacity}% ",
-    "format-plugged": "󱘖 {capacity}% ",
-    "format-alt-click": "click",
-    "format-icons": ["􀛪 ", "􀛩 ", "􀺶 ", "􀺸 ", "􀛨 "],
-    "tooltip": false
-  },
-
-  "custom/space": {
+  "custom/separator#space": {
     "format": " ",
     "tooltip": false
   },
@@ -212,58 +176,36 @@
     "tooltip": false
   },
 
+  "custom/menu": {
+    "format": "<span size='large'></span>",
+    "on-click": "pkill rofi || $HOME/.config/rofi/scripts/menu",
+    "tooltip": false
+  },
+
+  "custom/battery": {
+    "format": "{}",
+    "interval": 1,
+    "exec": "battery",
+    "tooltip": false
+  },
+
   "custom/system": {
     "format": "􀐞",
     "on-click": "alacritty -e btop || kitty btop",
     "tooltip": false
   },
 
-  "custom/arch": {
-    "format": "<span size='large'></span>",
-    "on-click": "pkill rofi || ~/.config/rofi/scripts/menu",
-    "tooltip": false
-  },
-
   "custom/cava": {
-    //"exec-if": "pgrep -x spotify >/dev/null",
-    "exec": "$HOME/.config/waybar/scripts/cava.sh 2>/dev/null",
-    "esacpe": true,
-    "format": "{}"
-  },
-
-  "custom/lizzy": {
-    "format": "<span color='#25be6a'>{icon}</span>  {}",
-    "format-icons": {
-      "Playing": "",
-      "Paused": ""
-    },
-    "on-click":"playerctl --player=spotify play-pause",
-    "exec": "lizzy --format '{{title}}' --autotoggle --mediaplayer spotify",
-    "max-length": 20,
-    "return-type": "json"
-  },
-
-  "custom/weather": {
     "format": "{}",
-    "tooltip": true,
-    "interval": 2,
-    "exec": "python $HOME/.config/waybar/scripts/weather.py",
-    "exec-if": "ping wttr.in -c1",
-    "return-type": "json"
+    "exec": "$HOME/.config/waybar/plugins/cava"
   },
 
-  "custom/notification": {
-    "format":"",
-    //"on-click": "sleep 0.1 && swaync-client -rs && swaync-client -t",
-    "max-length": 10,
-    "escape": true,
-    "tooltip": false
-  },
-
-  "custom/power": {
-    "format": "",
-    "escape": true,
-    "on-click": "wlogout -b 2",
+  "custom/player": {
+    "format": "{}",
+    "interval": 1,
+    "on-click":"playerctl play-pause",
+    "exec": "player --bar",
+    "max-length": 19,
     "tooltip": false
   }
 }

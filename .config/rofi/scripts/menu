@@ -4,13 +4,6 @@
 # Get current user
 USER=$(whoami)
 
-# AUR HELPER
-if command -v yay &> /dev/null; then
-    AUR="yay"
-elif command -v paru &> /dev/null; then
-    AUR="paru"
-fi
-
 # TERMINAL
 if command -v kitty &> /dev/null; then
     TERMINAL="kitty"
@@ -71,7 +64,7 @@ menu=$(printf "$choice1\n$choice2\n$choice3\n$choice4\n$choice5\n$choice6\n$choi
 
 case "$menu" in
   "$choice1") $TERMINAL --title $FETCH -e bash -i -c "$FETCH && sleep infinity" ;;
-  "$choice2") $TERMINAL -e bash -i -c "$AUR -Syu && echo 0 > $HOME/.cache/updcount" ;;
+  "$choice2") $TERMINAL -e bash -i -c "updater" ;;
   "$choice3") brightnessctl -s set 2% &&
               sleep 0.1 &&
               hyprctl dispatch dpms off &&

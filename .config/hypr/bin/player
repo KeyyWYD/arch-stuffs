@@ -5,14 +5,24 @@ player_status=$(playerctl status)
 
 if [[ "$player_status" == "Playing" ]]; then
   if [[ "$player_name" == "spotify" ]]; then
-    song_info=$(playerctl metadata --format ' 󰓇  {{title}} - {{artist}}')
+    preset_0=$(playerctl metadata --format ' 󰓇  {{title}} - {{artist}}')
+    preset_1=$(playerctl metadata --format '󰓇  {{title}}')
   elif [[ "$player_name" == "firefox" ]]; then
-    song_info=$(playerctl metadata --format ' 󰈹  {{title}} - {{artist}}')
+    preset_0=$(playerctl metadata --format ' 󰈹  {{title}} - {{artist}}')
   elif [[ "$player_name" == "mpd" ]]; then
-    song_info=$(playerctl metadata --format ' 󰎆  {{title}} - {{artist}}')
+    preset_0=$(playerctl metadata --format ' 󰎆  {{title}} - {{artist}}')
   elif [[ "$player_name" == "chromium" ]]; then
-    song_info=$(playerctl metadata --format ' 󰊯  {{title}} - {{artist}}')
+    preset_0=$(playerctl metadata --format ' 󰊯  {{title}} - {{artist}}')
+  fi
+
+elif [[ "$player_status" == "Paused" ]]; then
+  if [[ "$player_name" == "spotify" ]]; then
+    preset_1=$(playerctl metadata --format '  {{title}}')
   fi
 fi
 
-echo "$song_info" 
+if [[ "$1" == "--lockscreen" ]]; then
+  echo "$preset_0" 
+elif [[ "$1" == "--bar" ]]; then
+  echo "$preset_1"
+fi

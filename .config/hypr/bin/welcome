@@ -1,0 +1,14 @@
+#!/bin/bash
+
+welcome_notification() {
+    local user=$(whoami)
+    local date=$(date '+%a %b %d %r')
+    local host=$(cat /etc/hostname)
+    
+    notify-send "Welcome, $user!" \
+                "Today is $date\nHostname: $host\n\t  Enjoy your session! "
+}
+
+welcome_notification
+
+exit 0

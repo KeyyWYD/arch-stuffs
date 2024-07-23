@@ -15,6 +15,19 @@ window#waybar {
     background: transparent;
 }
 
+#custom-menu,
+#custom-player,
+#custom-cava,
+#workspaces,
+#window,
+#language,
+#clock,
+#wireless,
+#hardware,
+#telementry {
+  background: @background;
+}
+
 #workspaces button:hover {
     border-radius: 8px;
     background: inherit;
@@ -22,11 +35,9 @@ window#waybar {
 
 #workspaces {
     border-radius: 8px;
-    background: @background;
 }
 
 #window {
-    background: @background;
     border-radius: 8px;
     padding-left: 0.5em;
     padding-right: 0.5em;
@@ -34,7 +45,6 @@ window#waybar {
 }
 
 #language {
-    background: @background;
     border-radius: 8px 0px 0px 8px;
     padding-left: 0.5em;
     padding-right: 0.5em;
@@ -42,50 +52,40 @@ window#waybar {
 }
 
 #clock,
-#custom-lizzy {
-    background: @background;
+#custom-player {
     border-radius: 8px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 0px 10px;
 }
 
-#custom-arch {
+#custom-menu {
     font-size: 18px;
-    background: @background;
     border-radius: 8px;
     padding-right: 0.8em;
     padding-left: 0.4em;
     margin-right: 3px;
 }
 
-#custom-lizzy {
+#custom-player {
     margin-left: 3px;
 }
 
-#wireless {
-    background: @background;
-}
-
 #hardware {
-    background: @background;
     border-radius: 0px 8px 8px 0px;
     padding-right: 0.2em;
 }
 
 #telementry {
-    background: @background;
     border-radius: 8px;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding: 0px 5px;
     margin-left: 3px;
 }
 
 #custom-cava {
-    background: @background;
-    border-radius: 8px 0px 0px 8px;
+    border-radius: 8px;
     padding: 0px 5px;
+    margin-left: 3px;
 }
 
-#custom-space {
+#custom-separator#space {
     color: @background;
 }
