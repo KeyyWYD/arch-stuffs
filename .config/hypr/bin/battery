@@ -18,5 +18,9 @@ if [[ ("$status" == "Discharging") || ("$status" == "Full") ]]; then
   fi
 # elif [[ "$status" == "Charging" ]]; then
 else
-  printf "􀢋$level%% "
+  if [[ "$1" == "--lockscreen" ]]; then
+    printf "􀢋 "
+  elif [[ "$1" == "--bar" ]]; then
+    printf "􀢋$level%% "
+  fi
 fi

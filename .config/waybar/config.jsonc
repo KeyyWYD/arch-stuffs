@@ -185,7 +185,7 @@
   "custom/battery": {
     "format": "{}",
     "interval": 1,
-    "exec": "battery",
+    "exec": "battery --bar",
     "tooltip": false
   },
 
