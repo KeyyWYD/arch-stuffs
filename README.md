@@ -9,7 +9,7 @@
 
  - **Display Manager:** [ly](https://github.com/fairyglade/ly)
  - **WM:** Hyprland
- - **Fonts:** San Francisco Fonts
+ - **Fonts:** [San Francisco](https://github.com/thelioncape/San-Francisco-family) (Pro, Mono)
  - **Cursor:** [McMojave](https://github.com/OtaK/McMojave-hyprcursor/)
  - **Launcher:** Rofi
  - **Bar:** Waybar
@@ -27,20 +27,47 @@
 <details>
   <summary>Instructions</summary>
 
+  <div align="left">
+    <h3>Install Steps</h3>
+  </div>
+  
+- Using [`Stow`](https://archlinux.org/packages/extra/any/stow/) (Recommended)
+<blockquote>
+  <b>Note:</b> Backup or remove all existing configs, otherwise stow will fail to create symlinks.
+</blockquote>
+
 ```sh
-# Dotfiles
-git clone https://github.com/KeyyWYD/arch-stuffs $HOME/dotfiles
-cd $HOME/dotfiles
+git clone https://github.com/KeyyWYD/arch-stuffs $HOME/.dotfiles
+cd $HOME/.dotfiles
+git submodule init && git submodule update --recursive
+stow .
+```
+
+- Manually
+```sh
+git clone https://github.com/KeyyWYD/arch-stuffs .dotfiles
+cd .dotfiles
 git submodule init && git submodule update --recursive
 cp -r .config/* $HOME/.config
+cp -r .local/* $HOME/.local
 cp -r .zsh $HOME
 cp -r .zshrc $HOME
 ```
 
-  <details>
-    <summary>Keybinds</summary>
-    <div align="center">
-      <h2>Keybinds</h2>
+<div align="left">
+  <h3>Updating</h3>
+</div>
+
+```sh
+cd $HOME/.dotfiles
+git pull
+stow --adopt .
+```
+
+<details>
+  <summary>Keybinds</summary>
+  <div align="center">
+    <h2>Keybinds</h2>
  
 | Keys | Action |
 | :--- | :--- |
