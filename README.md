@@ -52,6 +52,7 @@ cp -r .config/* $HOME/.config
 cp -r .local/* $HOME/.local
 cp -r .zsh $HOME
 cp -r .zshrc $HOME
+cp -r Pictures/* $HOME/Pictures
 ```
 
 <div align="left">
