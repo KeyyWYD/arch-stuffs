@@ -1,5 +1,5 @@
 * {
-    background: rgba(18, 19, 24, 0.7);
-    background-alt: #c2c5dd;
-    foreground: #e3e1e9;
+    background: rgba(25, 18, 12, 0.7);
+    background-alt: #e2c0a4;
+    foreground: #efe0d5;
 }
