@@ -77,7 +77,7 @@ cp -r .zshrc $HOME
 
 <div align="center">
   <table>
-    <tr><a href="https://wiki.hyprland.org">Hyprland</a></tr><tr><td>
+    <tr><a href="https://hyprland.org">Hyprland</a></tr><tr><td>
     <img src="https://raw.githubusercontent.com/KeyyWYD/arch-stuffs/main/assets/img/home.png"/></td></tr>
   </table>
 </div>
