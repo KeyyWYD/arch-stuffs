@@ -18,7 +18,6 @@
  - **Idle Daemon:** Hypridle
  - **Terminal:** Alacritty
  - **Wallpaper Daemon:** Swww
- - **Wallpapers:** [Discord](https://discord.gg/TnJ4h5K), [Repo](https://github.com/vernette/wallpapers)
 
 <blockquote>
   <b>Note:</b> For a list of dependencies, see <a href="https://github.com/KeyyWYD/arch-stuffs/blob/main/setup.sh"><code>setup.sh</code></a>
@@ -95,7 +94,7 @@ cp -r .zshrc $HOME
   <h2>Credits</h2>
 </div>
 
-_UnixPorn: [r/unixporn](https://www.reddit.com/r/unixporn/)_
+_UnixPorn: [r/unixporn](https://www.reddit.com/r/unixporn/), [Discord](https://discord.gg/TnJ4h5K)_
 
 _JaKooLit dots: [JaKooLit](https://github.com/JaKooLit/Hyprland-Dots)_
 
