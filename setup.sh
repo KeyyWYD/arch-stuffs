@@ -77,9 +77,11 @@ _packages() {
         'nftables'
 
         # DISPLAY MANAGER -----------------------------------------------------
-        'qt5-quickcontrols'         
-        'qt5-quickcontrols2'        
-        'qt5-graphicaleffects'      
+        'ly'
+        # 'sddm'
+        # 'qt5-quickcontrols'         
+        # 'qt5-quickcontrols2'        
+        # 'qt5-graphicaleffects'      
 
         # WINDOW MANAGER ------------------------------------------------------
         'hyprland'                  
@@ -108,7 +110,8 @@ _packages() {
         'qt6-wayland'               
 
         # SHELL ---------------------------------------------------------------
-        'zsh'                       
+        'zsh'
+        'bat'
         'fd'                        
         'fzf'                       
         'thefuck'                   
@@ -132,7 +135,6 @@ _packages() {
         # --------------------------------------------------------------------
         'power-profiles-daemon'
         'cava'
-        'sddm-git'
         'slurp'
         'matugen'
         'wayshot'
