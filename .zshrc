@@ -24,7 +24,7 @@ SAVEHIST=10000
 HISTFILE=$HOME/.zsh_history
 HISTDUPE=erase
 HISTCONTROL=ignoreboth
-HISTIGNORE="&:[bf]g:clear:cls:history:exit:q:pwd:ll:* --help:* -h"
+HISTIGNORE="&:[bf]g:echo:clear:cls:history:exit:q:pwd:ll:* --help:* -h"
 
 # zsh options
 setopt appendhistory
@@ -46,6 +46,7 @@ bindkey '^[[B' history-search-forward
 # fastfetch
 # catnap
 
+source <(fzf --zsh)
 eval $(thefuck --alias)
 eval $(thefuck --alias tf)
 eval "$(zoxide init zsh)"
@@ -59,7 +60,7 @@ alias e='$EDITOR'
 alias fm='dolphin'
 
 alias reload='source $HOME/.zshrc'
-alias ezp='$EDITOR $HOME/.zshrc'
+alias ezp='$EDITOR $HOME/.zshrc && source $HOME/.zshrc'
 alias ebp='$EDITOR $HOME/.bashrc'
 alias ezh='$EDITOR $HOME/.zsh_history'
 alias ebh='$EDITOR $HOME/.bash_history'
@@ -73,8 +74,11 @@ alias dl='cd $HOME/Downloads'
 alias dev='cd $HOME/Projects'
 
 alias find='fd'
+alias findr='$EDITOR $(fzf -m --preview="bat --color=always {}")'
 alias cls='clear'
 alias open='xdg-open'
+
+alias cat='bat --color=always'
 
 alias cd='z'
 alias ..='cd ..'
@@ -85,13 +89,14 @@ alias .5='cd ../../../../..'
 
 alias ls='eza -1 --icons=auto'
 alias ll='eza -lha --sort=name --git --git-repos --icons=auto'
+
 alias mkdir='mkdir -p'
 
 # Pacman
 alias i='$AUR_HELPER -S'
 alias r='$AUR_HELPER -Rns'
 alias c='$AUR_HELPER -Scc'
-alias u='$AUR_HELPER -Syu'
+alias u='$AUR_HELPER -Syyu'
 alias s='$AUR_HELPER -Ss'
 alias q='$AUR_HELPER -Qs'
 
@@ -139,13 +144,14 @@ lazyg() {
   gps
 }
 
+
 # Initialize plugins 
 
 # Staged zsh startup
 source $ZSH/zsh-defer/zsh-defer.plugin.zsh
 
 # Automatically lists completions as you type
-# source $ZSH/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+source $ZSH/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
 # Use history substring search
 source $ZSH/zsh-history-substring-search/zsh-history-substring-search.zsh
@@ -156,7 +162,3 @@ source $ZSH/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Enhances the terminal environment with 256 colors
 # source $ZSH/zsh-256color/zsh-256color.plugin.zsh
-
-# fzf
-source /usr/share/fzf/completion.zsh
-source /usr/share/fzf/key-bindings.zsh

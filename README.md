@@ -10,6 +10,7 @@
  - **Display Manager:** [ly](https://github.com/fairyglade/ly)
  - **WM:** Hyprland
  - **Fonts:** San Francisco Fonts
+ - **Cursor:** [McMojave](https://github.com/OtaK/McMojave-hyprcursor/)
  - **Launcher:** Rofi
  - **Bar:** Waybar
  - **Notifications:** Dunst

@@ -24,9 +24,9 @@ _updates() {
     sleep 2
     exit 0
   else
-    echo -e "${CYAN}╭─ Available Updates 󰮯 ────────────────────────────────────────${NC}"
+    echo -e "${CYAN}╭─ Available Updates 󰮯 ────────────────────────────────╮"
     checkupdates | sed 's/^/│  /'    
-    echo -e "${CYAN}╰─────────────────────────────────────────────────────────────${NC}"    
+    echo -e "${CYAN}╰──────────────────────────────────────────────────────╯${NC}"    
     echo
   fi
 }

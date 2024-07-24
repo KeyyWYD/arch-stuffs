@@ -148,9 +148,9 @@ source = auto
 gradient = 1
 
 gradient_count = 3
-gradient_color_1 = '#fdb0d3'
-gradient_color_2 = '#e0bdcb'
-gradient_color_3 = '#eedfe3'
+gradient_color_1 = '#b7c4ff'
+gradient_color_2 = '#c2c5dd'
+gradient_color_3 = '#e3e1e9'
 
 [color]
 
