@@ -1,39 +1,65 @@
 #!/bin/bash
 
+GREEN='\033[0;32m'
+CYAN='\033[0;36m'
+YELLOW='\033[1;33m'
+RED='\033[0;31m'
+NC='\033[0m'
+
 if command -v yay &> /dev/null; then
   AUR="yay"
 elif command -v paru &> /dev/null; then
   AUR="paru"
 fi
 
-echo "=== SYSTEM UPDATE UTILITY ==="
-echo "Do you wish to install updates now?"
-echo
+_header() {
+  echo -e "${CYAN}╭──────────────────────────────────────────────────────╮"
+  echo "│               󰣇 SYSTEM UPDATE UTILITY                │"
+  echo -e "╰──────────────────────────────────────────────────────╯${NC}"
+}
+
+_updates() {
+  if [ -f "$HOME/.cache/updcount" ] && [ "$(cat "$HOME/.cache/updcount")" -eq 0 ]; then
+    echo  -e "${YELLOW} :: No updates available.${NC}"
+    sleep 2
+    exit 0
+  else
+    echo -e "${CYAN}╭─ Available Updates 󰮯 ────────────────────────────────────────${NC}"
+    checkupdates | sed 's/^/│  /'    
+    echo -e "${CYAN}╰─────────────────────────────────────────────────────────────${NC}"    
+    echo
+  fi
+}
+
+clear
+_header
+_updates
 
 while true; do
-  read -rp "Choice [Y/n]: " user_choice
-
-  if [ -z "$user_choice" ]; then
-    user_choice="y"
-  fi
+  echo -en "${CYAN}Do you wish to install updates now? [Y/n]: "
+  read -r user_choice
 
   case "$user_choice" in
     y|Y)
-      echo ":: Starting updates..."
+      echo
+      echo -e "${YELLOW}:: Starting updates...${NC}"
       echo
 
       $AUR -Syu --noconfirm
-      echo ":: Update(s) completed successfully."
+
+      echo -e "${GREEN}:: Update(s) completed successfully.${NC}"
       echo 0 > "$HOME/.cache/updcount"
       notify-send "System Update" "Update(s) completed successfully."
-      exit 1
-    ;;
-    n|N)
-      echo ":: Update(s) cancelled. Exiting."
       exit 0
-    ;;
+      ;;
+    n|N)
+      echo
+      echo -e "${YELLOW}:: Update(s) cancelled. Exiting.${NC}"
+      sleep 0.4
+      exit 0
+      ;;
     *)
-       echo "Invalid choice. Please enter 'y' or 'n'."
-    ;;
+      echo -e "${RED}Invalid choice. Please enter 'y' or 'n'.${NC}"
+      ;;
   esac
 done

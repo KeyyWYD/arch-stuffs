@@ -1,3 +1,6 @@
+[Colors:View]
+BackgroundNormal=#000000B3
+
 [General]
 TerminalApplication=alacritty
 
