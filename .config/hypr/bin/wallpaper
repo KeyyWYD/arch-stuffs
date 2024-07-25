@@ -7,7 +7,7 @@ wltmp="$cache_dir/wltmp"
 blurred_wp="$cache_dir/blurred.png"
 
 # Vars
-blur="50x30"
+blur="30x15"
 monitor=$(hyprctl monitors | awk '/^Monitor/{name=$2} /focused: yes/{print name}')
 images=($(find "${wallDIR}" -type f \( -iname \*.jpg -o -iname \*.jpeg -o -iname \*.png -o -iname \*.gif \)))
 rofi_cmd="rofi -i -show -dmenu -config $HOME/.config/rofi/wallpaper.rasi"

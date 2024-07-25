@@ -5,21 +5,23 @@
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-ZSH=$HOME/.zsh
-EDITOR=nano
+limit coredumpsize 0
 
-if command -v yay &> /dev/null; then
-  AUR_HELPER="yay"
-elif command -v paru &> /dev/null; then
-  AUR_HELPER="paru"
-fi
-
-# Smol starship fix
 precmd() {
   precmd() {
     echo
   }
 }
+
+ZSH=$HOME/.zsh
+
+EDITOR=nano
+
+if command -v yay &> /dev/null; then
+  AUR=yay
+elif command -v paru &> /dev/null; then
+  AUR=paru
+fi
 
 # User configuration
 
@@ -41,6 +43,7 @@ setopt hist_ignore_dups
 setopt hist_verify
 
 # Binds
+bindkey -e
 bindkey '^[[A' history-search-backward
 bindkey '^[[B' history-search-forward
 
@@ -64,7 +67,7 @@ eval "$(starship init zsh)"
 # Personal aliases and plugins here.
 
 alias e='$EDITOR'
-alias fm='dolphin'
+alias fm='yazi'
 
 alias reload='source $HOME/.zshrc'
 alias ezp='$EDITOR $HOME/.zshrc && source $HOME/.zshrc'
@@ -85,7 +88,11 @@ alias findr='$EDITOR $(fzf -m --preview="bat --color=always {}")'
 alias cls='clear'
 alias open='xdg-open'
 
-alias cat='bat --color=always'
+alias cat='bat --color=always --paging=never --wrap=never'
+
+alias cp='cp -iv'
+alias mv='mv -iv'
+alias rm='rm -iv'
 
 alias cd='z'
 alias ..='cd ..'
@@ -100,12 +107,14 @@ alias ll='eza -lha --sort=name --git --git-repos --icons=auto'
 alias mkdir='mkdir -p'
 
 # Pacman
-alias i='$AUR_HELPER -S'
-alias r='$AUR_HELPER -Rns'
-alias c='$AUR_HELPER -Scc'
-alias u='$AUR_HELPER -Syyu'
-alias s='$AUR_HELPER -Ss'
-alias q='$AUR_HELPER -Qs'
+alias i='$AUR -S'
+alias r='$AUR -Rns'
+alias c='$AUR -Scc'
+alias u='$AUR -Syyu'
+alias s='$AUR -Ss'
+alias q='$AUR -Qs'
+
+alias free='free -h'
 
 # Get the error messages from journalctl
 alias jctl='journalctl -p 3 -xb'

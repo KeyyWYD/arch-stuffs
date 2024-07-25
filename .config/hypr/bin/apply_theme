@@ -4,7 +4,7 @@ monitor=$(hyprctl monitors | awk '/^Monitor/{name=$2} /focused: yes/{print name}
 cache_file="$HOME/.cache/swww/$monitor"
 
 # TODO:
-# Light Mode
+# Dark/Light Mode Toggle
 
 matugen image "$(cat "$cache_file")"
 

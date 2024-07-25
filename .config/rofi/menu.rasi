@@ -49,7 +49,7 @@ listview {
     spacing:                     5px;
     background-color:            transparent;
     text-color:                  @foreground;
-    cursor:                      "default";
+    cursor:                      pointer;
 }
 
 element {

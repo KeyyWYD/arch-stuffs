@@ -50,6 +50,7 @@ while true; do
       echo -e "${GREEN}:: Update(s) completed successfully.${NC}"
       echo 0 > "$HOME/.cache/updcount"
       notify-send "System Update" "Update(s) completed successfully."
+      sleep 1
       exit 0
       ;;
     n|N)

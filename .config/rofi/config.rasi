@@ -64,6 +64,7 @@ entry {
     placeholder:                 "Search";
     placeholder-color:           inherit;
     blink:                       true;
+    cursor:                      text;
 }
 
 listview {
@@ -77,7 +78,7 @@ listview {
     spacing:                     0px;
     background-color:            transparent;
     text-color:                  @foreground;
-    cursor:                      "default";
+    cursor:                      pointer;
 }
 
 element {
@@ -88,6 +89,7 @@ element {
     border-radius:               8px;
     background-color:            transparent;
     text-color:                  @foreground;
+    cursor:                      pointer;
 }
 
 

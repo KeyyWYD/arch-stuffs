@@ -2,7 +2,8 @@
 BackgroundNormal=#000000B3
 
 [General]
-TerminalApplication=alacritty
+BrowserApplication[$e]=firefox
+TerminalApplication=kitty
 
 [KDE]
 ShowDeleteCommand=true

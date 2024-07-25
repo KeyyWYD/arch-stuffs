@@ -11,6 +11,7 @@
  - **WM:** Hyprland
  - **Fonts:** [San Francisco](https://github.com/thelioncape/San-Francisco-family) (Pro, Mono)
  - **Cursor:** [McMojave](https://github.com/OtaK/McMojave-hyprcursor/)
+ - **Icons:** [Reversal](https://www.gnome-look.org/p/1340791)
  - **Launcher:** Rofi
  - **Bar:** Waybar
  - **Notifications:** Dunst
