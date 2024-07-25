@@ -13,9 +13,9 @@ elif command -v paru &> /dev/null; then
 fi
 
 _header() {
-  echo -e "${CYAN}╭──────────────────────────────────────────────────────╮"
-  echo "│               󰣇 SYSTEM UPDATE UTILITY                │"
-  echo -e "╰──────────────────────────────────────────────────────╯${NC}"
+  echo -e "${CYAN}╭─────────────────────────────────────────────────────╮"
+  echo "│               󰣇 SYSTEM UPDATE UTILITY               │"
+  echo -e "╰─────────────────────────────────────────────────────╯${NC}"
 }
 
 _updates() {
@@ -24,9 +24,9 @@ _updates() {
     sleep 2
     exit 0
   else
-    echo -e "${CYAN}╭─ Available Updates 󰮯 ────────────────────────────────╮"
+    echo -e "${CYAN}╭─ Available Updates 󰮯 ───────────────────────────────╮"
     checkupdates | sed 's/^/│  /'    
-    echo -e "${CYAN}╰──────────────────────────────────────────────────────╯${NC}"    
+    echo -e "${CYAN}╰─────────────────────────────────────────────────────╯${NC}"    
     echo
   fi
 }

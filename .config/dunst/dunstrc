@@ -11,7 +11,7 @@
     padding = 15
     horizontal_padding = 15
     text_icon_padding = 15
-    font = SF Pro Text
+    font = SF Pro Display
     icon_position = "left"
     min_icon_size = 48
     max_icon_size = 64
@@ -59,19 +59,19 @@
 
 [urgency_low]
     timeout = 5
-    background = "#191114B3"
+    background = "#191114D9"
     foreground = "#eedfe3"
     highlight = "#6d3351"
 
 [urgency_normal]
     timeout = 4
-    background = "#191114B3"
+    background = "#191114D9"
     foreground = "#eedfe3"
     highlight = "#6d3351"
 
 [urgency_critical]
     timeout = 0
-    background = "#191114B3"
+    background = "#191114D9"
     foreground = "#eedfe3"
     highlight = "#ffb4ab"
 

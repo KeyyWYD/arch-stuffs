@@ -2,7 +2,7 @@
 
 # File and folder names
 ssDIR="$HOME/Pictures/Screenshots"
-file="$ssDIR/$(date +'%Y-%m-%d_%H-%M-%S_screenshot.png')"
+file="$ssDIR/$(date +'screenshot_%Y-%m-%d_%H-%M-%S.png')"
 exfile="${file/#\~/$HOME}"
 sDIR="$HOME/.config/hypr/scripts"
 

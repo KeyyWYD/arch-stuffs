@@ -1,55 +1,55 @@
 #!/bin/bash
 
-# Volume controls for audio and mic
+# Volume controls
 
 iDIR="$HOME/.config/dunst/assets/"
 sDIR="$HOME/.config/hypr/bin"
 
 get_volume() {
-    volume=$(pamixer --get-volume)
-    #if [[ "$volume" -eq "0" ]]; then
-    #   echo "Muted"
-    #else
-        echo "$volume%"
-    #fi
+  volume=$(pamixer --get-volume)
+  # if [[ "$volume" -eq "0" ]]; then
+  #   echo "Muted"
+  # else
+      echo "$volume%"
+  # fi
 }
 
 get_icon() {
-    current=$(get_volume)
-    if [[ "${current%\%}" -le 10 ]]; then
-        echo "$iDIR/volume-off.svg"
-    elif [[ "${current%\%}" -le 35 ]]; then
-        echo "$iDIR/volume-low.svg"
-    elif [[ "${current%\%}" -le 65 ]]; then
-        echo "$iDIR/volume-medium.svg"
-    else
-        echo "$iDIR/volume-high.svg"
-    fi
+  current=$(get_volume)
+  if [[ "${current%\%}" -le 10 ]]; then
+    echo "$iDIR/volume-off.svg"
+  elif [[ "${current%\%}" -le 35 ]]; then
+    echo "$iDIR/volume-low.svg"
+  elif [[ "${current%\%}" -le 65 ]]; then
+    echo "$iDIR/volume-medium.svg"
+  else
+    echo "$iDIR/volume-high.svg"
+  fi
 }
 
 notify_user() {
-    if [[ "$(get_volume)" == "Muted" ]]; then
-        notify-send -e -r 91190 -t 800 -h int:value:"$(get_volume | sed 's/%//')" -h string:x-canonical-private-synchronous:volume_notif -u low -i "$(get_icon)" "Volume: $(get_volume)"
-    else
-        notify-send -e -r 91190 -t 800 -h int:value:"$(get_volume | sed 's/%//')" -h string:x-canonical-private-synchronous:volume_notif -u low -i "$(get_icon)" "Volume: $(get_volume)"
-    fi
+  if [[ "$(get_volume)" == "Muted" ]]; then
+    notify-send -e -r 91190 -t 800 -h int:value:"$(get_volume | sed 's/%//')" -h string:x-canonical-private-synchronous:volume_notif -u low -i "$(get_icon)" "Volume: $(get_volume)"
+  else
+    notify-send -e -r 91190 -t 800 -h int:value:"$(get_volume | sed 's/%//')" -h string:x-canonical-private-synchronous:volume_notif -u low -i "$(get_icon)" "Volume: $(get_volume)"
+  fi
 }
 
 inc_volume() {
-    if [ "$(pamixer --get-mute)" == "true" ]; then
-        toggle_mute
-    else
-        pamixer -i 2 --allow-boost --set-limit 100 && notify_user
-    fi
+  if [ "$(pamixer --get-mute)" == "true" ]; then
+    toggle_mute
+  else
+    pamixer -i 2 --allow-boost --set-limit 100 && notify_user
+  fi
 }
 
 # Decrease Volume
 dec_volume() {
-    if [ "$(pamixer --get-mute)" == "true" ]; then
-        toggle_mute
-    else
-        pamixer -d 2 && notify_user
-    fi
+  if [ "$(pamixer --get-mute)" == "true" ]; then
+    toggle_mute
+  else
+    pamixer -d 2 && notify_user
+  fi
 }
 
 toggle_mute() {

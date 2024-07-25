@@ -16,7 +16,7 @@
  - **Notifications:** Dunst
  - **LockScreen:** Hyprlock
  - **Idle Daemon:** Hypridle
- - **Terminal:** Alacritty
+ - **Terminal:** Kitty
  - **Wallpaper Daemon:** Swww
 
 <blockquote>
@@ -52,7 +52,6 @@ cp -r .config/* $HOME/.config
 cp -r .local/* $HOME/.local
 cp -r .zsh $HOME
 cp -r .zshrc $HOME
-cp -r Pictures/* $HOME/Pictures
 ```
 
 <div align="left">

@@ -2,7 +2,6 @@
 
 "$schema" = 'https://starship.rs/config-schema.json'
 
-# Custom format
 format = """
 $os\
 $username\
@@ -14,6 +13,8 @@ $git_status\
 $cmd_duration\
 $character
 """
+
+add_newline = false
 
 [line_break]
 disabled = true
@@ -27,8 +28,7 @@ success_symbol = "[→](bold green)"
 error_symbol   = "[→](bold red)"
 
 [os]
-format = '[$symbol ]($style)'
-style = "blue"
+format = '[$symbol ](blue)'
 disabled = false
 
 [os.symbols]
@@ -79,8 +79,7 @@ show_always = true
 disabled = false
 
 [directory]
-style = 'cyan'
-format = '[$path ]($style)'
+format = '[$path ](cyan)'
 truncation_length = 4
 
 [directory.substitutions]

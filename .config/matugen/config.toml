@@ -17,4 +17,5 @@ dunst = { input_path = '~/.config/matugen/templates/dunstrc-colors', output_path
 waybar = { input_path = '~/.config/matugen/templates/waybar-colors.css', output_path = '~/.config/waybar/colors.css' }
 rofi = { input_path = '~/.config/matugen/templates/rofi-colors.rasi' , output_path = '~/.config/rofi/colors.rasi' }
 alacritty = { input_path = '~/.config/matugen/templates/alacritty-colors.toml', output_path = '~/.config/alacritty/themes/colors.toml' }
+kitty = { input_path = '~/.config/matugen/templates/kitty-colors.conf', output_path = '~/.config/kitty/themes/colors.conf' }
 cava = { input_path = '~/.config/matugen/templates/cava-colors', output_path = '~/.config/cava/config' }
