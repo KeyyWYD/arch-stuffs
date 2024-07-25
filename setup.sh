@@ -126,7 +126,7 @@ _packages() {
         'ttf-cascadia-code-nerd'           
 
         # APPLICATIONS --------------------------------------------------------
-        'alacritty'                 
+        'kitty'                 
         'dolphin'
         'ark'
         'firefox'                   
