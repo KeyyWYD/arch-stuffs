@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# TODO: fix script
+
 cat << "EOF"
                                                  ,
                 .         ,-.       _,---._ __  / \
@@ -92,18 +94,18 @@ _packages() {
         'swww'                      
         'waybar'                    
         'wl-clipboard'              
-        'wf-recorder'               
+        # 'wf-recorder'               
 
         # DEPENDENCIES --------------------------------------------------------
         'imagemagick'
         'polkit-kde-agent'          
-        'xdg-desktop-portal-hyprland'   
+        'xdg-desktop-portal-hyprland'
+        'xdg-desktop-portal-gtk'
+        'xdg-user-dirs' 
         'qt5-imageformats'          
         'ffmpegthumbs'
-        'jq'                              
-        'xdg-user-dirs'             
-        'stow'
-        'python-dbus'                      
+        'jq'                                       
+        'stow'                      
 
         # THEMING -------------------------------------------------------------
         'qt5-wayland'               
@@ -138,7 +140,7 @@ _packages() {
         'slurp'
         'matugen'
         'wayshot'
-        'wlogout'
+        # 'wlogout'
     )
 
     for package in "${packages[@]}"; do
