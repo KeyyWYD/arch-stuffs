@@ -7,12 +7,6 @@
 
 limit coredumpsize 0
 
-precmd() {
-  precmd() {
-    echo
-  }
-}
-
 ZSH=$HOME/.zsh
 
 EDITOR=nano
@@ -167,7 +161,7 @@ lazyg() {
 source $ZSH/zsh-defer/zsh-defer.plugin.zsh
 
 # Automatically lists completions as you type
-#source $ZSH/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+# source $ZSH/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
 # Use history substring search
 source $ZSH/zsh-history-substring-search/zsh-history-substring-search.zsh

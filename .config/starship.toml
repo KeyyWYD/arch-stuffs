@@ -14,8 +14,6 @@ $cmd_duration\
 $character
 """
 
-add_newline = false
-
 [line_break]
 disabled = true
 

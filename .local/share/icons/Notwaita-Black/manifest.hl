@@ -1,0 +1,4 @@
+name = Notwaita-Black
+description = Notwaita-Black hyprcursor port
+version = 0.1
+cursors_directory = hyprcursors

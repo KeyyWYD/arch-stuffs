@@ -25,7 +25,7 @@
     </tr>
     <tr>
       <td><b>Cursor</b></td>
-      <td><a href="https://github.com/OtaK/McMojave-hyprcursor/">McMojave</a></td>
+      <td><a href="https://github.com/ful1e5/notwaita-cursor">Notwaita</a></td>
     </tr>
     <tr>
       <td><b>Icons</b></td>
