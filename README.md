@@ -63,7 +63,7 @@
 </div>
 
 > [!Note]
-> For a list of dependencies, see [`setup.sh`](https://github.com/KeyyWYD/arch-stuffs/blob/main/setup.sh).
+> For a list of dependencies, see [`package list`](https://github.com/KeyyWYD/arch-stuffs/blob/main/scripts/packages.lst).
 
 <details>
   <summary>Instructions</summary>
