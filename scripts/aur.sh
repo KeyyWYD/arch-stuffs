@@ -7,7 +7,7 @@ selected_helper=()
 
 _aur() {
   choice=$1
-  
+
   if command -v yay &> /dev/null; then
       echo "yay is already installed -- skipping"
   elif command -v paru &> /dev/null; then
@@ -37,6 +37,7 @@ _aurselect() {
   echo -e "│ ${WHITE}${BOLD}          Select AUR Helper           ${CYAN}${BOLD}│"
   echo -e "├───────────────────────────────────────┤${NC}"
 
+  local highlight=0
   local i
   for i in "${!helpers[@]}"; do
     local checkbox
@@ -46,15 +47,15 @@ _aurselect() {
       checkbox="${RED}[ ]${NC}"
     fi
     if [[ $i -eq $highlight ]]; then
-      echo -e "${CYAN}${BOLD}│ ${BOLD}${checkbox} ${YELLOW}${helpers[$i]}${NC}"
+      echo -e "${CYAN}${BOLD}│ ${BOLD}${checkbox} ${YELLOW}${helpers[$i]}${CYAN}${BOLD}                              │${NC}"
     else
-      echo -e "${CYAN}│ ${checkbox} ${helpers[$i]}${NC}"
+      echo -e "${CYAN}│ ${checkbox} ${helpers[$i]}${CYAN}${BOLD}                               │${NC}"
     fi
   done
 
   echo -e "${CYAN}${BOLD}├───────────────────────────────────────┤"
-  echo -e "│ ${WHITE}${BOLD}Press [Enter] Select/Deselect${CYAN}${BOLD}         │"
-  echo -e "│ ${WHITE}${BOLD}Press [q] Main Menu${CYAN}${BOLD}                   │"
+  echo -e "│ ${WHITE}${BOLD}[Enter] Select/Deselect${CYAN}${BOLD}               │"
+  echo -e "│ ${WHITE}${BOLD}[q] Main Menu${CYAN}${BOLD}                         │"
   echo -e "╰───────────────────────────────────────╯${NC}"
 }
 

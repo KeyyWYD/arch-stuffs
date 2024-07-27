@@ -36,16 +36,27 @@ _pkg() {
     fi
   done < "$pkg_file"
 
-  # Ensure there are packages to install
-if [ ${#packages[@]} -eq 0 ]; then
-  echo "No packages listed in '$pkg_file'."
-fi
+  if [ ${#packages[@]} -eq 0 ]; then
+    echo "No packages listed in '$pkg_file'."
+  else
+    # Base Packages
+    for pkg in "${packages[@]}"; do
+      echo
+      echo "INSTALLING ${pkg}..."
+      $aurhelper -S --needed --noconfirm "$pkg"
+    done
+  fi
 
-for pkg in "${packages[@]}"; do
-  echo
-  echo "INSTALLING ${pkg}..."
-  $aurhelper -S --needed --noconfirm "$pkg" ${additional[@]}
-done
+  if [ ${#additional[@]} -eq 0 ]; then
+    return
+  else
+    # Additional Packages
+    for apkg in "${additional[@]}"; do
+      echo
+      echo "INSTALLING ${apkg}..."
+      $aurhelper -S --needed --noconfirm "$apkg"
+    done
+  fi
 }
 
 _apple_fonts() {

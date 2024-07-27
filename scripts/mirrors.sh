@@ -17,10 +17,15 @@ is_installed() {
 
 _mirrorselect() {
   clear
-  echo -e "${BOLD}${WHITE}Select region(s) to install packages from${NC}"
   echo -e "${CYAN}${BOLD}╭───────────────────────────────────────╮"
   echo -e "│ ${WHITE}${BOLD}          Select Region(s)            ${CYAN}${BOLD}│"
-  echo -e "├───────────────────────────────────────┤${NC}"
+  echo -e "├───────────────────────────────────────┤"
+  echo -e "│ ${BOLD}${WHITE}Select region(s) to install packages${CYAN}${BOLD}  │"
+  echo -e "│ ${BOLD}${WHITE}from.${CYAN}${BOLD}                                 │"
+  echo -e "├───────────────────────────────────────┤"
+  echo -e "│ ${WHITE}${BOLD}[Enter] Select/Deselect${CYAN}${BOLD}               │"
+  echo -e "│ ${WHITE}${BOLD}[q] Main Menu${CYAN}${BOLD}                         │"
+  echo -e "╰───────────────────────────────────────╯${NC}"
 
   local i
   for i in "${!regions[@]}"; do
@@ -31,16 +36,11 @@ _mirrorselect() {
       checkbox="${RED}[ ]${NC}"
     fi
     if [[ $i -eq $highlight ]]; then
-      echo -e "${CYAN}${BOLD}│ ${BOLD}${checkbox} ${YELLOW}${regions[$i]}${NC}"
+      echo -e " ${BOLD}${checkbox} ${YELLOW}${regions[$i]}${NC}"
     else
-      echo -e "${CYAN}│ ${checkbox} ${regions[$i]}${NC}"
+      echo -e " ${checkbox} ${regions[$i]}${NC}"
     fi
   done
-
-  echo -e "${CYAN}${BOLD}├───────────────────────────────────────┤"
-  echo -e "│ ${WHITE}${BOLD}Press [Enter] Select/Deselect${CYAN}${BOLD}      │"
-  echo -e "│ ${WHITE}${BOLD}Press [q] Main Menu${CYAN}${BOLD}                     │"
-  echo -e "╰───────────────────────────────────────╯${NC}"
 }
 
 
