@@ -1,0 +1,75 @@
+# System packages
+pipewire
+pipewire-alsa
+pipewire-audio
+pipewire-pulse
+wireplumber
+pavucontrol
+brightnessctl
+udiskie
+thermald
+nftables
+
+# Display Manager
+ly
+# sddm
+# qt5-quickcontrols         
+# qt5-quickcontrols2        
+# qt5-graphicaleffects
+ 
+# Window Manager
+hyprland
+hyprlock
+hypridle
+rofi-wayland
+dunst
+swww
+waybar
+wl-clipboard
+# wf-recorder
+
+# Dependencies
+imagemagick
+polkit-kde-agent
+xdg-desktop-portal-hyprland
+xdg-desktop-portal-gtk
+xdg-user-dirs
+qt5-imageformats
+ffmpegthumbs
+jq
+stow
+
+# Theming
+qt5-wayland
+qt6-wayland
+
+# Shell
+zsh
+bat
+fd
+fzf
+thefuck
+zoxide
+eza
+btop
+
+# Fonts
+noto-fonts
+ttf-nerd-fonts-symbols
+ttf-nerd-fonts-symbols-common
+ttf-cascadia-code-nerd
+
+# Applications
+kitty
+dolphin
+ark
+firefox
+github-cli
+
+# Other
+power-profiles-daemon
+cava
+slurp
+matugen
+wayshot
+# wlogout

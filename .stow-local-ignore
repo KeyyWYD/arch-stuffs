@@ -9,6 +9,7 @@
 assets
 extra
 Pictures
+scripts
 setup.sh
 ^/README.*
 ^/scrot.*
