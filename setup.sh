@@ -21,12 +21,12 @@ while true; do
       ((highlight++))
       [[ $highlight -ge ${#_opts[@]} ]] && highlight=0 ;;
     "ENTER")
-  case "${_opts[$highlight]}" in
-    "Mirror Region") _opt1 ;;
-    "Aur Helper") _opt2 ;;
-    "Additional Packages") _opt3 ;;
-    "Install") _opt4 ;;
-    "Abort") echo -e "${RED}Exiting...${NC}";sleep 0.5;clear; exit 0 ;;
-  esac ;;
-esac
+    case "${_opts[$highlight]}" in
+      "Mirror Region") _opt1 ;;
+      "Aur Helper") _opt2 ;;
+      "Additional Packages") _opt3 ;;
+      "Install") _opt4 ;;
+      "Abort") echo -e "${RED}Exiting...${NC}";sleep 0.5;clear; exit 0 ;;
+    esac ;;
+  esac
 done

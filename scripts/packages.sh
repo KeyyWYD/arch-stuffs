@@ -13,10 +13,10 @@ _optpackages() {
   echo -e "│ ${WHITE}packages to install (space separated,${CYAN}│"
   echo -e "│ ${WHITE}leave blank to skip)${CYAN}                 │"
   echo -e "${BOLD}├──────────────────────────────────────┤"
-  echo -e "│ ${WHITE}Press [Enter] Finish${CYAN}                 │"
+  echo -e "│ ${WHITE}[Enter] Finish${CYAN}                 │"
   echo -e "╰──────────────────────────────────────╯${NC}"
 
-  read -p "Enter packages: " -r input
+  read -p "Packages: " -r input
   additional=($input)
 }
 

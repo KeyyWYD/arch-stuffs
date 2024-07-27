@@ -17,7 +17,7 @@ _highlight() {
   done
 }
 
-# Menu 
+# Menu
 _opts=("Mirror Region" "Aur Helper" "Additional Packages" "Install" "Abort")
 
 _header() {
@@ -47,12 +47,13 @@ _menu() {
   fi
 }
 
+# Options
 _opt1() {
   clear
   _selectmirrors
 
   if [ ${#selected_regions[@]} -eq 0 ]; then
-    echo -e "${RED}No region(s) selected. The mirror list will not be updated.${NC}"
+    echo -e "${RED}No region(s) selected. The mirrorlist will not be updated.${NC}"
   else
     _createurl
   fi
@@ -80,19 +81,20 @@ _opt4() {
   # Install aur helper
   _aur "$selected_helper"
 
+  # Set default aur helper
   if command -v yay &> /dev/null; then
     aurhelper="yay"
   elif command -v paru &> /dev/null; then
     aurhelper="paru"
   fi
 
-  # Install packages
+  # Install main packages
   _pkg
 
-  # Apple
+  # Apple fonts
   _apple_fonts
-  
-  # Services
+
+  # Enable Services
   systemctl --user --now enable pipewire pipewire-pulse pipewire-pulse.socket wireplumber
   systemctl enable thermald sddm
   xdg-user-dirs-update
