@@ -37,8 +37,8 @@ _aurselect() {
   echo -e "│ ${WHITE}${BOLD}          Select AUR Helper           ${CYAN}${BOLD}│"
   echo -e "├───────────────────────────────────────┤${NC}"
 
-  local highlight=0
   local i
+  local width=34
   for i in "${!helpers[@]}"; do
     local checkbox
     if [[ " ${selected_helper[@]} " =~ " ${helpers[$i]} " ]]; then
@@ -46,10 +46,11 @@ _aurselect() {
     else
       checkbox="${RED}[ ]${NC}"
     fi
+    local paddme=$(printf "%-${width}s" "${helpers[$i]}")
     if [[ $i -eq $highlight ]]; then
-      echo -e "${CYAN}${BOLD}│ ${BOLD}${checkbox} ${YELLOW}${helpers[$i]}${CYAN}${BOLD}                              │${NC}"
+      echo -e "${CYAN}${BOLD}│ ${BOLD}${checkbox} ${YELLOW}$paddme${CYAN}${BOLD}│${NC}"
     else
-      echo -e "${CYAN}│ ${checkbox} ${helpers[$i]}${CYAN}${BOLD}                               │${NC}"
+      echo -e "${CYAN}│ ${checkbox} $paddme${CYAN}${BOLD}│${NC}"
     fi
   done
 

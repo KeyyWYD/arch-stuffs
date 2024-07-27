@@ -5,15 +5,15 @@ source colors.sh
 _optpackages() {
   clear
   echo -e "${CYAN}${BOLD}╭──────────────────────────────────────╮"
-  echo -e "│         ${WHITE}Additional Packages${CYAN}          │"
+  echo -e "│         ${WHITE}${BOLD}Additional Packages${CYAN}${BOLD}          │"
   echo -e "├──────────────────────────────────────┤"
-  echo -e "│ ${WHITE}If you desire packages not shipped${CYAN}   │"
-  echo -e "│ ${WHITE}with this script, specity in the${CYAN}     │"
-  echo -e "│ ${WHITE}following prompt. Write additional${CYAN}   │"
-  echo -e "│ ${WHITE}packages to install (space separated,${CYAN}│"
-  echo -e "│ ${WHITE}leave blank to skip)${CYAN}                 │"
-  echo -e "${BOLD}├──────────────────────────────────────┤"
-  echo -e "│ ${WHITE}[Enter] Finish${CYAN}                 │"
+  echo -e "│ ${WHITE}If you desire packages not shipped${CYAN}${BOLD}   │"
+  echo -e "│ ${WHITE}with this script, specity in the${CYAN}${BOLD}     │"
+  echo -e "│ ${WHITE}following prompt. Write additional${CYAN}${BOLD}   │"
+  echo -e "│ ${WHITE}packages to install (space separated,${CYAN}${BOLD}│"
+  echo -e "│ ${WHITE}leave blank to skip)${CYAN}${BOLD}                 │"
+  echo -e "├──────────────────────────────────────┤"
+  echo -e "│ ${WHITE}${BOLD}[Enter] Finish${CYAN}${BOLD}                       │"
   echo -e "╰──────────────────────────────────────╯${NC}"
 
   read -p "Packages: " -r input

@@ -10,9 +10,9 @@ _highlight() {
   local items=("${@:2}")
   for i in "${!items[@]}"; do
     if [ "$i" -eq "$highlight" ]; then
-      echo -e "    ${YELLOW}${items[$i]}${NC}"
+      echo -e " ${YELLOW}${items[$i]}${NC}"
     else
-      echo -e "    ${items[$i]}"
+      echo -e " ${items[$i]}"
     fi
   done
 }
@@ -30,16 +30,16 @@ _header() {
 _menu() {
   _header
   _highlight $highlight "${_opts[@]}"
-  echo -e "${CYAN}╰───────────────────────────────╯${NC}"
+  # echo -e "${CYAN}─────────────────────────────────${NC}"
+  echo
 
-  width=27
-
+  local width=27
   if [ ${#additional[@]} -gt 0 ]; then
     echo -e "${CYAN}${BOLD}╭───────────────────────────────╮"
     echo -e "│ ${WHITE}Additional packages:${CYAN}          │"
 
   for package in "${additional[@]}"; do
-    padded=$(printf "%-${width}s" "$package")
+    local padded=$(printf "%-${width}s" "$package")
     echo -e "│    ${YELLOW}$padded${CYAN}│"
   done
 
