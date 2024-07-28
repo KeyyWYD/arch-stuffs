@@ -7,9 +7,9 @@ RED='\033[0;31m'
 NC='\033[0m'
 
 if command -v yay &> /dev/null; then
-  AUR="yay"
+  aurhelper="yay"
 elif command -v paru &> /dev/null; then
-  AUR="paru"
+  aurhelper="paru"
 fi
 
 _header() {
@@ -19,14 +19,17 @@ _header() {
 }
 
 _updates() {
+
+  echo -e "${CYAN}─ Available Updates 󰮯 ───────────────────────────────◯${NC}"
+
   if [ -f "$HOME/.cache/updcount" ] && [ "$(cat "$HOME/.cache/updcount")" -eq 0 ]; then
-    echo  -e "${YELLOW} :: No updates available.${NC}"
+    echo  -e "${YELLOW}  :: No updates available.${NC}"
     sleep 2
     exit 0
   else
-    echo -e "${CYAN}╭─ Available Updates 󰮯 ───────────────────────────────╮"
-    checkupdates | sed 's/^/│  /'    
-    echo -e "${CYAN}╰─────────────────────────────────────────────────────╯${NC}"    
+    local check=$(checkupdates 2>/dev/null)
+    echo "$check" | sed 's/^/  󰊠  /'
+    echo -e "${CYAN}◯─────────────────────────────────────────────────────${NC}"
     echo
   fi
 }
@@ -37,15 +40,15 @@ _updates
 
 while true; do
   echo -en "${CYAN}Do you wish to install updates now? [Y/n]: "
-  read -r user_choice
+  read -r choice
 
-  case "$user_choice" in
+  case "$choice" in
     y|Y)
       echo
       echo -e "${YELLOW}:: Starting updates...${NC}"
       echo
 
-      $AUR -Syu --noconfirm
+      $aurhelper -Syu --noconfirm
 
       echo -e "${GREEN}:: Update(s) completed successfully.${NC}"
       echo 0 > "$HOME/.cache/updcount"

@@ -1,9 +1,5 @@
 MenuBar=Disabled
 
-[CompactMode]
-UseSystemFont=false
-ViewFont=SF Pro Text,9,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
-
 [ContentDisplay]
 UseShortRelativeDates=false
 
@@ -13,8 +9,6 @@ ShowViewMode=false
 [DetailsMode]
 ExpandableFolders=false
 PreviewSize=32
-UseSystemFont=false
-ViewFont=SF Pro Text,9,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
 
 [General]
 AutoExpandFolders=true
@@ -22,10 +16,6 @@ BrowseThroughArchives=true
 RememberOpenedTabs=false
 Version=202
 ViewPropsTimestamp=2024,7,17,17,38,9.141
-
-[IconsMode]
-UseSystemFont=false
-ViewFont=SF Pro Text,9,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
 
 [KFileDialog Settings]
 Places Icons Auto-resize=false

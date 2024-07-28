@@ -13,7 +13,7 @@ if [[ ("$status" == "Discharging") || ("$status" == "Full") ]]; then
   elif [[ ("$level" -ge "50") && ("$level" -le "75") ]]; then
     printf "􀺸 "
   elif [[ ("$level" -ge "75") && ("$level" -le "100") ]]; then
-    printf "􀛨 "  
+    printf "􀛨 "
   fi
 # elif [[ "$status" == "Charging" ]]; then
 else

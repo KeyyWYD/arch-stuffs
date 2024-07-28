@@ -66,8 +66,8 @@ case "$menu" in
   "$choice1") $TERMINAL --title $FETCH -e bash -i -c "$FETCH && sleep infinity" ;;
   "$choice2") $TERMINAL --title "System Updates" -e bash -i -c "updater" ;;
   "$choice3") sleep 0.1 && hyprctl dispatch dpms off && systemctl suspend-then-hibernate ;;
-  "$choice4") reboot ;;
-  "$choice5") poweroff ;;
+  "$choice4") systemctl reboot ;;
+  "$choice5") systemctl poweroff ;;
   "$choice6") hyprlock ;;
   "$choice7") hyprctl dispatch exit ;;
 esac

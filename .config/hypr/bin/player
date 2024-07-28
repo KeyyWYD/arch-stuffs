@@ -22,7 +22,7 @@ elif [[ "$player_status" == "Paused" ]]; then
 fi
 
 if [[ "$1" == "--lockscreen" ]]; then
-  echo "$preset_0" 
+  echo "$preset_0"
 elif [[ "$1" == "--bar" ]]; then
   echo "$preset_1"
 fi

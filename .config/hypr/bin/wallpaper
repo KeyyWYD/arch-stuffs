@@ -1,65 +1,63 @@
 #!/bin/bash
 
-# File and folder names
-wallDIR="$HOME/Pictures/Wallpapers"
-cache_dir="$HOME/.cache/swww/"
-wltmp="$cache_dir/wltmp"
+# Paths
+wp_dir="$HOME/Pictures/Wallpapers"
+cache_dir="$HOME/.cache/swww"
+tmp_wp="$cache_dir/wltmp"
 blurred_wp="$cache_dir/blurred.png"
 
 # Vars
-blur="30x15"
+blur="10x10"
 monitor=$(hyprctl monitors | awk '/^Monitor/{name=$2} /focused: yes/{print name}')
-images=($(find "${wallDIR}" -type f \( -iname \*.jpg -o -iname \*.jpeg -o -iname \*.png -o -iname \*.gif \)))
 rofi_cmd="rofi -i -show -dmenu -config $HOME/.config/rofi/wallpaper.rasi"
 
-# Sorting Wallpapers
-menu() {
-  sorted_options=($(printf '%s\n' "${images[@]}" | sort))
+# Find and sort wallpapers
+imgs=($(find "$wp_dir" -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.gif' \) | sort -d))
 
-  for img in "${sorted_options[@]}"; do
-    img_name=$(basename "$img")
-
-    # Display .gif to indicate animated images
-    if [[ -z $(echo "$img_name" | grep -i "\.gif$") ]]; then
-      printf "%s\x00icon\x1f%s\n" "$(echo "$img_name" | cut -d. -f1)" "$img"
+_menu() {
+  for img in "${imgs[@]}"; do
+    local name=$(basename "$img")
+    if [[ "$name" == *.gif ]]; then
+      printf "%s\n" "$name"
     else
-      printf "%s\n" "$img_name"
+      printf "%s\x00icon\x1f%s\n" "${name%.*}" "$img"
     fi
   done
 }
 
-main() {
-  choice=$(menu | ${rofi_cmd})
+set_wp() {
+  local choice=$(_menu | $rofi_cmd)
 
   if [[ -z $choice ]]; then
     exit 0
   fi
 
-  pic_index=-1
-  for i in "${!images[@]}"; do
-    filename=$(basename "${images[$i]}")
-    if [[ "$filename" == "$choice"* ]]; then
-      pic_index=$i
+  local selected
+  for img in "${imgs[@]}"; do
+    if [[ "$(basename "$img")" == "$choice"* ]]; then
+      selected="$img"
       break
     fi
   done
 
-  if [[ $pic_index -ne -1 ]]; then
-    swww img -o $monitor "${images[$pic_index]}" \
-	--transition-fps 60 \
-	--transition-type "grow" \
-	--transition-duration 2
+  if [[ -n $selected ]]; then
+    # Apply the selected wallpaper
+    swww img -o "$monitor" "$selected" \
+      --transition-fps 60 \
+      --transition-type "grow" \
+      --transition-duration 2
 
-    # copy and create blurred wallpaper
-    cp "${images[$pic_index]}" $wltmp
-    magick $wltmp -resize 75%\! $wltmp
-    if [ ! "$blur" == "0x0" ] ; then
-      magick $wltmp -blur $blur $blurred_wp
-      rm -rf $wltmp
+    # Create a blurred version of the wallpaper
+    cp "$selected" "$tmp_wp"
+    magick "$tmp_wp" -resize 75% "$tmp_wp"
+
+    if [[ "$blur" != "0x0" ]]; then
+      magick "$tmp_wp" -blur "$blur" "$blurred_wp"
     fi
+    rm -f "$tmp_wp"
   fi
 }
 
 swww query || swww-daemon --format xrgb
-main
+set_wp
 apply_theme
