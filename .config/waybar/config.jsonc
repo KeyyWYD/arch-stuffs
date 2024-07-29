@@ -132,8 +132,8 @@
     "format-wifi": "<span size='large'>{icon}</span>",
     "format-disabled": "􀑓 ",
     "format-ethernet": " {bandwidthDownBytes}  {bandwidthUpBytes}",
-    "format-linked": "{ifname} (No IP) 􀙇",
-    "format-disconnected": "􀙈 ",
+    "format-linked": "{ifname} (No IP) 󰤨",
+    "format-disconnected": "󰤮 ",
     "format-icons": ["󰤯 ", "󰤟 ", "󰤢 ", "󰤥 ", "󰤨 "],
     "interval": 1,
     "nospacing": 1,
@@ -150,10 +150,10 @@
   },
 
   "wireplumber": {
-    "on-click": "pavucontrol -t 3",
     "format": "{icon}",
     "format-muted": "􀊣 ",
     "format-icons": ["􀊡 ", "􀊥 ", "􀊧 ", "􀊩 "],
+    "on-click": "pavucontrol &",
     "tooltip": false
   },
 

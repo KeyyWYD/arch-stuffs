@@ -1,28 +1,36 @@
 #!/bin/bash
 
-player_name=$(playerctl metadata --format '{{playerName}}')
-player_status=$(playerctl status)
+name=$(playerctl metadata -f '{{playerName}}')
+status=$(playerctl status)
 
-if [[ "$player_status" == "Playing" ]]; then
-  if [[ "$player_name" == "spotify" ]]; then
-    preset_0=$(playerctl metadata --format ' 󰓇  {{title}} - {{artist}}')
-    preset_1=$(playerctl metadata --format '󰓇  {{title}}')
-  elif [[ "$player_name" == "firefox" ]]; then
-    preset_0=$(playerctl metadata --format ' 󰈹  {{title}} - {{artist}}')
-  elif [[ "$player_name" == "mpd" ]]; then
-    preset_0=$(playerctl metadata --format ' 󰎆  {{title}} - {{artist}}')
-  elif [[ "$player_name" == "chromium" ]]; then
-    preset_0=$(playerctl metadata --format ' 󰊯  {{title}} - {{artist}}')
-  fi
+if [[ "$status" == "Playing" ]]; then
+  case "$name" in
+    spotify)
+      set_0=$(playerctl metadata -f " 󰓇  {{title}} - {{artist}}")
+      set_1=$(playerctl metadata -f "󰓇  {{title}}")
+      ;;
+    firefox)
+      set_0=$(playerctl metadata -f " 󰈹  {{title}} - {{artist}}")
+      ;;
+    mpd)
+      set_0=$(playerctl metadata -f " 󰎆  {{title}} - {{artist}}")
+      ;;
+    chromium)
+      set_0=$(playerctl metadata -f " 󰊯  {{title}} - {{artist}}")
+      ;;
+  esac
 
-elif [[ "$player_status" == "Paused" ]]; then
-  if [[ "$player_name" == "spotify" ]]; then
-    preset_1=$(playerctl metadata --format '  {{title}}')
+elif [[ "$status" == "Paused" ]]; then
+  if [[ "$name" == "spotify" ]]; then
+    set_1=$(playerctl metadata -f "  {{title}}")
   fi
 fi
 
-if [[ "$1" == "--lockscreen" ]]; then
-  echo "$preset_0"
-elif [[ "$1" == "--bar" ]]; then
-  echo "$preset_1"
-fi
+case "$1" in
+  --lockscreen)
+    echo "$set_0"
+    ;;
+  --bar)
+    echo "$set_1"
+    ;;
+esac

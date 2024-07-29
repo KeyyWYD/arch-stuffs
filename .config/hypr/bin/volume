@@ -31,9 +31,11 @@ notify_user() {
 
 toggle_mute() {
 	if [ "$(pamixer --get-mute)" == "false" ]; then
-		pamixer -m && notify-send -e -r 91190 -t 800 -u low -i "$icon_dir/volume-mute.svg" "Muted"
+		pamixer -m >/dev/null
+		notify-send -e -r 91190 -t 800 -u low -i "$icon_dir/volume-mute.svg" "Muted"
 	elif [ "$(pamixer --get-mute)" == "true" ]; then
-		pamixer -u && notify-send -e -r 91190 -t 800 -u low -i "$(get_icon)" "Volume: $(get_volume)"
+		pamixer -u >/dev/null
+		notify-send -e -r 91190 -t 800 -u low -i "$(get_icon)" "Volume: $(get_volume)"
 	fi
 }
 
@@ -41,7 +43,8 @@ inc_volume() {
   if [ "$(pamixer --get-mute)" == "true" ]; then
     toggle_mute
   else
-    pamixer -i 2 --allow-boost --set-limit 100 && notify_user
+    pamixer -i 2 >/dev/null
+    notify_user
   fi
 }
 
@@ -49,7 +52,8 @@ dec_volume() {
   if [ "$(pamixer --get-mute)" == "true" ]; then
     toggle_mute
   else
-    pamixer -d 2 && notify_user
+    pamixer -d 2 >/dev/null
+    notify_user
   fi
 }
 
