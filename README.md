@@ -68,9 +68,7 @@
 <details>
   <summary>Instructions</summary>
 
-  <h3 align="left">
-    Install Steps
-  </h3>
+  <h2 align="center">Install Steps</h2>
   
 - Using [`Stow`](https://archlinux.org/packages/extra/any/stow/) (Recommended)
 
@@ -97,9 +95,7 @@ cp -r .zshrc $HOME
 cp -r .gtkrc-2.0 $HOME
 ```
 
-  <h3 align="left">
-    Updating
-  </h3>
+  <h2 align="center">Updating</h2>
 
 ```sh
 cd $HOME/.dotfiles
@@ -110,7 +106,6 @@ stow --adopt .
   <details>
     <summary>Keybinds</summary>
     <div align="center">
-      <h2>Keybinds</h2>
       <table border="1" cellpadding="8" cellspacing="0">
         <tr>
           <td><b>Keys</b></td>
