@@ -1,7 +1,7 @@
 # DO NOT EDIT! This file will be overwritten by nwg-look.
 # Any customization should be done in ~/.gtkrc-2.0.mine instead.
 
-include "/home/kdot/.gtkrc-2.0.mine"
+include "$HOME/.gtkrc-2.0.mine"
 gtk-theme-name="Adwaita"
 gtk-icon-theme-name="Reversal-dark"
 gtk-font-name="SF Pro Text 11"
