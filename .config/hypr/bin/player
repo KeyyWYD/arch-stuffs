@@ -1,7 +1,7 @@
 #!/bin/bash
 
-name=$(playerctl metadata -f '{{playerName}}')
-status=$(playerctl status)
+name=$(playerctl -s metadata -f '{{playerName}}')
+status=$(playerctl -s status)
 
 if [[ "$status" == "Playing" ]]; then
   case "$name" in
@@ -19,7 +19,6 @@ if [[ "$status" == "Playing" ]]; then
       set_0=$(playerctl metadata -f " 󰊯  {{title}} - {{artist}}")
       ;;
   esac
-
 elif [[ "$status" == "Paused" ]]; then
   if [[ "$name" == "spotify" ]]; then
     set_1=$(playerctl metadata -f "  {{title}}")

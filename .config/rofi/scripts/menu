@@ -1,51 +1,48 @@
 #!/bin/sh
 # fake big mac
 
-# Get current user
-USER=$(whoami)
+user=$(whoami)
+session="$(loginctl session-status | head -n 1 | awk '{print $1}')"
 
-# TERMINAL
-if command -v kitty &> /dev/null; then
-    TERMINAL="kitty"
-elif command -v alacritty &> /dev/null; then
-    TERMINAL="alacritty"
+if command -v kitty > /dev/null 2>&1; then
+    tty="kitty"
+elif command -v alacritty > /dev/null 2>&1; then
+    tty="alacritty"
 fi
 
-# FETCH PROGRAM
-if command -v neofetch &> /dev/null; then
-    FETCH="neofetch"
-  elif command -v fastfetch &> /dev/null; then
-    FETCH="fastfetch"
+if command -v neofetch > /dev/null 2>&1; then
+    fetch="neofetch"
+elif command -v fastfetch > /dev/null 2>&1; then
+    fetch="fastfetch"
 fi
 
-function entry() {
+entry() {
   n_left=$(wc -c <<< "$1")
-  if [[ -z $2 ]]; then
+  if [ -z "$2" ]; then
     printf "%s" "$1"
     return
   fi
-  pad=$(( $3 - $n_left ))
+  pad=$(( $3 - n_left ))
   printf "%s%${pad}s" "$1" "$2"
 }
 
 choice1=" About This PC"
 
-if [[ -f "$HOME/.cache/updcount" ]]; then
-  updates="$(cat $HOME/.cache/updcount)"
+if [ -f "$HOME/.cache/updcount" ]; then
+  updates="$(cat "$HOME/.cache/updcount")"
 fi
 
-if [[ "$updates" == "0" ]]; then
+if [ "$updates" = "0" ]; then
   choice2="$(entry " System Updates..." "􀁢 " 53)"
 else
-  numlen="$(wc -c <<< "$updates")"
+  numlen=$(wc -c <<< "$updates")
   case "$numlen" in
     2) width=43 ;;
     3) width=41 ;;
     4) width=41 ;;
   esac
 
-  # hmm
-  if [[ "$updates" == "1" ]]; then
+  if [ "$updates" = "1" ]; then
     grammer=update
   else
     grammer=updates
@@ -58,16 +55,16 @@ choice3="$(entry " Sleep")"
 choice4="$(entry " Restart...")"
 choice5="$(entry " Shut Down...")"
 choice6="$(entry " Lock Screen" "⌃ ⌘ Q" 57)"
-choice7="$(entry " Log Out $USER..." "􀆝 ⌘ Q" 55)"
+choice7="$(entry " Log Out $user..." "􀆝 ⌘ Q" 55)"
 
-menu=$(printf "$choice1\n$choice2\n$choice3\n$choice4\n$choice5\n$choice6\n$choice7\n" | rofi -dmenu -config ~/.config/rofi/menu.rasi -i -no-show-icons -l 7 -width 30 -replace)
+menu=$(printf "%s\n%s\n%s\n%s\n%s\n%s\n%s\n" "$choice1" "$choice2" "$choice3" "$choice4" "$choice5" "$choice6" "$choice7" | rofi -dmenu -config ~/.config/rofi/menu.rasi -i -no-show-icons -l 7 -width 30 -replace)
 
 case "$menu" in
-  "$choice1") $TERMINAL --title $FETCH -e bash -i -c "$FETCH && sleep infinity" ;;
-  "$choice2") $TERMINAL --title "System Updates" -e bash -i -c "updater" ;;
+  "$choice1") $tty --title "$fetch" -e bash -i -c "$fetch && sleep infinity" ;;
+  "$choice2") $tty --title "System Updates" -e bash -i -c "updater" ;;
   "$choice3") sleep 0.1 && hyprctl dispatch dpms off && systemctl suspend-then-hibernate ;;
   "$choice4") systemctl reboot ;;
   "$choice5") systemctl poweroff ;;
   "$choice6") hyprlock ;;
-  "$choice7") hyprctl dispatch exit ;;
+  "$choice7") loginctl terminate-session "$session" ;;
 esac

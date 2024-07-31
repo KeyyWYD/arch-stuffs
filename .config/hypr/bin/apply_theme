@@ -5,6 +5,5 @@ cache_file="$HOME/.cache/swww/$monitor"
 
 matugen image "$(cat "$cache_file")"
 
-pgrep -x "waybar" >/dev/null && pkill -SIGUSR2 waybar
-
-pkill dunst >/dev/null
+pkill -SIGUSR2 waybar 2>/dev/null
+pkill dunst 2>/dev/null
