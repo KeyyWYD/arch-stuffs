@@ -2,28 +2,81 @@
 
 "$schema" = 'https://starship.rs/config-schema.json'
 
-format = """
+format ="""
 $os\
 $username\
 $directory\
+$cmd_duration\
+\n$character"""
+
+right_format ="""
 $git_branch\
 $git_status\
-($all)\
-\n\
-$cmd_duration\
-$character
-"""
+$c\
+$cmake\
+$cobol\
+$daml\
+$dart\
+$deno\
+$dotnet\
+$elixir\
+$elm\
+$erlang\
+$fennel\
+$golang\
+$guix_shell\
+$haskell\
+$haxe\
+$helm\
+$java\
+$julia\
+$kotlin\
+$gradle\
+$lua\
+$nim\
+$nodejs\
+$ocaml\
+$opa\
+$perl\
+$php\
+$pulumi\
+$purescript\
+$python\
+$raku\
+$rlang\
+$red\
+$ruby\
+$rust\
+$scala\
+$solidity\
+$swift\
+$terraform\
+$vlang\
+$vagrant\
+$zig\
+$buf\
+$conda\
+$meson\
+$spack\
+$memory_usage\
+$aws\
+$gcloud\
+$openstack\
+$azure\
+$crystal\
+$status\
+$battery\
+$time"""
 
-[line_break]
-disabled = true
+add_newline = true
+command_timeout = 1000
 
 [cmd_duration]
-min_time = 500
-format = '[$duration ](red)'
+format = '[ $duration ](white)'
 
 [character]
 success_symbol = "[→](bold green)"
-error_symbol   = "[→](bold red)"
+error_symbol = "[→](bold red)"
 
 [os]
 format = '[$symbol ](blue)'
@@ -70,21 +123,29 @@ Unknown = ""
 Windows = ""
 
 [username]
-format = '[$user ]($style)'
-style_user = 'bold white'
-style_root = 'red'
-show_always = true
 disabled = false
+format = '[$user ]($style)'
+style_user = 'bright-yellow bold'
+style_root = 'red bold'
+show_always = true
 
 [directory]
-format = '[$path ](cyan)'
-truncation_length = 4
+style = "cyan"
+format = '[$path]($style)'
+truncation_length = 3
+truncation_symbol = "../"
 
 [directory.substitutions]
-"Documents" = " "
+"Documents" = "󰈙 "
 "Downloads" = " "
 "Music" = " "
 "Pictures" = " "
+
+[time]
+disabled = false
+time_format = "%R"
+style = "italic dimmed white"
+format = "[ $time]($style)"
 
 [aws]
 symbol = "  "
