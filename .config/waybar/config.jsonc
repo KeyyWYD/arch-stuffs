@@ -153,7 +153,7 @@
     "format": "{icon}",
     "format-muted": "􀊣 ",
     "format-icons": ["􀊡 ", "􀊥 ", "􀊧 ", "􀊩 "],
-    "on-click": "pavucontrol &",
+    "on-click": "pavucontrol -t 3 &",
     "tooltip": false
   },
 

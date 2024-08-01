@@ -19,3 +19,4 @@ rofi = { input_path = '~/.config/matugen/templates/rofi-colors.rasi' , output_pa
 alacritty = { input_path = '~/.config/matugen/templates/alacritty-colors.toml', output_path = '~/.config/alacritty/themes/colors.toml' }
 kitty = { input_path = '~/.config/matugen/templates/kitty-colors.conf', output_path = '~/.config/kitty/themes/colors.conf' }
 cava = { input_path = '~/.config/matugen/templates/cava-colors', output_path = '~/.config/cava/config' }
+btop = { input_path = '~/.config/matugen/templates/btop-colors.theme', output_path = '~/.config/btop/themes/material.theme' }

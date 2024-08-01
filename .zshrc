@@ -54,7 +54,8 @@ source <(fzf --zsh)
 eval $(thefuck --alias)
 eval $(thefuck --alias tf)
 eval "$(zoxide init zsh)"
-eval "$(starship init zsh)"
+# eval "$(starship init zsh)"
+eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/kdot.toml)"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

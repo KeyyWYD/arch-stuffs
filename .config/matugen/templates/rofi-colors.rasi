@@ -1,5 +1,5 @@
 * {
-    background: rgba({{colors.surface.default.red}}, {{colors.surface.default.green}}, {{colors.surface.default.blue}}, 0.7);
+    background: rgba({{colors.surface.default.red}}, {{colors.surface.default.green}}, {{colors.surface.default.blue}}, 0.75);
     background-alt: {{colors.secondary.default.hex}};
     foreground: {{colors.on_surface.default.hex}};
 }

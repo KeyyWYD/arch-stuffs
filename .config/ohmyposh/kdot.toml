@@ -1,0 +1,95 @@
+#:schema https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+
+version = 2
+final_space = true
+
+[[blocks]]
+type = 'prompt'
+alignment = 'left'
+newline = true
+
+    [[blocks.segments]]
+    type = 'os'
+    style = 'plain'
+    background = 'transparent'
+    foreground = 'blue'
+    template = '{{ .Icon }} '
+
+    [[blocks.segments]]
+    type = 'session'
+    style = 'plain'
+    background = 'transparent'
+    foreground = 'lightYellow'
+    template = '<b>{{ .UserName }}</b> '
+
+    [[blocks.segments]]
+    type = 'path'
+    style = 'plain'
+    background = 'transparent'
+    foreground = 'cyan'
+    template = '{{ .Path }}'
+
+        [blocks.segments.properties]
+        home_icon = '~'
+        style = 'agnoster_short'
+
+    [[blocks.segments]]
+    type = 'git'
+    style = 'plain'
+    foreground = 'yellow'
+    background = 'transparent'
+    template = ' <#ffffff>on</> {{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}  {{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }}{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }} '
+
+        [blocks.segments.properties]
+        fetch_status = true
+        fetch_stash_count = true
+
+[[blocks]]
+type = 'prompt'
+alignment = 'right'
+
+    [[blocks.segments]]
+    type = 'time'
+    style = 'plain'
+    foreground = '245'
+    template = '<i>{{ .CurrentDate | date .Format }}</i> '
+
+        [blocks.segments.properties]
+        time_format = '03:04 PM'
+
+[[blocks]]
+type = 'rprompt'
+overflow = 'hidden'
+
+    [[blocks.segments]]
+    type = 'executiontime'
+    style = 'plain'
+    foreground = 'yellow'
+    background = 'transparent'
+    template = '{{ .FormattedMs }}'
+
+        [blocks.segments.properties]
+        threshold = 5000
+
+[[blocks]]
+type = 'prompt'
+alignment = 'left'
+newline = true
+
+    [[blocks.segments]]
+    type = 'text'
+    style = 'plain'
+    foreground_templates = [
+        "{{if gt .Code 0}}red{{end}}",
+        "{{if eq .Code 0}}green{{end}}",
+    ]
+    background = 'transparent'
+    template = '<b>→</b>'
+
+[transient_prompt]
+foreground_templates = [
+    "{{if gt .Code 0}}red{{end}}",
+    "{{if eq .Code 0}}green{{end}}",
+]
+background = 'transparent'
+template = '<b>→</b> '

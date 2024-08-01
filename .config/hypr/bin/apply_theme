@@ -5,5 +5,19 @@ cache_file="$HOME/.cache/swww/$monitor"
 
 matugen image "$(cat "$cache_file")"
 
-pkill -SIGUSR2 waybar 2>/dev/null
-pkill dunst 2>/dev/null
+progs=(
+  'waybar'
+  'dunst'
+)
+
+for prog in "${progs[@]}"; do
+  pkill -f "$prog" 2> /dev/null
+done
+
+for prog in "${progs[@]}"; do
+  if [ "$prog" != "dunst" ]; then
+    nohup "$prog" > /dev/null 2>&1 &
+  fi
+done
+
+hyprctl reload config-only > /dev/null

@@ -7,7 +7,7 @@ tmp_wp="$cache_dir/wltmp"
 blurred_wp="$cache_dir/blurred.png"
 
 # Vars
-blur="10x10"
+blur="15x10"
 monitor=$(hyprctl monitors | awk '/^Monitor/{name=$2} /focused: yes/{print name}')
 rofi_cmd="rofi -i -show -dmenu -config $HOME/.config/rofi/wallpaper.rasi"
 
@@ -44,7 +44,7 @@ set_wp() {
     # Apply the selected wallpaper
     swww img -o "$monitor" "$selected" \
       --transition-fps 60 \
-      --transition-type "grow" \
+      --transition-type "wipe" \
       --transition-duration 2
 
     # Create a blurred version of the wallpaper
