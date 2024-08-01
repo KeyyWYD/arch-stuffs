@@ -26,7 +26,7 @@ padding								= 8
 horizontal_padding					= 8
 text_icon_padding					= 16
 gap_size							= 6
-separator_color						= "#948f99"
+separator_color						= "#899393"
 
 sort								= update
 format								= "<big><b>%s</b></big>\n%b"
@@ -36,7 +36,7 @@ title								= "Dunst"
 class								= "dunst"
 timeout								= 5
 
-background                          = "#141218B3"
-foreground                          = "#e6e1e9"
-highlight                           = "#4c3e75"
+background                          = "#0e1415B3"
+foreground                          = "#dde4e3"
+highlight                           = "#004f51"
 frame_color							= "#fff"
