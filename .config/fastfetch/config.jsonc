@@ -75,10 +75,9 @@
         "type": "packages",
         "key": "\u001b[1;93m󰊠"
     },
-
     {
         "type": "uptime",
-        "key": "\u001b[1;93m󰅐"
+        "key": "\u001b[1;93m󰔚"
     },
     {
         "type": "custom",

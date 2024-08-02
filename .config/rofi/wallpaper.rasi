@@ -1,97 +1,120 @@
 // RAHHHHHHHHHH
 
 configuration {
-    modi:                        "drun";
-    show-icons:                  true;
-    drun-display-format:         "{name}";
-    hover-select:                true;
-    scroll-method:               0;
-    me-select-entry:             "MouseSecondary";
-    me-accept-entry:             "MousePrimary";
+  modi:                        "drun";
+  show-icons:                  true;
+  drun-display-format:         "{name}";
+  hover-select:                true;
+  scroll-method:               0;
+  me-select-entry:             "MouseSecondary";
+  me-accept-entry:             "MousePrimary";
 }
 
 @theme "colors.rasi"
 
 * {
-    font:                        "SF Pro Text Medium 10";
+  font:                        "SF Pro Text Medium 10";
 
-    border: 0;
-    margin: 0;
-    padding: 0;
-    spacing: 0;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  spacing: 0;
 }
 
 window {
-    enabled:                     true;
-    location:                    center;
-    anchor:                      center;
-    width:                       70%;
-    transparency:                "real";
-    cursor:                      "default";
-    border-radius:               8px;
-    background-color:            @background;
+  enabled:                     true;
+  location:                    center;
+  anchor:                      center;
+  width:                       70%;
+  transparency:                "real";
+  cursor:                      "default";
+  border-radius:               8px;
+  background-color:            @background;
 }
 
 mainbox {
-    enabled:                     true;
-    padding:                     20px;
-    background-color:            transparent;
-    children:                    [ "listview" ];
+  enabled:                     true;
+  padding:                     20px;
+  spacing:                     10px;
+  background-color:            transparent;
+  children:                    [ "inputbar", "listview" ];
 }
 
-imagebox {
-    orientation:                 vertical;
-    children:                    ["listbox"];
+inputbar {
+  enabled:                     true;
+  spacing:                     10px;
+  margin:                      2px 10px 10px 10px;
+  padding:                     10px;
+  border-radius:               10px;
+  background-color:            @background-alt;
+  children:                    [ "prompt", "entry" ];
+}
+
+prompt {
+  enabled:                     true;
+  background-color:            inherit;
+  text-color:                  inherit;
+}
+
+entry {
+  background-color:            inherit;
+  text-color:                  inherit;
+  expand:                      true;
+  horizontal-align:            0.45;
+  placeholder:                 "Search";
+  placeholder-color:           inherit;
+  blink:                       true;
+  cursor:                      text;
 }
 
 listview {
-    enabled:                     true;
-    columns:                     3;
-    lines:                       2;
-    cycle:                       true;
-    dynamic:                     true;
-    scrollbar:                   false;
-    layout:                      vertical;
-    fixed-height:                true;
-    fixed-columns:               true;
-    background-color:            transparent;
-    text-color:                  @foreground;
-    cursor:                      "default";
+  enabled:                     true;
+  columns:                     5;
+  lines:                       3;
+  cycle:                       true;
+  dynamic:                     true;
+  scrollbar:                   false;
+  layout:                      vertical;
+  fixed-height:                true;
+  fixed-columns:               true;
+  background-color:            transparent;
+  text-color:                  @foreground;
+  cursor:                      "default";
 }
 
 element {
-    enabled:                     true;
-    spacing:                     10px;
-    padding:                     20px 10px;
-    border-radius:               8px;
-    background-color:            transparent;
-    text-color:                  @foreground;
-    orientation:                 vertical;
-    cursor:                      pointer;
+  enabled:                     true;
+  spacing:                     10px;
+  padding:                     20px 10px;
+  border-radius:               8px;
+  background-color:            transparent;
+  text-color:                  @foreground;
+  orientation:                 vertical;
+  cursor:                      pointer;
 }
 
 element normal.normal {
-    background-color:            transparent;
-    text-color:                  @foreground;
+  background-color:            transparent;
+  text-color:                  @foreground;
 }
 
 element selected.normal {
-    background-color:            white / 5%;
-    text-color:                  @foreground;
+  background-color:            white / 5%;
+  text-color:                  @foreground;
 }
 
 element-icon {
-    background-color:            transparent;
-    text-color:                  inherit;
-    size:                        25%;
-    cursor:                      inherit;
+  background-color:            transparent;
+  text-color:                  inherit;
+  size:                        15%;
+  cursor:                      inherit;
 }
 
 element-text {
-    background-color:            transparent;
-    text-color:                  inherit;
-    highlight:                   inherit;
-    cursor:                      inherit;
-    vertical-align:              0.5;
-    horizontal-align:            0.5;
+  background-color:            transparent;
+  text-color:                  inherit;
+  highlight:                   inherit;
+  cursor:                      inherit;
+  vertical-align:              0.5;
+  horizontal-align:            0.5;
 }

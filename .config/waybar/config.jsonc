@@ -3,8 +3,6 @@
   "layer": "top",
   "position": "top",
   "margin": "5 5 0 5",
-  "fixed-center": true,
-  "reload_style_on_change": true,
 
   "modules-left": [
     "custom/menu",
@@ -107,7 +105,7 @@
   },
 
   "memory": {
-    "format": "   {}%",
+    "format": "󰆼 {}%",
     "tooltip": false
   },
 
@@ -118,7 +116,7 @@
   },
 
   "clock": {
-    "format": "􀉉 {:%A %h.%d  /  􀐫 %I:%M %p}",
+    "format": "􀉉 {:%a %h.%d  /  􀐫 %I:%M %p}",
     "tooltip": false
   },
 
@@ -132,12 +130,12 @@
     "format-wifi": "<span size='large'>{icon}</span>",
     "format-disabled": "􀑓 ",
     "format-ethernet": " {bandwidthDownBytes}  {bandwidthUpBytes}",
-    "format-linked": "{ifname} (No IP) 󰤨",
-    "format-disconnected": "󰤮 ",
+    "format-linked": "{ifname} (No IP) <span size='large'>󰤨 </span>",
+    "format-disconnected": "<span size='large'>󰤭 </span>",
     "format-icons": ["󰤯 ", "󰤟 ", "󰤢 ", "󰤥 ", "󰤨 "],
-    "interval": 1,
-    "nospacing": 1,
-    "max-length": 8,
+    //"interval": 1,
+    //"nospacing": 1,
+    //"max-length": 8,
     "on-click": "nmcli dev wifi rescan; hyprctl notify 5 1500 'rgb(d3c6aa)' 'Wifi rescan!'",
     "tooltip": false
   },

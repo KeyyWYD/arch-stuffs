@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 name=$(playerctl -s metadata -f '{{playerName}}')
 status=$(playerctl -s status)

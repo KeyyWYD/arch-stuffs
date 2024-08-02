@@ -21,3 +21,15 @@
 @define-color sidebar_border_color @window_bg_color;
 @define-color sidebar_backdrop_color @window_bg_color;
 
+popover contents, popover arrow {
+	background: @popover_bg_color;
+}
+
+.solid-csd {
+	padding: 0;
+}
+
+headerbar {
+  padding: 0.3em;
+  padding-top: calc(0.3em + 3px);
+}

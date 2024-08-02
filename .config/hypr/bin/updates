@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# NOTE: This script requires `pacman-contrib` 
+# NOTE: This script requires `pacman-contrib`
 
 # Check for updates every 5 hours (seconds)
 INTERVAL=18000
@@ -37,4 +37,3 @@ while true; do
 
   sleep 60
 done
-

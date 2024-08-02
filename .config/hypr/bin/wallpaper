@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Paths
 wp_dir="$HOME/Pictures/Wallpapers"
@@ -9,7 +9,7 @@ blurred_wp="$cache_dir/blurred.png"
 # Vars
 blur="15x10"
 monitor=$(hyprctl monitors | awk '/^Monitor/{name=$2} /focused: yes/{print name}')
-rofi_cmd="rofi -i -show -dmenu -config $HOME/.config/rofi/wallpaper.rasi"
+rofi_cmd="rofi -dmenu -i -config $HOME/.config/rofi/wallpaper.rasi -p 􀊫 "
 
 # Find and sort wallpapers
 imgs=($(find "$wp_dir" -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.gif' \) | sort -d))

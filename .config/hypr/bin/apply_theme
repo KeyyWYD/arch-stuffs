@@ -1,23 +1,47 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 monitor=$(hyprctl monitors | awk '/^Monitor/{name=$2} /focused: yes/{print name}')
 cache_file="$HOME/.cache/swww/$monitor"
+progs=('waybar')
+
+is_active() {
+  pgrep -x "$1" &> /dev/null
+}
+
+start() {
+  nohup "$1" > /dev/null &
+}
+
+stop() {
+  local proc="$1"
+  if is_active "$proc"; then
+    pkill -f "$proc" 2> /dev/null
+  fi
+}
 
 matugen image "$(cat "$cache_file")"
 
-progs=(
-  'waybar'
-  'dunst'
-)
-
 for prog in "${progs[@]}"; do
-  pkill -f "$prog" 2> /dev/null
+  stop "$prog"
 done
 
-for prog in "${progs[@]}"; do
-  if [ "$prog" != "dunst" ]; then
-    nohup "$prog" > /dev/null 2>&1 &
+while true; do
+  stopped=true
+  for proc in "${progs[@]}"; do
+    if is_active "$proc"; then
+      stopped=false
+      break
+    fi
+  done
+  if [ "$stopped" = true ]; then
+    break
   fi
+  sleep 0.1
 done
 
-hyprctl reload config-only > /dev/null
+for proc in "${progs[@]}"; do
+  start "$proc"
+done
+
+sleep 0.1
+hyprctl reload config-only > /dev/null && killall dunst

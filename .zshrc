@@ -12,9 +12,9 @@ ZSH=$HOME/.zsh
 EDITOR=nano
 
 if command -v yay &> /dev/null; then
-  AUR=yay
+  aurhelper=yay
 elif command -v paru &> /dev/null; then
-  AUR=paru
+  aurhelper=paru
 fi
 
 # User configuration
@@ -102,12 +102,12 @@ alias ll='eza -lha --sort=name --git --git-repos --icons=auto'
 alias mkdir='mkdir -p'
 
 # Pacman
-alias i='$AUR -S'
-alias r='$AUR -Rns'
-alias c='$AUR -Scc'
-alias u='$AUR -Syyu'
-alias s='$AUR -Ss'
-alias q='$AUR -Qs'
+alias i='$aurhelper -S'
+alias r='$aurhelper -Rns'
+alias c='$aurhelper -Scc'
+alias u='$aurhelper -Syyu'
+alias s='$aurhelper -Ss'
+alias q='$aurhelper -Qs'
 
 alias free='free -h'
 
@@ -133,7 +133,7 @@ alias hosts='sudo $EDITOR /etc/hosts'
 alias myip='curl ipinfo.io/ip'
 
 # Check network connectivity
-alias qnet='ping -c 4 google.com'
+alias qnet='ping -c 1 example.com'
 
 # Git
 alias g='git'
