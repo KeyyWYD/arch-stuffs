@@ -1,6 +1,7 @@
-/*-- Dynamic Theme --*/
+/* Dynamic Theme */
 @import "colors.css";
 
+/* General Styles */
 * {
   font-family: SF Pro Display;
   font-weight: bold;
@@ -33,44 +34,48 @@ window#waybar {
   background: inherit;
 }
 
-#workspaces {
+#workspaces,
+#window,
+#language,
+#hardware,
+#telementry,
+#clock,
+#custom-player,
+#custom-menu,
+#custom-cava {
   border-radius: 8px;
 }
 
 #window {
-  border-radius: 8px;
   padding-left: 0.5em;
   padding-right: 0.5em;
   margin-right: 3px;
 }
 
 #language {
-  border-radius: 8px 0px 0px 8px;
+  border-radius: 8px 0 0 8px;
   padding-left: 0.5em;
   padding-right: 0.5em;
   margin-left: 3px;
 }
 
 #hardware {
-  border-radius: 0px 8px 8px 0px;
+  border-radius: 0 8px 8px 0;
   padding-right: 0.2em;
 }
 
 #telementry {
-  border-radius: 8px;
-  padding: 0px 5px;
+  padding: 0 5px;
   margin-left: 3px;
 }
 
 #clock,
 #custom-player {
-  border-radius: 8px;
-  padding: 0px 10px;
+  padding: 0 10px;
 }
 
 #custom-menu {
   font-size: 1.2em;
-  border-radius: 8px;
   padding-right: 0.8em;
   padding-left: 0.4em;
   margin-right: 3px;
@@ -86,11 +91,11 @@ window#waybar {
 }
 
 #custom-cava {
-  border-radius: 8px;
-  padding: 0px 5px;
+  padding: 0 5px;
   margin-left: 3px;
 }
 
+/* Separator */
 #custom-separator#space {
   color: @background;
 }

@@ -2,7 +2,7 @@
 
 monitor=$(hyprctl monitors | awk '/^Monitor/{name=$2} /focused: yes/{print name}')
 cache_file="$HOME/.cache/swww/$monitor"
-progs=('waybar')
+progs=('waybar') # Kill these
 
 is_active() {
   pgrep -x "$1" &> /dev/null

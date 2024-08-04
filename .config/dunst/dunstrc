@@ -29,7 +29,7 @@ gap_size                            = 6
 separator_color                     = "#9f8c8d"
 
 sort                                = update
-format                              = "<big><b>%s</b></big>\n%b"
+format                              = "<b>%s</b>\n%b"
 show_indicators                     = false
 mouse_left_click                    = do_action
 title                               = "Dunst"

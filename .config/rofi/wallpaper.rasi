@@ -60,7 +60,7 @@ entry {
   background-color:            inherit;
   text-color:                  inherit;
   expand:                      true;
-  horizontal-align:            0.45;
+  horizontal-align:            0.48;
   placeholder:                 "Search";
   placeholder-color:           inherit;
   blink:                       true;

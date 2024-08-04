@@ -82,6 +82,7 @@ alias find='fd'
 alias findr='$EDITOR $(fzf -m --preview="bat --color=always {}")'
 alias cls='clear'
 alias open='xdg-open'
+alias x='exit'
 
 alias cat='bat --color=always --paging=never --wrap=never'
 
@@ -122,6 +123,9 @@ alias qdisk='watch -n 1 df -h'
 
 # Generate a random password
 alias genpasswd='openssl rand -base64 12'
+
+# Generate random numbers
+alias gennum='shuf -i 100000-999999 -n 1'
 
 # List all environment variables
 alias envlist='printenv | sort'

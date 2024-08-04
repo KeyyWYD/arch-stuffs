@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# OH MY P-C-C-C-C-C
+
 # NOTE: This script requires `pacman-contrib`
 
 # Check for updates every 5 hours (seconds)

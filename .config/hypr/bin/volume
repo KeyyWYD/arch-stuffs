@@ -1,76 +1,179 @@
 #!/usr/bin/env bash
 
-# Icons Folder
-icon_dir="$HOME/.config/dunst/assets/"
+# OH MY P-C-C-C-C-C
 
-get_volume() {
-  local vol=$(pamixer --get-volume-human | tr -d '%')
-  echo "$vol%"
+# Icons Folder
+icon_dir="$HOME/.config/dunst/assets"
+
+# Vars
+_step="2"
+_timeout="1200"
+
+# Check for stuff
+_tools() {
+  if command -v amixer &> /dev/null; then
+    _tool="amixer"
+  elif command -v wpctl &> /dev/null; then
+    _tool="wpctl"
+  elif command -v pactl &> /dev/null; then
+    _tool="pactl"
+  elif command -v pamixer &> /dev/null; then
+    _tool="pamixer"
+  else
+    echo "No volume control tool found."
+    exit 1
+  fi
 }
 
-get_icon() {
-  local new_vol=$(get_volume)
-  if [[ "${new_vol%\%}" -le 20 ]]; then
+# https://gist.github.com/palopezv/efd34059af6126ad970940bcc6a90f2e
+_commands() {
+  case $_tool in
+    amixer)
+      volume_up_cmd="amixer set Master $_step%+"
+      volume_down_cmd="amixer set Master $_step%-"
+      mute_cmd="amixer set Master toggle"
+      ;;
+    wpctl)
+      volume_up_cmd="wpctl set-volume @DEFAULT_AUDIO_SINK@ $_step%+"
+      volume_down_cmd="wpctl set-volume @DEFAULT_AUDIO_SINK@ $_step%-"
+      mute_cmd="wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+      ;;
+    pactl)
+      volume_up_cmd="pactl set-sink-volume @DEFAULT_SINK@ +$_step%"
+      volume_down_cmd="pactl set-sink-volume @DEFAULT_SINK@ -$_step%"
+      mute_cmd="pactl set-sink-mute @DEFAULT_SINK@ toggle"
+      ;;
+    pamixer)
+      volume_up_cmd="pamixer -i $_step"
+      volume_down_cmd="pamixer -d $_step"
+      mute_cmd="pamixer -t"
+      ;;
+  esac
+}
+
+# HACKS
+_volume() {
+  local vol
+  case $_tool in
+    amixer)
+      vol=$(amixer get Master | grep -oP '\d+%' | head -1 | tr -d '%')
+      ;;
+    wpctl)
+      vol=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print ($2 * 100)}')
+      ;;
+    pactl)
+      vol=$(pactl get-sink-volume @DEFAULT_SINK@ | awk '{print $5}' | tr -d '%')
+      ;;
+    pamixer)
+      vol=$(pamixer --get-volume-human | tr -d '%')
+      ;;
+    *)
+      exit 1
+      ;;
+    esac
+  echo "$vol"
+}
+
+# MORE HACKS
+is_muted() {
+  case $_tool in
+    amixer)
+      amixer get Master | grep -oP '\[off\]' | grep -q 'off' && echo "true" || echo "false"
+      ;;
+    wpctl)
+      wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print ($3 == "[MUTED]" ? "true" : "false")}'
+      ;;
+    pactl)
+      pactl get-sink-mute @DEFAULT_SINK@ | awk '{print $2}' | grep -q 'yes' && echo "true" || echo "false"
+      ;;
+    pamixer)
+      pamixer --get-mute
+      ;;
+    *)
+      exit 1
+      ;;
+  esac
+}
+
+_debug() {
+
+cat << DEBUG
+=============================================
+          Current Controller: $_tool
+          Volume Level: $(_volume)%
+          Muted: $(is_muted)
+=============================================
+
+DEBUG
+}
+
+_icons() {
+  local vol=$(_volume)
+
+  if [[ "$vol" -eq 0 ]]; then
+    echo "$icon_dir/volume-mute.svg"
+  elif [[ "$vol" -le 20 ]]; then
     echo "$icon_dir/volume-off.svg"
-  elif [[ "${new_vol%\%}" -le 40 ]]; then
+  elif [[ "$vol" -le 40 ]]; then
     echo "$icon_dir/volume-low.svg"
-  elif [[ "${new_vol%\%}" -le 60 ]]; then
+  elif [[ "$vol" -le 60 ]]; then
     echo "$icon_dir/volume-medium.svg"
   else
     echo "$icon_dir/volume-high.svg"
   fi
 }
 
-notify_user() {
-  if [[ "$(get_volume)" == "Muted" ]]; then
-    notify-send -e -r 91190 -t 800 -h int:value:"$(get_volume | sed 's/%//')" -h string:x-canonical-private-synchronous:volume_notif -u low -i "$(get_icon)" "Volume: $(get_volume)"
-  else
-    notify-send -e -r 91190 -t 800 -h int:value:"$(get_volume | sed 's/%//')" -h string:x-canonical-private-synchronous:volume_notif -u low -i "$(get_icon)" "Volume: $(get_volume)"
+_notify() {
+  notify-send -e -r 91190 -t $_timeout -h int:value:"$(_volume)" -h string:x-canonical-private-synchronous:volume_notif -u normal -i "$(_icons)" "Volume: $(_volume)%"
+}
+
+_mute() {
+  $mute_cmd > /dev/null
+
+  if [ "$(is_muted)" == "true" ]; then
+    notify-send -e -r 91190 -t $_timeout -h int:value:"$(_volume)" -h string:x-canonical-private-synchronous:volume_notif -u normal -i "$icon_dir/volume-mute.svg" "Muted"
+  elif [ "$(is_muted)" == "false" ]; then
+    _notify
   fi
 }
 
-toggle_mute() {
-	if [ "$(pamixer --get-mute)" == "false" ]; then
-		pamixer -m >/dev/null
-		notify-send -e -r 91190 -t 800 -u low -i "$icon_dir/volume-mute.svg" "Muted"
-	elif [ "$(pamixer --get-mute)" == "true" ]; then
-		pamixer -u >/dev/null
-		notify-send -e -r 91190 -t 800 -u low -i "$(get_icon)" "Volume: $(get_volume)"
-	fi
+_inc() {
+  $volume_up_cmd > /dev/null
+  _notify
 }
 
-inc_volume() {
-  if [ "$(pamixer --get-mute)" == "true" ]; then
-    toggle_mute
-  else
-    pamixer -i 2 >/dev/null
-    notify_user
-  fi
+_dec() {
+  $volume_down_cmd >/dev/null 2>&1
+  _notify
 }
 
-dec_volume() {
-  if [ "$(pamixer --get-mute)" == "true" ]; then
-    toggle_mute
-  else
-    pamixer -d 2 >/dev/null
-    notify_user
-  fi
-}
+_tools
+_commands
 
 case $1 in
   --get)
-    get_volume
+    _volume
     ;;
   --inc)
-    inc_volume
+    _inc
     ;;
   --dec)
-    dec_volume
+    _dec
     ;;
-  --toggle)
-    toggle_mute
+  -m|"--toggle")
+    _mute
     ;;
-  *)
-    get_volume
+  -D|"--debug")
+     _debug
+    ;;
+  *|"--help"|"-h")
+    echo "Usage: $0 [options]"
+    echo "  --get, -v         Get current volume level"
+    echo "  --inc,            Increase volume"
+    echo "  --dec,            Decrese volume"
+    echo "  --toggle, -m      Mute"
+    echo "  --debug, -D       Show debug information"
+    echo "  --help, -h        Show this help message"
+    exit 1
     ;;
 esac

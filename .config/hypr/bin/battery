@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-status="$(cat /sys/class/power_supply/BAT*/status)"
-level="$(cat /sys/class/power_supply/BAT*/capacity)"
+status=$(cat /sys/class/power_supply/BAT*/status 2>/dev/null)
+level=$(cat /sys/class/power_supply/BAT*/capacity 2>/dev/null)
 
 if [[ ("$status" == "Discharging") || ("$status" == "Full") ]]; then
-  if [[ "$level" -le "15" ]]; then
+  if [[ "$level" -le "5" ]]; then
     printf "􀛪 "
-  elif [[ ("$level" -ge "15") && ("$level" -le "25") ]]; then
+  elif [[ ("$level" -ge "5") && ("$level" -le "25") ]]; then
     printf "􀛩 "
   elif [[ ("$level" -ge "25") && ("$level" -le "50") ]]; then
     printf "􀺶 "
@@ -15,7 +15,6 @@ if [[ ("$status" == "Discharging") || ("$status" == "Full") ]]; then
   elif [[ ("$level" -ge "75") && ("$level" -le "100") ]]; then
     printf "􀛨 "
   fi
-# elif [[ "$status" == "Charging" ]]; then
 else
   printf "􀢋 "
 fi

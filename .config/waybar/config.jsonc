@@ -9,11 +9,9 @@
     "hyprland/workspaces",
     "group/telementry"
   ],
-
   "modules-center":[
     "clock"
   ],
-
   "modules-right": [
     "custom/player",
     "hyprland/language",
@@ -38,7 +36,6 @@
       "temperature"
     ]
   },
-
   "group/hardware": {
     "orientation": "horizontal",
     "modules": [
@@ -46,7 +43,6 @@
       "custom/battery"
     ]
   },
-
   "group/wireless": {
     "orientation": "horizontal",
     "modules": [
@@ -68,7 +64,6 @@
       "*": 4
     }
   },
-
   "hyprland/window": {
     "format": "{initialTitle}",
     "rewrite": {
@@ -90,7 +85,6 @@
     },
     "tooltip": false
   },
-
   "hyprland/language": {
     "format": "{}",
     "format-en": "en",
@@ -103,29 +97,24 @@
     "format": "􀧓 {usage}%",
     "tooltip": false
   },
-
   "memory": {
     "format": "󰆼 {}%",
     "tooltip": false
   },
-
   "temperature": {
     "critical-threshold": 50,
     "format": "􀇬 {temperatureC}°C",
     "tooltip": false
   },
-
   "clock": {
     "format": "􀉉 {:%a %h.%d  /  􀐫 %I:%M %p}",
     "tooltip": false
   },
-
   "tray": {
     "icon-size": 21,
     "spacing": 5,
     "tooltip": false
   },
-
   "network": {
     "format-wifi": "<span size='large'>{icon}</span>",
     "format-disabled": "􀑓 ",
@@ -139,14 +128,12 @@
     "on-click": "nmcli dev wifi rescan; hyprctl notify 5 1500 'rgb(d3c6aa)' 'Wifi rescan!'",
     "tooltip": false
   },
-
   "backlight": {
     "format": "{icon}  {percent}%",
     "format-icons": ["", "", "", "", "", "", "", "", ""],
     "smooth-scrolling-threshold": 5.0,
     "tooltip": false
   },
-
   "wireplumber": {
     "format": "{icon}",
     "format-muted": "􀊣 ",
@@ -155,50 +142,45 @@
     "tooltip": false
   },
 
+  // Custom Separators
   "custom/separator#space": {
     "format": " ",
     "tooltip": false
   },
-
   "custom/separator#right": {
     "format": "",
     "tooltip": false
   },
-
   "custom/separator#line": {
     "format": "|",
     "tooltip": false
   },
-
   "custom/separator#dot": {
     "format": "  ",
     "tooltip": false
   },
 
+  // Custom Modules
   "custom/menu": {
     "format": "<span size='large'></span>",
     "on-click": "pkill rofi || $HOME/.config/rofi/scripts/menu",
     "tooltip": false
   },
-
   "custom/battery": {
     "format": "{}",
     "interval": 1,
     "exec": "battery",
     "tooltip": false
   },
-
   "custom/system": {
     "format": "􀐞",
     "on-click": "alacritty -e btop || kitty btop",
     "tooltip": false
   },
-
   "custom/cava": {
     "format": "{}",
     "exec": "$HOME/.config/waybar/plugins/cava"
   },
-
   "custom/player": {
     "format": "{}",
     "interval": 1,

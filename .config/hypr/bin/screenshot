@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# OH MY P-C-C-C-C-C
+
 # File and folder names
 ssDIR="$HOME/Pictures/Screenshots"
 file="$ssDIR/$(date +'screenshot_%Y-%m-%d_%H-%M-%S.png')"
