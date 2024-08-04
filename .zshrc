@@ -69,6 +69,8 @@ alias ezp='$EDITOR $HOME/.zshrc && source $HOME/.zshrc'
 alias ebp='$EDITOR $HOME/.bashrc'
 alias ezh='$EDITOR $HOME/.zsh_history'
 alias ebh='$EDITOR $HOME/.bash_history'
+alias czh=':>$HOME/.zsh_history'
+alias cbh=':>$HOME/.bash_history'
 
 # User dirs
 alias dot='cd $HOME/.dotfiles'

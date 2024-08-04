@@ -34,7 +34,7 @@ _commands() {
       mute_cmd="amixer set Master toggle"
       ;;
     wpctl)
-      volume_up_cmd="wpctl set-volume @DEFAULT_AUDIO_SINK@ $_step%+"
+      volume_up_cmd="wpctl set-volume @DEFAULT_AUDIO_SINK@ $_step%+ -l 1"
       volume_down_cmd="wpctl set-volume @DEFAULT_AUDIO_SINK@ $_step%-"
       mute_cmd="wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
       ;;
