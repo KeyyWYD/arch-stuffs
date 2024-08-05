@@ -7,7 +7,7 @@ _timeout="1200"
 
 _backlight() {
 	local bkl=$(brightnessctl g)
-	echo "$bkl" > /dev/null
+	echo "$bkl"
 }
 
 _icons() {
