@@ -5,10 +5,13 @@
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
 limit coredumpsize 0
 
+# Vars
 ZSH=$HOME/.zsh
-
 EDITOR=nano
 
 if command -v yay &> /dev/null; then
@@ -22,24 +25,29 @@ fi
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # History
-HISTSIZE=10000
-SAVEHIST=10000
 HISTFILE=$HOME/.zsh_history
+HISTSIZE=5000
+SAVEHIST=5000
 HISTDUPE=erase
 HISTCONTROL=ignoreboth
 HISTIGNORE="&:[bf]g:echo:clear:cls:history:exit:q:pwd:ll:* --help:* -h"
-
-# zsh options
 setopt appendhistory
 setopt share_history
 setopt hist_expire_dups_first
 setopt hist_ignore_dups
 setopt hist_verify
 
+# zsh options
+setopt MENU_COMPLETE
+setopt LIST_PACKED
+setopt AUTO_LIST
+setopt COMPLETE_IN_WORD
+
 # Binds
 bindkey -e
 bindkey '^[[A' history-search-backward
 bindkey '^[[B' history-search-forward
+bindkey '^[[3~' delete-char
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -64,7 +72,7 @@ eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/kdot.toml)"
 alias e='$EDITOR'
 alias fm='yazi'
 
-alias reload='source $HOME/.zshrc'
+alias reload='. $HOME/.zshrc'
 alias ezp='$EDITOR $HOME/.zshrc && source $HOME/.zshrc'
 alias ebp='$EDITOR $HOME/.bashrc'
 alias ezh='$EDITOR $HOME/.zsh_history'

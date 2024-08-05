@@ -7,7 +7,7 @@ icon_dir="$HOME/.config/dunst/assets"
 
 # Vars
 _step="2"
-_timeout="1200"
+_timeout="1300"
 
 # Check for stuff
 _tools() {
@@ -78,7 +78,7 @@ _volume() {
 is_muted() {
   case $_tool in
     amixer)
-      amixer get Master | grep -oP '\[off\]' | grep -q 'off' && echo "true" || echo "false"
+      amixer get  Master | grep -oP '\[off\]' | grep -q 'off' && echo "true" || echo "false"
       ;;
     wpctl)
       wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print ($3 == "[MUTED]" ? "true" : "false")}'
@@ -93,18 +93,6 @@ is_muted() {
       exit 1
       ;;
   esac
-}
-
-_debug() {
-
-cat << DEBUG
-=============================================
-          Current Controller: $_tool
-          Volume Level: $(_volume)%
-          Muted: $(is_muted)
-=============================================
-
-DEBUG
 }
 
 _icons() {
@@ -124,27 +112,35 @@ _icons() {
 }
 
 _notify() {
-  notify-send -e -r 91190 -t $_timeout -h int:value:"$(_volume)" -h string:x-canonical-private-synchronous:volume_notif -u normal -i "$(_icons)" "Volume: $(_volume)%"
-}
-
-_mute() {
-  $mute_cmd > /dev/null
-
   if [ "$(is_muted)" == "true" ]; then
-    notify-send -e -r 91190 -t $_timeout -h int:value:"$(_volume)" -h string:x-canonical-private-synchronous:volume_notif -u normal -i "$icon_dir/volume-mute.svg" "Muted"
-  elif [ "$(is_muted)" == "false" ]; then
-    _notify
+    notify-send -e -r 91190 -t $_timeout -h int:value:"$(_volume)" -h string:x-canonical-private-synchronous:volume_notif -u normal -i "$icon_dir/volume-mute.svg" "Volume: Muted"
+  else
+    notify-send -e -r 91190 -t $_timeout -h int:value:"$(_volume)" -h string:x-canonical-private-synchronous:volume_notif -u normal -i "$(_icons)" "Volume: $(_volume)%"
   fi
 }
 
-_inc() {
-  $volume_up_cmd > /dev/null
-  _notify
+_debug() {
+  cat << DEBUG
+=============================================
+          Current Controller: $_tool
+          Volume Level: $(_volume)%
+          Muted: $(is_muted)
+=============================================
+DEBUG
 }
 
-_dec() {
-  $volume_down_cmd >/dev/null 2>&1
-  _notify
+_help() {
+  cat << HELP
+Usage: $0 [options]
+
+Options:
+  --get,            - Get current volume level
+  --inc,            - Increase volume
+  --dec,            - Decrease volume
+  --toggle, -m      - Mute/unmute
+  --debug, -D       - Show debug information
+  --help, -h        - Show this help message
+HELP
 }
 
 _tools
@@ -155,25 +151,22 @@ case $1 in
     _volume
     ;;
   --inc)
-    _inc
+    eval "$volume_up_cmd" &> /dev/null
+    _notify
     ;;
   --dec)
-    _dec
+    eval "$volume_down_cmd" &> /dev/null
+    _notify
     ;;
-  -m|"--toggle")
-    _mute
+  --toggle|-m)
+    eval "$mute_cmd" &> /dev/null
+    _notify
     ;;
-  -D|"--debug")
-     _debug
+  --debug|-D)
+    _debug
     ;;
-  *|"--help"|"-h")
-    echo "Usage: $0 [options]"
-    echo "  --get, -v         Get current volume level"
-    echo "  --inc,            Increase volume"
-    echo "  --dec,            Decrese volume"
-    echo "  --toggle, -m      Mute"
-    echo "  --debug, -D       Show debug information"
-    echo "  --help, -h        Show this help message"
-    exit 1
+  --help|-h)
+    _help
+    exit 0
     ;;
 esac

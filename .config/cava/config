@@ -1,5 +1,4 @@
-## Configuration file for CAVA. Default values are commented out. Use either ';' or '#' for commenting.
-
+# Generated with Matugen
 
 [general]
 
@@ -148,9 +147,9 @@ source = auto
 gradient = 1
 
 gradient_count = 3
-gradient_color_1 = '#723339'
-gradient_color_2 = '#ffb2b7'
-gradient_color_3 = '#f0dede'
+gradient_color_1 = '#6d3351'
+gradient_color_2 = '#fdb0d3'
+gradient_color_3 = '#eedfe3'
 
 [color]
 

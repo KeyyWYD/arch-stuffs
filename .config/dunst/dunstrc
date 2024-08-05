@@ -1,3 +1,5 @@
+# Generated with Matugen
+
 [global]
 layer                               = top
 font                                = SF Pro Display
@@ -22,11 +24,11 @@ progress_bar_max_width              = 170
 
 indicate_hidden                     = false
 separator_height                    = 2
-padding                             = 8
+padding                             = 10
 horizontal_padding                  = 8
 text_icon_padding                   = 16
 gap_size                            = 6
-separator_color                     = "#9f8c8d"
+separator_color                     = "#9d8d92"
 
 sort                                = update
 format                              = "<b>%s</b>\n%b"
@@ -36,7 +38,7 @@ title                               = "Dunst"
 class                               = "dunst"
 timeout                             = 5
 
-background                          = "#1a1112B3"
-foreground                          = "#f0dede"
-highlight                           = "#723339"
+background                          = "#191114B3"
+foreground                          = "#eedfe3"
+highlight                           = "#6d3351"
 frame_color                         = "#fff"

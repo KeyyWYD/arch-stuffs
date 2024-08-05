@@ -2,44 +2,68 @@
 
 icon_dir="$HOME/.config/dunst/assets"
 
-get_backlight() {
-	echo $(brightnessctl -m | cut -d, -f4)
+_step="2"
+_timeout="1200"
+
+_backlight() {
+	local bkl=$(brightnessctl g)
+	echo "$bkl" > /dev/null
 }
 
-get_icon() {
-	current=$(get_backlight | sed 's/%//')
-	if   [ "$current" -le "20" ]; then
-		icon="$icon_dir/brightness.svg"
-	elif [ "$current" -le "40" ]; then
-		icon="$icon_dir/brightness.svg"
-	elif [ "$current" -le "60" ]; then
-		icon="$icon_dir/brightness.svg"
-	elif [ "$current" -le "80" ]; then
-		icon="$icon_dir/brightness.svg"
+_icons() {
+	local bkl=$(_backlight)
+
+	if [ "$bkl" -le "20" ]; then
+		echo "$icon_dir/brightness.svg"
+	elif [ "$bkl" -le "40" ]; then
+		echo "$icon_dir/brightness.svg"
+	elif [ "$bkl" -le "60" ]; then
+		echo "$icon_dir/brightness.svg"
+	elif [ "$bkl" -le "80" ]; then
+		echo "$icon_dir/brightness.svg"
 	else
-		icon="$icon_dir/brightness.svg"
+		echo "$icon_dir/brightness.svg"
 	fi
 }
 
-notify_user() {
-	notify-send -e -h string:x-canonical-private-synchronous:brightness_notif -h int:value:$current -u low -i "$icon" "$current%"
+_notify() {
+  notify-send -e -r 91190 -t $_timeout -h int:value:"$(_backlight)" -h string:x-canonical-private-synchronous:brightness_notif -u normal -i "$(_icons)" "$(_backlight)%"
 }
 
-change_backlight() {
-	brightnessctl set "$1" -n && get_icon && notify_user
+_inc() {
+	brightnessctl set "+$_step%" > /dev/null
+	_notify
+}
+
+_dec() {
+	brightnessctl set "$_step%-" -n > /dev/null
+	_notify
+}
+
+_help() {
+  cat << HELP
+Usage: $0 [options]
+
+Options:
+  --get,            - Get current screen brightness level
+  --inc,            - Increase screen brightness
+  --dec,            - Decrese screen brightness
+  --help, -h        - Show this help message
+HELP
 }
 
 case "$1" in
   --get)
-  	get_backlight
+  	_backlight
   	;;
   --inc)
-  	change_backlight "+2%"
+  	_inc
   	;;
   --dec)
-  	change_backlight "2%-"
+  	_dec
   	;;
-  *)
-  	get_backlight
-  	;;
-esac
+  --help|-h)
+    _help
+    exit 0
+    ;;
+ esac

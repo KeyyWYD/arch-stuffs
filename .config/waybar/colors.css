@@ -1,2 +1,7 @@
-@define-color background alpha(#1a1112, 0.7);
-@define-color foreground #f0dede;
+/*
+* Waybar Colors
+* Generated with Matugen
+*/
+
+@define-color background alpha(#191114, 0.7);
+@define-color foreground #eedfe3;
