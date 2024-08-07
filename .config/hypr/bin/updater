@@ -24,7 +24,7 @@ _updates() {
 
   echo -e "${CYAN}─ Available Updates 󰮯 ───────────────────────────────◯${NC}"
 
-  if [ -f "$HOME/.cache/updcount" ] && [ "$(cat "$HOME/.cache/updcount")" -eq 0 ]; then
+  if [ -f "$HOME/.cache/updcount" ] && [ "$(<"$HOME/.cache/updcount")" -eq 0 ]; then
     echo  -e "${YELLOW}  :: No updates available.${NC}"
     sleep 2
     exit 0

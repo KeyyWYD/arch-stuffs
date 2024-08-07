@@ -1,43 +1,54 @@
 # #!/usr/bin/env bash
 
-current_player=$(playerctl -s metadata -f '{{playerName}}')
+# OH MY P-C-C-C-C-C
+
+player=$(playerctl -s metadata -f '{{playerName}}')
 status=$(playerctl -s status)
 
-# Function to get metadata based on player
 _metadata() {
   local player=$1
   case "$player" in
     spotify)
-      echo "󰓇  $(playerctl metadata -f '{{title}} - {{artist}}')"
+      echo "$(playerctl metadata -f '󰓇  {{title}} - {{artist}}')"
       ;;
     firefox)
-      echo "󰈹  $(playerctl metadata -f '{{title}} - {{artist}}')"
+      echo "$(playerctl metadata -f '󰈹  {{title}} - {{artist}}')"
       ;;
     mpd)
-      echo "󰎆  $(playerctl metadata -f '{{title}} - {{artist}}')"
+      echo "$(playerctl metadata -f '󰎆  {{title}} - {{artist}}')"
       ;;
     chromium)
-      echo "󰊯  $(playerctl metadata -f '{{title}} - {{artist}}')"
+      echo "$(playerctl metadata -f '󰊯  {{title}} - {{artist}}')"
       ;;
   esac
 }
 
-if [[ "$status" == "Playing" ]]; then
-  metadata=$(_metadata "$current_player")
-fi
+# Finally fixed this shit
+_spotify() {
+  # Waybar stuff
+  local player status meta
 
-# Waybar stuff
-if [[ "$status" == "Playing" && "$current_player" == "spotify" ]]; then
-  bardata="󰓇  $(playerctl metadata -f '{{title}}')"
-elif [[ "$status" == "Paused" && "$current_player" == "spotify" ]]; then
-  bardata="  $(playerctl metadata -f '{{title}}')"
+  player=$(playerctl -s metadata -f '{{playerName}}')
+  status=$(playerctl -sp spotify status)
+
+  if [[ "$status" == "Playing" ]]; then
+    meta=$(playerctl -p spotify metadata -f "󰓇  {{title}}")
+  elif [[ "$status" == "Paused" ]]; then
+    meta=$(playerctl -p spotify metadata -f "  {{title}}")
+  fi
+
+  echo "$meta"
+}
+
+if [[ "$status" == "Playing" ]]; then
+  meta=$(_metadata "$player")
 fi
 
 case "$1" in
   --lockscreen)
-    echo "$metadata"
+    echo "$meta"
     ;;
   --bar)
-    echo "$bardata"
+    echo "$(_spotify)"
     ;;
 esac

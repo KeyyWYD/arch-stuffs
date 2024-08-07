@@ -33,7 +33,7 @@ stop() {
 # Main
 #
 
-matugen image "$(cat "$cache_file")" -m "$mode" -t "$scheme" --contrast "$contrast"
+matugen image "$(<"$cache_file")" -m "$mode" -t "$scheme" --contrast "$contrast"
 
 for proc in "${progs[@]}"; do
   if is_active "$proc"; then

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-status=$(cat /sys/class/power_supply/BAT*/status 2>/dev/null)
-level=$(cat /sys/class/power_supply/BAT*/capacity 2>/dev/null)
+status=$(< /sys/class/power_supply/BAT*/status)
+level=$(< /sys/class/power_supply/BAT*/capacity)
 
 if [[ ("$status" == "Discharging") || ("$status" == "Full") ]]; then
   if [[ "$level" -le "5" ]]; then

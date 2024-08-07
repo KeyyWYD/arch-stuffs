@@ -22,7 +22,7 @@ while true; do
   now=$(current_time)
 
   if [[ -f "$LAST_UPD_CHECK" ]]; then
-    last_check=$(cat "$LAST_UPD_CHECK")
+    last_check=$(<"$LAST_UPD_CHECK")
   else
     last_check=0
   fi

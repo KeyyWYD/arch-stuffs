@@ -3,13 +3,13 @@
 # Idk maybe bored
 
 greetr() {
-  local host=$(cat /etc/hostname)
+  local host=$(< /etc/hostname)
   local user=$(whoami)
   local date=$(date "+%A %d/%m/%y")
   local time=$(date "+%I:%M")
 
   local message=$(printf "Welcome to %s, %s!\n  %s %s\n    Enjoy your session! " "$host" "$user" "$date" "$time")
-  
+
   notify-send "$message"
 }
 

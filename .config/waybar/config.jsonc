@@ -184,7 +184,7 @@
   "custom/player": {
     "format": "{}",
     "interval": 1,
-    "on-click":"playerctl play-pause",
+    "on-click":"playerctl -p spotify play-pause",
     "exec": "player --bar",
     "max-length": 19,
     "tooltip": false
