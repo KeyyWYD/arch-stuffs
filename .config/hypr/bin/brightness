@@ -12,22 +12,23 @@ _backlight() {
 
 _icons() {
 	local bkl=$(_backlight)
+	local icon
 
-	if [ "$bkl" -le "20" ]; then
-		echo "$icon_dir/brightness.svg"
-	elif [ "$bkl" -le "40" ]; then
-		echo "$icon_dir/brightness.svg"
-	elif [ "$bkl" -le "60" ]; then
-		echo "$icon_dir/brightness.svg"
-	elif [ "$bkl" -le "80" ]; then
-		echo "$icon_dir/brightness.svg"
-	else
-		echo "$icon_dir/brightness.svg"
-	fi
+	icon="$icon_dir/brightness.svg"
+
+	# if [ "$bkl" -le "30" ]; then
+	# 	icon="$icon_dir/brightness-low.svg"
+	# elif [[ "$vol" -le 60 ]]; then
+	# 	icon="$icon_dir/brightness-medium.svg"
+	# else
+	# 	icon="$icon_dir/brightness-high.svg"
+	# fi
+
+	echo "$icon"
 }
 
 _notify() {
-  notify-send -e -r 91190 -t $_timeout -h int:value:"$(_backlight)" -h string:x-canonical-private-synchronous:brightness_notif -u normal -i "$(_icons)" "$(_backlight)%"
+  notify-send -r 91190 -t $_timeout -h int:value:"$(_backlight)" -h string:x-canonical-private-synchronous:brightness_notif -u normal -i "$(_icons)" "$(_backlight)%"
 }
 
 _inc() {
@@ -62,7 +63,7 @@ case "$1" in
   --dec)
   	_dec
   	;;
-  --help|-h)
+  *|--help|-h)
     _help
     exit 0
     ;;

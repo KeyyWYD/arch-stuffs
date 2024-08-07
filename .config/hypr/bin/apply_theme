@@ -1,5 +1,18 @@
 #!/usr/bin/env bash
 
+# OH MY P-C-C-C-C-C
+
+# Appearance settings
+mode="dark"
+# Mode for theme: 'light' or 'dark'
+scheme="scheme-content"
+# Scheme Options: scheme-content, scheme-expressive,
+# scheme-fidelity, scheme-fruit-salad, scheme-monochrome,
+# scheme-neutral, scheme-rainbow, scheme-tonal-spot.
+contrast="0"
+# Contrast level: -1 to 1
+
+# Vars
 monitor=$(hyprctl monitors | awk '/^Monitor/{name=$2} /focused: yes/{print name}')
 cache_file="$HOME/.cache/swww/$monitor"
 progs=('waybar') # Kill these
@@ -13,16 +26,19 @@ start() {
 }
 
 stop() {
-  local proc="$1"
-  if is_active "$proc"; then
-    pkill -f "$proc" 2> /dev/null
-  fi
+  pkill -f "$1" 2> /dev/null
 }
 
-matugen image "$(cat "$cache_file")"
+#
+# Main
+#
 
-for prog in "${progs[@]}"; do
-  stop "$prog"
+matugen image "$(cat "$cache_file")" -m "$mode" -t "$scheme" --contrast "$contrast"
+
+for proc in "${progs[@]}"; do
+  if is_active "$proc"; then
+    stop "$proc"
+  fi
 done
 
 while true; do

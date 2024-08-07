@@ -10,45 +10,32 @@ _step="2"
 _timeout="1300"
 
 # Check for stuff
-_tools() {
+_commands() {
+  # https://gist.github.com/palopezv/efd34059af6126ad970940bcc6a90f2e
   if command -v amixer &> /dev/null; then
     _tool="amixer"
+    volume_up_cmd="amixer set Master $_step%+"
+    volume_down_cmd="amixer set Master $_step%-"
+    mute_cmd="amixer set Master toggle"
   elif command -v wpctl &> /dev/null; then
     _tool="wpctl"
+    volume_up_cmd="wpctl set-volume @DEFAULT_AUDIO_SINK@ $_step%+ -l 1"
+    volume_down_cmd="wpctl set-volume @DEFAULT_AUDIO_SINK@ $_step%-"
+    mute_cmd="wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
   elif command -v pactl &> /dev/null; then
     _tool="pactl"
+    volume_up_cmd="pactl set-sink-volume @DEFAULT_SINK@ +$_step%"
+    volume_down_cmd="pactl set-sink-volume @DEFAULT_SINK@ -$_step%"
+    mute_cmd="pactl set-sink-mute @DEFAULT_SINK@ toggle"
   elif command -v pamixer &> /dev/null; then
     _tool="pamixer"
+    volume_up_cmd="pamixer -i $_step"
+    volume_down_cmd="pamixer -d $_step"
+    mute_cmd="pamixer -t"
   else
     echo "No volume control tool found."
     exit 1
   fi
-}
-
-# https://gist.github.com/palopezv/efd34059af6126ad970940bcc6a90f2e
-_commands() {
-  case $_tool in
-    amixer)
-      volume_up_cmd="amixer set Master $_step%+"
-      volume_down_cmd="amixer set Master $_step%-"
-      mute_cmd="amixer set Master toggle"
-      ;;
-    wpctl)
-      volume_up_cmd="wpctl set-volume @DEFAULT_AUDIO_SINK@ $_step%+ -l 1"
-      volume_down_cmd="wpctl set-volume @DEFAULT_AUDIO_SINK@ $_step%-"
-      mute_cmd="wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-      ;;
-    pactl)
-      volume_up_cmd="pactl set-sink-volume @DEFAULT_SINK@ +$_step%"
-      volume_down_cmd="pactl set-sink-volume @DEFAULT_SINK@ -$_step%"
-      mute_cmd="pactl set-sink-mute @DEFAULT_SINK@ toggle"
-      ;;
-    pamixer)
-      volume_up_cmd="pamixer -i $_step"
-      volume_down_cmd="pamixer -d $_step"
-      mute_cmd="pamixer -t"
-      ;;
-  esac
 }
 
 # HACKS
@@ -96,26 +83,33 @@ is_muted() {
 }
 
 _icons() {
-  local vol=$(_volume)
+  local vol icon
+
+  vol=$(_volume)
 
   if [[ "$vol" -eq 0 ]]; then
-    echo "$icon_dir/volume-mute.svg"
+    icon="$icon_dir/volume-mute.svg"
   elif [[ "$vol" -le 20 ]]; then
-    echo "$icon_dir/volume-off.svg"
+    icon="$icon_dir/volume-off.svg"
   elif [[ "$vol" -le 40 ]]; then
-    echo "$icon_dir/volume-low.svg"
+    icon="$icon_dir/volume-low.svg"
   elif [[ "$vol" -le 60 ]]; then
-    echo "$icon_dir/volume-medium.svg"
+    icon="$icon_dir/volume-medium.svg"
   else
-    echo "$icon_dir/volume-high.svg"
+    icon="$icon_dir/volume-high.svg"
   fi
+
+  echo "$icon"
 }
 
 _notify() {
-  if [ "$(is_muted)" == "true" ]; then
-    notify-send -e -r 91190 -t $_timeout -h int:value:"$(_volume)" -h string:x-canonical-private-synchronous:volume_notif -u normal -i "$icon_dir/volume-mute.svg" "Volume: Muted"
+  local vol=$(_volume)
+  local icon=$(_icons)
+
+  if [ "$(is_muted)" != "true" ]; then
+    notify-send -r 91190 -t $_timeout -h int:value:"$vol" -h string:x-canonical-private-synchronous:volume_notif -u normal -i "$icon" "Volume: $vol%"
   else
-    notify-send -e -r 91190 -t $_timeout -h int:value:"$(_volume)" -h string:x-canonical-private-synchronous:volume_notif -u normal -i "$(_icons)" "Volume: $(_volume)%"
+    notify-send -r 91190 -t $_timeout -h int:value:"$vol" -h string:x-canonical-private-synchronous:volume_notif -u normal -i "$icon_dir/volume-mute.svg" "Volume: Muted"
   fi
 }
 
@@ -143,7 +137,6 @@ Options:
 HELP
 }
 
-_tools
 _commands
 
 case $1 in
@@ -151,21 +144,23 @@ case $1 in
     _volume
     ;;
   --inc)
-    eval "$volume_up_cmd" &> /dev/null
+    $volume_up_cmd &> /dev/null
     _notify
+    sounds --volume
     ;;
   --dec)
-    eval "$volume_down_cmd" &> /dev/null
+    $volume_down_cmd &> /dev/null
     _notify
+    sounds --volume
     ;;
   --toggle|-m)
-    eval "$mute_cmd" &> /dev/null
+    $mute_cmd &> /dev/null
     _notify
     ;;
   --debug|-D)
     _debug
     ;;
-  --help|-h)
+  *|--help|-h)
     _help
     exit 0
     ;;

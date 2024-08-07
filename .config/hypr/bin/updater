@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# OH MY P-C-C-C-C-C
+
 GREEN='\033[0;32m'
 CYAN='\033[0;36m'
 YELLOW='\033[1;33m'

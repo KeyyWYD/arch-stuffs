@@ -16,51 +16,61 @@ _plugged() {
   case "$status" in
     Charging)
       _notify "-t 3000 " "low" "Battery Charging" "Your PC is now charging."
+      sounds --plug
       ;;
     Discharging)
       _notify "-t 3000 " "normal" "Battery Discharging" "Your PC is now running on battery power."
+      sounds --unplug
       ;;
   esac
 }
 
 if is_laptop; then
   battery=$(ls -d /sys/class/power_supply/BAT* | head -n 1)
-  # prev_status=$(cat "$battery/status" 2>/dev/null)
+  prev_status=$(<"$battery/status")
 
   max_cap=100
   min_cap=20
   crit_cap=5
-  mxt=120 # Max time
-  mnt=60 # Min time
+  mxt=120 # Max time in seconds
+  mnt=60  # Min time in seconds
   notfied="none"
 
   while true; do
-    status=$(cat "$battery/status" 2>/dev/null)
-    capacity=$(cat "$battery/capacity" 2>/dev/null)
+    status=$(<"$battery/status")
+    capacity=$(<"$battery/capacity")
 
-    # if [[ "$status" != "$prev_status" ]]; then
-    #   _plugged "$status"
-    #   prev_status="$status"
-    # fi
+    if [[ "$status" != "$prev_status" ]]; then
+      _plugged "$status"
+      prev_status="$status"
+    fi
 
     if [[ "$status" == "Discharging" ]]; then
       if [[ "$capacity" -le "$crit_cap" ]]; then
         count=$(( mxt > mnt ? mxt : mnt ))
 
         while [[ "$count" -gt 0 && "$status" == "Discharging" ]]; do
-          status=$(cat "$battery/status" 2>/dev/null)
+          sleep 1
+          status=$(<"$battery/status")
+
           if [[ "$status" != "Discharging" ]]; then
             break
           fi
 
           _notify "-t 5000 -r 24380" "critical" "Very Low Battery" "Your PC will sleep in $((count / 60)):$((count % 60))."
+
+          if [ "$notified" != "vlow" ]; then
+            sounds --low
+            notfied="vlow"
+          fi
+
           count=$((count - 1))
-          sleep 1
         done
 
         [[ "$count" -eq 0 ]] && nohup systemctl suspend &>/dev/null &
       elif [[ "$capacity" -le "$min_cap" && "$notfied" != "low" ]]; then
         _notify "-t 3000 -r 24380" "critical" "Low Battery" "Your PC will sleep soon unless plugged into a power outlet."
+        sounds --low
         notfied="low"
       fi
     elif [[ "$status" == "Charging" && "$capacity" -ge "$max_cap" && "$notfied" != "full" ]]; then
@@ -69,8 +79,7 @@ if is_laptop; then
     else
       notfied="none"
     fi
-
-    sleep 5
+    sleep 1
   done
 else
   echo "Cannot detect a battery. The system is either not a laptop or there is an issue with the battery."

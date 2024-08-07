@@ -1,3 +1,8 @@
+/*
+* Rofi Colors
+* Generated with Matugen
+*/
+
 * {
     background: rgba({{colors.surface.default.red}}, {{colors.surface.default.green}}, {{colors.surface.default.blue}}, 0.75);
     background-alt: {{colors.secondary.default.hex}};

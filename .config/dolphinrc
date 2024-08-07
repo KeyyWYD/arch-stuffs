@@ -8,7 +8,6 @@ ShowViewMode=false
 
 [DetailsMode]
 ExpandableFolders=false
-PreviewSize=32
 
 [General]
 AutoExpandFolders=true

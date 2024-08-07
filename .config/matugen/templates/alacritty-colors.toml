@@ -1,3 +1,5 @@
+# Generated with Matugen
+
 [colors.primary]
 background = '{{colors.background.default.hex}}'
 foreground = '{{colors.on_background.default.hex}}'

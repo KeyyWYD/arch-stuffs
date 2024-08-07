@@ -1,17 +1,19 @@
+# Generated with Matugen
+
 [colors.primary]
-background = '#191114'
-foreground = '#eedfe3'
+background = '#111414'
+foreground = '#e2e2e2'
 
 [colors.cursor]
-text = '#d4c2c8'
-cursor = '#eedfe3'
+text = '#c0c8c9'
+cursor = '#e2e2e2'
 
 [colors.normal]
 black   = '#4c4c4c'
 red     = '#ac8a8c'
 green   = '#8aac8b'
 yellow  = '#aca98a'
-blue    = '#fdb0d3'
+blue    = '#a0cfd4'
 magenta = '#ac8aac'
 cyan    = '#8aacab'
 white   = '#f0f0f0'

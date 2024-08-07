@@ -1,35 +1,43 @@
-#!/usr/bin/env bash
+# #!/usr/bin/env bash
 
-name=$(playerctl -s metadata -f '{{playerName}}')
+current_player=$(playerctl -s metadata -f '{{playerName}}')
 status=$(playerctl -s status)
 
-if [[ "$status" == "Playing" ]]; then
-  case "$name" in
+# Function to get metadata based on player
+_metadata() {
+  local player=$1
+  case "$player" in
     spotify)
-      set_0=$(playerctl metadata -f " 󰓇  {{title}} - {{artist}}")
-      set_1=$(playerctl metadata -f "󰓇  {{title}}")
+      echo "󰓇  $(playerctl metadata -f '{{title}} - {{artist}}')"
       ;;
     firefox)
-      set_0=$(playerctl metadata -f " 󰈹  {{title}} - {{artist}}")
+      echo "󰈹  $(playerctl metadata -f '{{title}} - {{artist}}')"
       ;;
     mpd)
-      set_0=$(playerctl metadata -f " 󰎆  {{title}} - {{artist}}")
+      echo "󰎆  $(playerctl metadata -f '{{title}} - {{artist}}')"
       ;;
     chromium)
-      set_0=$(playerctl metadata -f " 󰊯  {{title}} - {{artist}}")
+      echo "󰊯  $(playerctl metadata -f '{{title}} - {{artist}}')"
       ;;
   esac
-elif [[ "$status" == "Paused" ]]; then
-  if [[ "$name" == "spotify" ]]; then
-    set_1=$(playerctl metadata -f "  {{title}}")
-  fi
+}
+
+if [[ "$status" == "Playing" ]]; then
+  metadata=$(_metadata "$current_player")
+fi
+
+# Waybar stuff
+if [[ "$status" == "Playing" && "$current_player" == "spotify" ]]; then
+  bardata="󰓇  $(playerctl metadata -f '{{title}}')"
+elif [[ "$status" == "Paused" && "$current_player" == "spotify" ]]; then
+  bardata="  $(playerctl metadata -f '{{title}}')"
 fi
 
 case "$1" in
   --lockscreen)
-    echo "$set_0"
+    echo "$metadata"
     ;;
   --bar)
-    echo "$set_1"
+    echo "$bardata"
     ;;
 esac

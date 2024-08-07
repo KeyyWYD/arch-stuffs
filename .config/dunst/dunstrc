@@ -17,7 +17,7 @@ min_icon_size                       = 48
 max_icon_size                       = 64
 
 progress_bar                        = true
-progress_bar_height                 = 8
+progress_bar_height                 = 7
 progress_bar_frame_width            = 1
 progress_bar_min_width              = 150
 progress_bar_max_width              = 170
@@ -28,7 +28,7 @@ padding                             = 10
 horizontal_padding                  = 8
 text_icon_padding                   = 16
 gap_size                            = 6
-separator_color                     = "#9d8d92"
+separator_color                     = "#8a9293"
 
 sort                                = update
 format                              = "<b>%s</b>\n%b"
@@ -38,7 +38,7 @@ title                               = "Dunst"
 class                               = "dunst"
 timeout                             = 5
 
-background                          = "#191114B3"
-foreground                          = "#eedfe3"
-highlight                           = "#6d3351"
+background                          = "#111414B3"
+foreground                          = "#e2e2e2"
+highlight                           = "#6a989d"
 frame_color                         = "#fff"
